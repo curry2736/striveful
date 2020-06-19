@@ -16,7 +16,7 @@ app.use(expressLayouts)
 app.use(express.static('public'))
 
 const mongoose = require('mongoose')
-mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/comejoin', {useNewUrlParser: true, useUnifiedTopology: true})
 const db = mongoose.connection
 db.on('error', error => {
     console.error(error)
