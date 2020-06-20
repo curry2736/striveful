@@ -1,0 +1,8 @@
+[24-May-2020 03:51:16 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ext\php_interbase.dll' - The specified module could not be found.
+ in Unknown on line 0
+[24-May-2020 03:51:17 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ext\php_oci8_12c.dll' - The specified module could not be found.
+ in Unknown on line 0
+[24-May-2020 03:51:17 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ext\php_pdo_firebird.dll' - The specified module could not be found.
+ in Unknown on line 0
+[24-May-2020 03:51:17 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'ext\php_pdo_oci.dll' - The specified module could not be found.
+ in Unknown on line 0
