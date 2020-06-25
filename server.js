@@ -2,11 +2,15 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
 
+const config = require('config');
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
-const mongoose = require('mongoose')
-const users = require('./routes/users')
+const mongoose = require('mongoose');
+const users = require('./routes/users');
+const signup = require('./routes/signup');
+const login = require('./routes/login');
 const auth = require('./routes/auth');
+const test = require('./routes/test');
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
@@ -15,15 +19,20 @@ const expressLayouts = require('express-ejs-layouts');
 
 const indexRouter = require('./routes/index')
 
+if (!config.get('PrivateKey')) {
+  console.error('FATAL ERROR: PrivateKey is not defined.');
+  process.exit(1);
+}
+
 app.use(express.json());
-app.use('/api/users', users);
-app.use('/api/auth', auth);
+app.use(express.static('public'))
+app.use(express.static(__dirname + '/public'));
+
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views')
 app.set('layout', 'layouts/layout')
 app.use(expressLayouts)
-app.use(express.static('public'))
-app.use(express.static(__dirname + '/views'));
+
 
 
 mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true})
@@ -37,6 +46,11 @@ db.once('open', () => {
 });
 
 app.use('/', indexRouter)
+app.use('/api/users', users);
+app.use('/api/auth', auth);
+app.use('/login123', login);
+app.use('/signup', signup);
+app.use('/test', test);
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
