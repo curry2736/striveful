@@ -19,6 +19,7 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "mongoose": "^5.9.18",
+    "mongoose-type-url": "^2.0.0",
     "nodemon": "^2.0.4"
   },
   "devDependencies": {
