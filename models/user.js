@@ -6,6 +6,10 @@ const User = mongoose.model('User', new mongoose.Schema({
         type: Boolean,
         required: true,
     },
+    link: {
+        type: String,
+        required: false
+    },
     firstName: {
         type: String,
         required: true,
@@ -40,6 +44,7 @@ const User = mongoose.model('User', new mongoose.Schema({
 function validateUser(user) {
     const schema = {
         isCompany: Joi.boolean().required(),
+        link: Joi.string().uri(),
         name: Joi.string().min(1).max(50).required(),
         email: Joi.string().min(5).max(255).required().email(),
         password: Joi.string().min(5).max(255).required(),
