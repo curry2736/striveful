@@ -1,0 +1,42 @@
+{
+    "Users" : {
+        "USERID" : {
+            "isCompany" : false,
+            "First Name" : "Frank",
+            "Last Name" : "Waters",
+            "Email" : "Frank.Waters@gmail.com",
+            "Password" : "Epic Encryption",
+            "ConfirmOver14" : true
+        }
+    },
+    "Internship" : {
+        "INTERNSHIPID" : {
+            "Title" : "High School Intel Internship",
+            "Company" : "Intel",
+            "Description" : "Make Spreadsheets",
+            "StartDate" : 1591574400,
+            "EndDate" :  1596844800,
+            "URL" : "https://url.intel.com"
+        }
+    },
+    "Volunteering" : {
+        "VOLUNTEERINGID" : {
+            "Title" : "CIM",
+            "Company" : "Interact",
+            "Description" : "Run big bus",
+            "StartDate" : 1591574400,
+            "EndDate" :  1596844800,
+            "URL" : "https://url.intel.com"
+        }
+    },
+    "Workshop" : {
+        "WORKSHOPID" : {
+            "Title" : "CIM",
+            "Company" : "Interact",
+            "Description" : "Run big bus",
+            "StartDate" : 1591574400,
+            "EndDate" :  1596844800,
+            "URL" : "https://url.intel.com"
+        }
+    }
+}
