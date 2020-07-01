@@ -13,6 +13,8 @@ router.post('/', async (req, res) => {
     if (error) {
         return res.status(400).send(error.details[0].message);
     }
+
+    console.log(req.body)
  
     //  Now find the user by their email address
     let user = await User.findOne({ email: req.body.email });
