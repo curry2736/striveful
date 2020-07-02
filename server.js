@@ -12,6 +12,7 @@ const login = require('./routes/login');
 const auth = require('./routes/auth');
 const test = require('./routes/test');
 const express = require('express');
+const bodyParser = require('body-parser')
 const app = express();
 const methodOverride = require('method-override')
 const port = process.env.PORT || 3000;
@@ -36,7 +37,10 @@ app.set('views', __dirname + '/views')
 app.set('layout', 'layouts/layout')
 app.use(expressLayouts)
 
-
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json())
 
 mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true})
 const db = mongoose.connection;
