@@ -11,6 +11,8 @@ const signup = require('./routes/signup');
 const login = require('./routes/login');
 const auth = require('./routes/auth');
 const test = require('./routes/test');
+const indexRouter = require('./routes/index')
+
 const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
@@ -21,7 +23,7 @@ const expressLayouts = require('express-ejs-layouts');
 const search = require('./routes/search')
 
 
-const indexRouter = require('./routes/index')
+
 
 if (!config.get('PrivateKey')) {
   console.error('FATAL ERROR: PrivateKey is not defined.');
