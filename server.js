@@ -13,6 +13,7 @@ const auth = require('./routes/auth');
 const test = require('./routes/test');
 const express = require('express');
 const app = express();
+const methodOverride = require('method-override')
 const port = process.env.PORT || 3000;
 const expressLayouts = require('express-ejs-layouts');
 
@@ -23,6 +24,8 @@ if (!config.get('PrivateKey')) {
   console.error('FATAL ERROR: PrivateKey is not defined.');
   process.exit(1);
 }
+
+app.use(methodOverride('_method'))
 
 app.use(express.json());
 app.use(express.static('public'))

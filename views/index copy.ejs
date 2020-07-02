@@ -62,11 +62,13 @@
             <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
           </div>
           <div class="modal-body">
-            <form method="POST" action="/api/auth">
+            <form action="/api/auth/" method="POST">
               <div class="form-group">
+                <label for="email">Email: </label>
                 <input name="email" id="email" type="text" placeholder="email" class="form-control">
               </div>
               <div class="form-group">
+                <label for="email">Password: </label>
                 <input name="password" id="password" type="password" placeholder="password" class="form-control">
               </div>
               <p class="text-center">

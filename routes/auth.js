@@ -10,6 +10,7 @@ const router = express.Router();
 router.post('/', async (req, res) => {
     // First Validate The HTTP Request
     const { error } = validate(req.body);
+    console.log(error);
     if (error) {
         return res.status(400).send(error.details[0].message);
     }
