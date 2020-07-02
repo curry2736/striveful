@@ -62,6 +62,7 @@ app.use('/api/auth', auth);
 app.use('/login123', login);
 app.use('/signup', signup);
 app.use('/test', test);
+app.use('/search', search);
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
