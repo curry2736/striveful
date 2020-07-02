@@ -18,6 +18,8 @@ const methodOverride = require('method-override')
 const port = process.env.PORT || 3000;
 const expressLayouts = require('express-ejs-layouts');
 
+const search = require('./routes/search')
+
 
 const indexRouter = require('./routes/index')
 
@@ -58,6 +60,7 @@ app.use('/api/auth', auth);
 app.use('/login123', login);
 app.use('/signup', signup);
 app.use('/test', test);
+app.use('/search', search)
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
