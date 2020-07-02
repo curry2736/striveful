@@ -11,8 +11,8 @@ const signup = require('./routes/signup');
 const login = require('./routes/login');
 const auth = require('./routes/auth');
 const test = require('./routes/test');
+const details = require('./routes/details');
 const indexRouter = require('./routes/index')
-
 const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
@@ -62,7 +62,6 @@ app.use('/api/auth', auth);
 app.use('/login123', login);
 app.use('/signup', signup);
 app.use('/test', test);
-app.use('/search', search)
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
