@@ -38,6 +38,7 @@ router.post('/', async (req, res) => {
 router.get('/verify', async (req, res) => {
     const cookies = req.headers.cookie.split("; ");
     let authToken = "";
+    let buff = "";
     cookies.forEach( cookie => {
         if (cookie.includes("token")) {
             authToken = cookie.split("=")[1];
@@ -47,11 +48,12 @@ router.get('/verify', async (req, res) => {
         console.log(authToken);
         if (err) {
             console.log(err);
-            return res.sendStatus(403)
+            return res.redirect("/signup")
         }
-        return authToken;
+        buff = new Buffer(authToken.split(".")[1], 'base64')
+        console.log(buff.toString('ascii'));
     });
-    return res.send("hi");
+    return res.send(buff.toString('ascii'))
 });
  
 function validate(req) {
