@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 require('mongoose-type-url');
 
 const Internship = mongoose.model('Internship', new mongoose.Schema({
-    eventName: {
+    jobTitle: {
         type: String,
         required: true,
         minlength: 1,
@@ -16,6 +16,13 @@ const Internship = mongoose.model('Internship', new mongoose.Schema({
         maxlength: 255,
         unique: true
     },
+    companyName: {
+        type: String,
+        required: true,
+        minlength: 1,
+        maxlength: 50
+    },
+    //TODO: add location
     link: {
         type: String,
         required: true
@@ -34,16 +41,21 @@ const Internship = mongoose.model('Internship', new mongoose.Schema({
         type: Date,
         required: true
     },
+    datePosted: {
+        type: Date,
+        required: true
+    }
 }));
  
 function validateInternship(internship) {
     const schema = {
-        eventName: Joi.string().min(1).max(128).required(),
+        jobTitle: Joi.string().min(1).max(128).required(),
         email: Joi.string().min(5).max(255).required().email(),
-        organization: Joi.string().min(1).max(128).required(),
+        companyName: Joi.string().min(1).max(128).required(),
         description: Joi.string().min(1).max(2000).required(),
         startDate: Joi.date().required(),
         endDate: Joi.date().required(),
+        datePosted: Joi.date().required(),
         link: Joi.string().uri()
     };
     return Joi.validate(internship, schema);
