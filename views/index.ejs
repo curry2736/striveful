@@ -30,9 +30,6 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
   </head>
   <body>
-    <div></div>
-    <p><%= internships %></p>
-</div>
     <!-- navbar-->
     <header class="header">
       <nav class="navbar navbar-expand-lg">
@@ -163,53 +160,88 @@
     </section>
     <section>
       <div class="container">
-        <h4 class="heading">Trending this month</h4>
-        <div class="job-listing">
-          <div class="row">
-            <div class="col-md-12 col-lg-6">
-              <div class="row">
-                <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-3.png" alt="Bootstrapious " class="img-fluid"></div>
-                <div class="col-10">
-                  <h4 class="job__title"><a href="detail.html">Front End developer</a></h4>
-                  <p class="job__company">
-                     
-                    Bootstrapious
-                  </p>
+        <h4 class="heading">Most Recent Internships</h4>
+        <% recents.internships.forEach( value => { %>
+          <div class="job-listing">
+            <div class="row">
+              <div class="col-md-12 col-lg-6">
+                <div class="row">
+                  <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-3.png" alt="Bootstrapious " class="img-fluid"></div>
+                  <div class="col-10">
+                    <h4 class="job__title"><a href="/details/<%= value.id %>"><%= value.jobTitle %></a></h4>
+                    <p class="job__company">
+                      <%= value.companyName %>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i>Palo Alto</div>
-            <div class="col-10 col-md-3 col-lg-3 ml-auto">
-              <p>Posted 10 days ago</p>
-            </div>
-            <div class="col-sm-12 col-md-2 col-lg-1">
-              <div class="job__star"><a href="#" data-toggle="tooltip" data-placement="top" title="Save to favourites" class="job__star__link"><i class="fa fa-star"></i></a></div>
-            </div>
-          </div>
-        </div>
-        <div class="job-listing  job-listing--last">
-          <div class="row">
-            <div class="col-md-12 col-lg-6">
-              <div class="row">
-                <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-4.png" alt="ShareBoardd " class="img-fluid"></div>
-                <div class="col-10">
-                  <h4 class="job__title"><a href="detail.html">Team Leader</a></h4>
-                  <p class="job__company">
-                     
-                    ShareBoardd
-                  </p>
-                </div>
+              <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i>TempLocation</div>
+              <div class="col-10 col-md-3 col-lg-3 ml-auto">
+                <% var daysSincePost = Math.round((Date.now() - value.datePosted.getTime()) / (1000 * 60 * 60 * 24))%>
+                Posted <%= daysSincePost%> days ago
+              </div>
+              <div class="col-sm-12 col-md-2 col-lg-1">
+                <div class="job__star"><a href="#" data-toggle="tooltip" data-placement="top" title="Save to favourites" class="job__star__link"><i class="fa fa-star"></i></a></div>
               </div>
             </div>
-            <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i>Palo Alto</div>
-            <div class="col-10 col-md-3 col-lg-3 ml-auto">
-              <p>Posted 10 days ago</p>
-            </div>
-            <div class="col-sm-12 col-md-2 col-lg-1">
-              <div class="job__star"><a href="#" data-toggle="tooltip" data-placement="top" title="Save to favourites" class="job__star__link"><i class="fa fa-star"></i></a></div>
+          </div>
+        <% }) %>
+      </div>
+      <div class="container">
+        <h4 class="heading">Most Recent Volunteering Opportunities</h4>
+        <% recents.volunteerings.forEach( value => { %>
+          <div class="job-listing">
+            <div class="row">
+              <div class="col-md-12 col-lg-6">
+                <div class="row">
+                  <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-3.png" alt="Bootstrapious " class="img-fluid"></div>
+                  <div class="col-10">
+                    <h4 class="job__title"><a href="/details<%= value.id %>"><%= value.eventName %></a></h4>
+                    <p class="job__company">
+                      <%= value.organization %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i>TempLocation</div>
+              <div class="col-10 col-md-3 col-lg-3 ml-auto">
+                <% var daysSincePost = Math.round((Date.now() - value.datePosted.getTime()) / (1000 * 60 * 60 * 24))%>
+                Posted <%= daysSincePost%> days ago
+              </div>
+              <div class="col-sm-12 col-md-2 col-lg-1">
+                <div class="job__star"><a href="#" data-toggle="tooltip" data-placement="top" title="Save to favourites" class="job__star__link"><i class="fa fa-star"></i></a></div>
+              </div>
             </div>
           </div>
-        </div>
+        <% }) %>
+      </div>
+      <div class="container">
+        <h4 class="heading">Most Recent Workshops</h4>
+        <% recents.workshops.forEach( value => { %>
+          <div class="job-listing">
+            <div class="row">
+              <div class="col-md-12 col-lg-6">
+                <div class="row">
+                  <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-3.png" alt="Bootstrapious " class="img-fluid"></div>
+                  <div class="col-10">
+                    <h4 class="job__title"><a href="/details<%= value.id %>"><%= value.eventName %></a></h4>
+                    <p class="job__company">
+                      <%= value.organization %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i>TempLocation</div>
+              <div class="col-10 col-md-3 col-lg-3 ml-auto">
+                <% var daysSincePost = Math.round((Date.now() - value.datePosted.getTime()) / (1000 * 60 * 60 * 24))%>
+                Posted <%= daysSincePost%> days ago
+              </div>
+              <div class="col-sm-12 col-md-2 col-lg-1">
+                <div class="job__star"><a href="#" data-toggle="tooltip" data-placement="top" title="Save to favourites" class="job__star__link"><i class="fa fa-star"></i></a></div>
+              </div>
+            </div>
+          </div>
+        <% }) %>
       </div>
     </section>
     <section class="section testimonails bg-light-gray">

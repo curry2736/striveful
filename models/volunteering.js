@@ -37,24 +37,43 @@ const Volunteering = mongoose.model('Volunteering', new mongoose.Schema({
         type: Date,
         required: true
     },
+    datePosted: {
+        type: Date,
+        required: true
+    },
+    city: {
+        type: String,
+        required: true,
+        minLength: 1,
+        maxLength: 50
+    },
+    state: {
+        type: String,
+        required: true,
+        minLength: 1,
+        maxLength: 50
+    },
     link: {
         type: String,
         required: false
     }
 }));
  
-function validateVolunteering(internship) {
+function validateVolunteering(volunteering) {
     const schema = {
         eventName: Joi.string().min(1).max(128).required(),
         email: Joi.string().min(5).max(255).required().email(),
         organization: Joi.string().min(1).max(128).required(),
         description: Joi.string().min(1).max(2000).required(),
+        city: Joi.string().min(1).max(50).required(),
+        state: Joi.string().min(1).max(50).required(),
         startDate: Joi.date().required(),
         endDate: Joi.date().required(),
+        datePosted: Joi.date().required(),
         link: Joi.string().uri()
     };
-    return Joi.validate(internship, schema);
+    return Joi.validate(volunteering, schema);
 }
  
-exports.volunteering = Volunteering;
+exports.Volunteering = Volunteering;
 exports.validate = validateVolunteering;

@@ -29,11 +29,27 @@ const Workshop = mongoose.model('Workshop', new mongoose.Schema({
         maxlength: 255,
         unique: true
     },
+    city: {
+        type: String,
+        required: true,
+        minLength: 1,
+        maxLength: 50
+    },
+    state: {
+        type: String,
+        required: true,
+        minLength: 1,
+        maxLength: 50
+    },
     startDate: {
         type: Date,
         required: true
     },
     endDate: {
+        type: Date,
+        required: true
+    },
+    datePosted: {
         type: Date,
         required: true
     },
@@ -43,18 +59,21 @@ const Workshop = mongoose.model('Workshop', new mongoose.Schema({
     }
 }));
  
-function validateWorkshop(internship) {
+function validateWorkshop(workshop) {
     const schema = {
         eventName: Joi.string().min(1).max(50).required(),
         organization: Joi.string().min(1).max(128).required(),
         email: Joi.string().min(5).max(255).required().email(),
         link: Joi.string().uri().required(),
         description: Joi.string().min(1).max(2000).required(),
+        city: Joi.string().min(1).max(50).required(),
+        state: Joi.string().min(1).max(50).required(),
         startDate: Joi.date().required(),
-        endDate: Joi.date().required()
+        endDate: Joi.date().required(),
+        datePosted: Joi.date().required()
     };
-    return Joi.validate(internship, schema);
+    return Joi.validate(workshop, schema);
 }
  
 exports.Workshop = Workshop;
-exports.Workshop = validateWorkshop;
+exports.validate = validateWorkshop;
