@@ -29,6 +29,18 @@ const Workshop = mongoose.model('Workshop', new mongoose.Schema({
         maxlength: 255,
         unique: true
     },
+    city: {
+        type: String,
+        required: true,
+        minLength: 1,
+        maxLength: 50
+    },
+    state: {
+        type: String,
+        required: true,
+        minLength: 1,
+        maxLength: 50
+    },
     startDate: {
         type: Date,
         required: true
@@ -54,6 +66,8 @@ function validateWorkshop(workshop) {
         email: Joi.string().min(5).max(255).required().email(),
         link: Joi.string().uri().required(),
         description: Joi.string().min(1).max(2000).required(),
+        city: Joi.string().min(1).max(50).required(),
+        state: Joi.string().min(1).max(50).required(),
         startDate: Joi.date().required(),
         endDate: Joi.date().required(),
         datePosted: Joi.date().required()

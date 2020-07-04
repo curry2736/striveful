@@ -33,6 +33,18 @@ const Internship = mongoose.model('Internship', new mongoose.Schema({
         maxlength: 2000,
         required: true
     },
+    city: {
+        type: String,
+        required: true,
+        minLength: 1,
+        maxLength: 50
+    },
+    state: {
+        type: String,
+        required: true,
+        minLength: 1,
+        maxLength: 50
+    },
     startDate: {
         type: Date,
         required: true
@@ -53,6 +65,8 @@ function validateInternship(internship) {
         email: Joi.string().min(5).max(255).required().email(),
         companyName: Joi.string().min(1).max(128).required(),
         description: Joi.string().min(1).max(2000).required(),
+        city: Joi.string().min(1).max(50).required(),
+        state: Joi.string().min(1).max(50).required(),
         startDate: Joi.date().required(),
         endDate: Joi.date().required(),
         datePosted: Joi.date().required(),
