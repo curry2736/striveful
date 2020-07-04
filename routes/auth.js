@@ -6,7 +6,7 @@ const _ = require('lodash');
 const { User } = require('../models/user');
 const express = require('express');
 const router = express.Router();
- 
+
 router.post('/', async (req, res) => {
     // First Validate The HTTP Request
     console.log(req.body);
@@ -17,21 +17,41 @@ router.post('/', async (req, res) => {
     }
 
     console.log(req.body)
- 
     //  Now find the user by their email address
     let user = await User.findOne({ email: req.body.email });
     if (!user) {
         return res.status(400).send('Incorrect email or password.');
     }
- 
+    
     // Then validate the Credentials in MongoDB match
     // those provided in the request
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     if (!validPassword) {
         return res.status(400).send('Incorrect email or password.');
     }
-    const token = jwt.sign({ _id: user._id }, config.get('PrivateKey'));
-    res.send(token);
+    const token = jwt.sign({ _id: user._id, email: user.email }, config.get('PrivateKey'));
+    
+    res.cookie('token', token);
+    return res.header('x-auth-token', token).send(_.pick(user, ['_id', 'firstName', 'lastname', 'email']));
+});
+
+router.get('/verify', async (req, res) => {
+    const cookies = req.headers.cookie.split("; ");
+    let authToken = "";
+    cookies.forEach( cookie => {
+        if (cookie.includes("token")) {
+            authToken = cookie.split("=")[1];
+        }
+    });
+    jwt.verify(authToken, config.get('PrivateKey') , (err) => {
+        console.log(authToken);
+        if (err) {
+            console.log(err);
+            return res.sendStatus(403)
+        }
+        return authToken;
+    });
+    return res.send("hi");
 });
  
 function validate(req) {

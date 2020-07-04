@@ -2,6 +2,8 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
 
+const tokenTest = require('./routes/tokenTest');
+const cookieParser = require('cookie-parser');
 const config = require('config');
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
@@ -32,7 +34,7 @@ if (!config.get('PrivateKey')) {
 }
 
 app.use(methodOverride('_method'))
-
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.static('public'))
 app.use(express.static(__dirname + '/public'));
@@ -60,6 +62,7 @@ db.once('open', () => {
 app.use('/', indexRouter)
 app.use('/api/users', users);
 app.use('/api/auth', auth);
+app.use('/api/tokenTest', tokenTest);
 app.use('/login123', login);
 app.use('/signup', signup);
 app.use('/test', test);
