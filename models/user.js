@@ -1,6 +1,8 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
- 
+const jwt = require('jsonwebtoken');
+const config = require('config');
+
 const User = mongoose.model('User', new mongoose.Schema({
     isCompany: {
         type: Boolean,
@@ -36,7 +38,29 @@ const User = mongoose.model('User', new mongoose.Schema({
         maxlength: 512
     }
 }));
- 
+
+function jwtVerification(req, res) {
+    const cookies = req.headers.cookie.split("; ");
+    let authToken = "";
+    let buff = "";
+    cookies.forEach( cookie => {
+        if (cookie.includes("token")) {
+            authToken = cookie.split("=")[1];
+        }
+    });
+    if (!authToken) {
+        return res.redirect("/signup")
+    }
+    jwt.verify(authToken, config.get('PrivateKey') , (err) => {
+        if (err) {
+            console.log(err);
+            return res.redirect("/signup")
+        }
+        buff = new Buffer(authToken.split(".")[1], 'base64')
+    });
+    return (buff.toString('ascii'));
+}
+
 function validateUser(user) {
     const schema = {
         isCompany: Joi.boolean().required(),
@@ -48,6 +72,8 @@ function validateUser(user) {
     };
     return Joi.validate(user, schema);
 }
- 
+
+
 exports.User = User;
 exports.validate = validateUser;
+exports.jwtVerification = jwtVerification;

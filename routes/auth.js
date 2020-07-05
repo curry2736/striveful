@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
     return res.header('x-auth-token', token).send(_.pick(user, ['_id', 'firstName', 'lastname', 'email']));
 });
 
-router.get('/verify', async (req, res) => {
+/*router.get('/verify', async (req, res) => {
     const cookies = req.headers.cookie.split("; ");
     let authToken = "";
     let buff = "";
@@ -54,7 +54,7 @@ router.get('/verify', async (req, res) => {
         console.log(buff.toString('ascii'));
     });
     return res.send(buff.toString('ascii'))
-});
+});*/
  
 function validate(req) {
     const schema = {
@@ -64,5 +64,5 @@ function validate(req) {
  
     return Joi.validate(req, schema);
 }
- 
+
 module.exports = router; 
