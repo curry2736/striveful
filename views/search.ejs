@@ -89,20 +89,25 @@
           </ul>
         </nav>
         <h4 class="heading">Find an opportunity you will <span class="accent">love</span></h4>
-        <form id="job-main-form" method="get" action="/api/search" class="job-main-form">
+        <form id="job-main-form" method="GET" action="/search/query" class="job-main-form">
           <div class="controls">
             <div class="row align-items-end">
               <div class="col-sm-1 col-lg-2"></div>
               <div class="col-sm-5 col-lg-4 form-group">
-                <label for="eventName">Opportunity</label>
-                <input type="text" id="eventName" name="eventName" placeholder="Profession you are looking for" class="form-control">
+                <label for="jobTitle">Opportunity</label>
+                <input type="text" id="jobTitle" name="jobTitle" placeholder="Enter the name" class="form-control">
               </div>
               <div class="col-sm-5 col-lg-4 form-group">
-                <label for="location">Location</label>
+                <!-- <label for="location">Location</label>
                 <input type="text" id="location" name="location" placeholder="Any particular location?" value="Bay Area" class="form-control">
-              </div>
+              </div> -->
               <div class="col-sm-1 col-lg-2 form-group">
-                <button type="submit" class="btn btn-outline-white-primary job-main-form__button"><i class="fa fa-search"></i></button>
+                <button onclick="retard()" type="submit" class="btn btn-outline-white-primary job-main-form__button"><i class="fa fa-search"></i></button>
+                <script>
+                  function retard() {
+                    console.log('retard')
+                  }
+                </script>
               </div>
             </div>
           </div>
