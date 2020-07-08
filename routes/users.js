@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
 
 router.post('/test', async (req, res) => {
     const salt = "$2b$10$iP1fGMTDq47IedcljZgf/.";
-    const pass = await bcrypt.hash('password', salt); 
+    const pass = await bcrypt.hash('howtobeanoob105', salt); 
     res.send(pass + " " + salt);
 });
  

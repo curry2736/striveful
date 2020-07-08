@@ -10,17 +10,18 @@ router.get('/', async(req, res) => {
     res.render('search')
 })
 
-router.get('/query', async(req, res) => {
+router.get('/query', async (req, res) => {
 
-    var title = req.params.jobTitle;
-
-    let internships = await Internship.find({"jobTitle": /title/})
+    var title = req.query.jobTitle;
+    console.log(req.query)
+    let internships = await Internship.find({"jobTitle": title})
     console.log(internships)
     
     internships.forEach(internship => {
         console.log('Hello')
     })
-    res.render('search')
+    res.send("hi");
+    //res.render('search')
 })
 
 module.exports = router;
