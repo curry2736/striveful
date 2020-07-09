@@ -2,6 +2,7 @@ const Joi = require('joi');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const config = require('config');
+var ObjectId = require('mongodb').ObjectID;
 
 const User = mongoose.model('User', new mongoose.Schema({
     isCompany: {
@@ -36,7 +37,11 @@ const User = mongoose.model('User', new mongoose.Schema({
         required: true,
         minlength: 5,
         maxlength: 512
-    }
+    },
+    eventsCreated: [{
+        type: Array,
+        required: false
+    }]
 }));
 
 function jwtVerification(req, res) {

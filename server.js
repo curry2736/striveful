@@ -13,6 +13,7 @@ const signup = require('./routes/signup');
 const login = require('./routes/login');
 const auth = require('./routes/auth');
 const test = require('./routes/test');
+const clientDashboard = require('./routes/client-dashboard')
 const details = require('./routes/details');
 const indexRouter = require('./routes/index')
 const company = require('./routes/company');
@@ -60,6 +61,7 @@ db.once('open', () => {
     console.log('Connected to Mongoose')
 });
 
+app.use('/client-dashboard', clientDashboard)
 app.use('/', indexRouter)
 app.use('/api/users', users);
 app.use('/api/auth', auth);
