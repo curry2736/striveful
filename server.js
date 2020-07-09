@@ -18,6 +18,7 @@ const indexRouter = require('./routes/index')
 const company = require('./routes/company');
 const express = require('express');
 const bodyParser = require('body-parser')
+const favorite = require('./routes/favorite')
 const app = express();
 const methodOverride = require('method-override')
 const port = process.env.PORT || 3000;
@@ -62,6 +63,7 @@ db.once('open', () => {
 app.use('/', indexRouter)
 app.use('/api/users', users);
 app.use('/api/auth', auth);
+app.use('/api/favorite', favorite)
 app.use('/api/tokenTest', tokenTest);
 app.use('/login123', login);
 app.use('/signup', signup);
