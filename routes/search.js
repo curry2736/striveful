@@ -12,16 +12,26 @@ router.get('/', async(req, res) => {
 
 router.get('/query', async (req, res) => {
 
-    var title = req.query.jobTitle;
-    console.log(req.query)
-    let internships = await Internship.find({"jobTitle": title})
-    console.log(internships)
-    
-    internships.forEach(internship => {
-        console.log('Hello')
-    })
-    res.send("hi");
-    //res.render('search')
-})
+    var title = req.query.jobTitle
+    console.log(title)
 
+    let internships = await Internship.find({"jobTitle": {$regex:title,$options:'i'}})
+    console.log(internships)
+    let volunteerings =  await Volunteering.find({"eventName": {$regex:title,$options:'i'}})
+    console.log(volunteerings)
+    let workshops = await Workshop.find({"eventName": {$regex:title,$options:'i'}})
+    console.log(workshops)
+
+    internships.forEach(internship => {
+        console.log('An internship')
+    })
+    volunteerings.forEach(volunteerin => {
+        console.log('A volunteering')
+    })
+    workshops.forEach(workshop => {
+        console.log('A workshop')
+    })
+    
+    res.render('search')
+})
 module.exports = router;
