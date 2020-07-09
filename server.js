@@ -72,7 +72,7 @@ app.use('/signup', signup);
 app.use('/test', test);
 app.use('/search', search);
 app.use('/company', company)
-
+app.use('/details',details);
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
