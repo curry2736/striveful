@@ -5,11 +5,8 @@ const { Internship }= require('../models/internship');
 const {Volunteering} = require('../models/volunteering');
 const { Workshop }= require('../models/workshop');
 const e = require('express');
-//onst jwt = require('jsonwebtoken');
-//const config = require('config');
-//const Joi = require('joi');
-//const bcrypt = require('bcrypt');
-//const _ = require('lodash');
+let ObjectID = require('mongodb').ObjectID;
+
 
 router.get('/', (req,res) => {
     res.render('details.ejs');
@@ -18,12 +15,16 @@ router.get('/', (req,res) => {
 //Show details
 router.get('/:id', async (req,res) =>{
     try {
-        console.log(req.params.id);
-        let internship = await Internship.findOne({ _id:req.params.id}, 'jobTitle').exec(function (err, adventure) {});
-        console.log(internship);
-
-        //res.write({});
-        //res.end(); 
+        console.log(req.params.id); 
+        var result = await Internship.findById(new ObjectID(req.params.id)).exec();
+        if (!result){
+            var result = await Volunteering.findById(new ObjectID(req.params.id)).exec();
+            
+        } else if (!result){
+            var result = await Workshop.findById(new ObjectID(req.params.id)).exec();
+        }; 
+        //console.log(result);
+        res.render('details.ejs', {detail: {result: result}});
     } catch (err){
         console.log(err);
         res.redirect('/');
