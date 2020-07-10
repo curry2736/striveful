@@ -19,6 +19,7 @@ const indexRouter = require('./routes/index')
 const company = require('./routes/company');
 const express = require('express');
 const bodyParser = require('body-parser')
+const favorite = require('./routes/favorite')
 const app = express();
 const methodOverride = require('method-override')
 const port = process.env.PORT || 3000;
@@ -64,13 +65,14 @@ app.use('/client-dashboard', clientDashboard)
 app.use('/', indexRouter)
 app.use('/api/users', users);
 app.use('/api/auth', auth);
+app.use('/api/favorite', favorite)
 app.use('/api/tokenTest', tokenTest);
 app.use('/login123', login);
 app.use('/signup', signup);
 app.use('/test', test);
 app.use('/search', search);
 app.use('/company', company)
-
+app.use('/details',details);
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)

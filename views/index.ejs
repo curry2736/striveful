@@ -196,7 +196,7 @@
                 <div class="row">
                   <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-3.png" alt="Bootstrapious " class="img-fluid"></div>
                   <div class="col-10">
-                    <h4 class="job__title"><a href="/details<%= value.id %>"><%= value.eventName %></a></h4>
+                    <h4 class="job__title"><a href="/details/<%= value.id %>"><%= value.eventName %></a></h4>
                     <p class="job__company">
                       <%= value.organization %>
                     </p>
@@ -224,7 +224,7 @@
                 <div class="row">
                   <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-3.png" alt="Bootstrapious " class="img-fluid"></div>
                   <div class="col-10">
-                    <h4 class="job__title"><a href="/details<%= value.id %>"><%= value.eventName %></a></h4>
+                    <h4 class="job__title"><a href="/details/<%= value.id %>"><%= value.eventName %></a></h4>
                     <p class="job__company">
                       <%= value.organization %>
                     </p>
@@ -236,9 +236,18 @@
                 <% var daysSincePost = Math.round((Date.now() - value.datePosted.getTime()) / (1000 * 60 * 60 * 24))%>
                 Posted <%= daysSincePost%> days ago
               </div>
-              <div class="col-sm-12 col-md-2 col-lg-1">
-                <div class="job__star"><a href="#" data-toggle="tooltip" data-placement="top" title="Save to favourites" class="job__star__link"><i class="fa fa-star"></i></a></div>
-              </div>
+              <form action="/api/favorite" method="POST" target="hiddenFrame">
+                <div class="col-sm-12 col-md-2 col-lg-1">
+
+                  <input type="hidden" name="_id" value= <%= value._id %> />
+
+                  <div class="job__star">
+                    <button onclick="this.parentNode.parentNode.parentNode.submit()" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link">
+                      <i class="fa fa-star"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         <% }) %>
@@ -460,6 +469,9 @@
         </div>
       </div>
     </section>
+
+    <iframe name="hiddenFrame" width="0" height="0" style="display:none;"></iframe>
+
     <footer class="footer">
       <div class="footer__block">
         <div class="container">

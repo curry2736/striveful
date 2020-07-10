@@ -14,18 +14,6 @@ router.get('/', async (req, res) => {
 
     let workshops = await Workshop.find({"datePosted":{$lte: Date.now()}}).sort({"datePosted":-1}).limit(3)
 
-    internships.forEach(internship => {
-        console.log(internship.jobTitle)
-    })
-
-    volunteerings.forEach(volunteering => {
-        console.log(volunteering.eventName)
-    })
-
-    workshops.forEach(workshop => {
-        console.log(workshop.eventName)
-    })
-
     //console.log(volunteerings)
     //console.log(workshops)
 
