@@ -38,10 +38,10 @@ const User = mongoose.model('User', new mongoose.Schema({
         minlength: 5,
         maxlength: 512
     },
-    eventsCreated: [{
+    eventsCreated: {
         type: Array,
         required: false
-    }],
+    },
     favorites: {
         type: Array,
         required: true

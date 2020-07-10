@@ -4,11 +4,6 @@ require('mongoose-type-url');
 let ObjectID = require('mongodb').ObjectID;
 
 const Volunteering = mongoose.model('Volunteering', new mongoose.Schema({
-    _id: {
-        type: ObjectID,
-        required: true,
-        unique: true
-    },
     eventName: {
         type: String,
         required: true,

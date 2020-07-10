@@ -4,11 +4,6 @@ require('mongoose-type-url');
 let ObjectID = require('mongodb').ObjectID;
 
 const Internship = mongoose.model('Internship', new mongoose.Schema({
-    _id: {
-        type: ObjectID,
-        required: true,
-        unique: true
-    },
     jobTitle: {
         type: String,
         required: true,

@@ -9,21 +9,22 @@ let ObjectID = require('mongodb').ObjectID;
 
 
 router.get('/', (req,res) => {
-    res.render('details.ejs');
+    res.render('details');
 });
 
 //Show details
 router.get('/:id', async (req,res) =>{
     try {
         console.log(req.params.id); 
-        var result = await Internship.findById(new ObjectID(req.params.id)).exec();
+        var result = await Internship.findById(req.params.id);
         if (!result){
-            var result = await Volunteering.findById(new ObjectID(req.params.id)).exec();
+            var result = await Volunteering.findById(req.params.id);
             
         } else if (!result){
-            var result = await Workshop.findById(new ObjectID(req.params.id)).exec();
+            var result = await Workshop.findById(req.params.id);
         }; 
         //console.log(result);
+        console.log(result)
         res.render('details.ejs', {detail: {result: result}});
     } catch (err){
         console.log(err);
