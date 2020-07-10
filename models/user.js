@@ -41,7 +41,11 @@ const User = mongoose.model('User', new mongoose.Schema({
     eventsCreated: [{
         type: Array,
         required: false
-    }]
+    }],
+    favorites: {
+        type: Array,
+        required: true
+    }
 }));
 
 function jwtVerification(req, res) {
@@ -74,6 +78,7 @@ function validateUser(user) {
         lastName: Joi.string().min(1).max(50).required(),
         email: Joi.string().min(5).max(255).required().email(),
         password: Joi.string().min(5).max(512).required(),
+        favorites: Joi.array()
     };
     return Joi.validate(user, schema);
 }
