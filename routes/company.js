@@ -20,16 +20,28 @@ router.post('/', async (req, res) => {
         jobTitle: req.body.jobTitle,
         description: req.body.description
     })
-    internship.save((err, newInternship) => {
-        if (err) {
-            res.render('company', {
-                internship: internship,
-                errorMessage: 'Fool'
+    try {
+        
+        const newInternship = await internship.save()
+        res.redirect(req.body.jobTitle)
+    } catch {
+        res.render('company', {
+             internship: internship,
+             errorMessage: 'Fool'
             })
-        } else {
-            res.redirect('company')
-        }
-    })
+    }
+    
+   
+    // internship.save((err, newInternship) => {
+    //     if (err) {
+    //         res.render('company', {
+    //             internship: internship,
+    //             errorMessage: 'Fool'
+    //         })
+    //     } else {
+    //         res.redirect('meme')
+    //     }
+    // })
     //res.send(req.body.jobTitle)
 
 })
