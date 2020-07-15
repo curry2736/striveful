@@ -12,21 +12,21 @@ const Internship = mongoose.model('Internship', new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true,
+        required: false,
         minlength: 5,
         maxlength: 255,
-        unique: true
+        unique: false
     },
     companyName: {
         type: String,
-        required: true,
+        required: false,
         minlength: 1,
         maxlength: 50
     },
     //TODO: add location
     link: {
         type: String,
-        required: true
+        required: false
     },
     description: {
         type: String,
@@ -42,22 +42,26 @@ const Internship = mongoose.model('Internship', new mongoose.Schema({
     },
     state: {
         type: String,
-        required: true,
+        required: false,
         minLength: 1,
         maxLength: 50
     },
     startDate: {
         type: Date,
-        required: true
+        required: false
     },
     endDate: {
         type: Date,
-        required: true
+        required: false
     },
     datePosted: {
         type: Date,
-        required: true
+        required: false
     }
+    // opportunityType: {
+    //     type: String,
+    //     required: true
+    // }
 }));
  
 function validateInternship(internship) {
