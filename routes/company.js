@@ -16,20 +16,32 @@ router.post('/', async (req, res) => {
     // if (error) {
     //     return res.status(400).send(error.details[0].message);
     // }
-    const internship = new Internship({
-        jobTitle: req.body.jobTitle,
-        description: req.body.description
-    })
-    try {
+    if (req.body.opportunity == 'internships') {
+        const internship = new Internship({
+            jobTitle: req.body.jobTitle,
+            email: req.body.email,
+            companyName: req.body.companyName,
+            link: req.body.link,
+            description: req.body.description,
+            city: req.body.city,
+            state: req.body.state,
+            startDate: req.body.startDate,
+            endDate: req.body.endDate,
+            datePosted: req.body.datePosted
+        })
+        try {
         
-        const newInternship = await internship.save()
-        res.redirect(req.body.jobTitle)
-    } catch {
-        res.render('company', {
-             internship: internship,
-             errorMessage: 'Fool'
-            })
+            const newInternship = await internship.save()
+            res.redirect('company')
+        } catch {
+            res.render('company', {
+                 internship: internship,
+                 errorMessage: 'Fill out all Required Fields'
+                })
+        }
     }
+    
+    
     
    
     // internship.save((err, newInternship) => {
