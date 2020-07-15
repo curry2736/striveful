@@ -95,7 +95,7 @@
                 <div class="row">
                   <div class="col-lg-12 form-group">
                     <label for="text">Job Description</label>
-                    <textarea id="text" rows="5" placeholder="include all relevant info" class="form-control" name="description" value="<%= internship.description%> "></textarea>
+                    <textarea id="text" rows="5"  class="form-control" name="description" value="<%= internship.description%> "></textarea>
                     <p class="help-block text-small">Type in the box above</p>
                   </div>
                 </div>
@@ -164,15 +164,15 @@
                 <div class="row">
                   <div class="col-lg-12 form-group">
                     <label for="category">Category</label>
-                    <select id="category" multiple="multiple" placeholder="Choose category" class="form-control select2"> 
-                      <option>Web design  </option>
-                      <option>Human Resources</option>
-                      <option>Support</option>
-                      <option>Logistics</option>
+                    <select id="category" placeholder="Choose category" class="form-control select2"> 
+                      <option>Internship  </option>
+                      <option>Volunteering</option>
+                      <option>Workshop</option>
+                      
                     </select>
                   </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col-lg-12 form-group">
                     <label for="tag">Tags</label>
                     <select id="tag" multiple placeholder="Choose tags" class="form-control select2">
@@ -184,9 +184,9 @@
                       <option>React</option>
                     </select>
                   </div>
-                </div>
+                </div> -->
                 <div class="row">
-                  <div class="col-xl-4 form-group">
+                  <!-- <div class="col-xl-4 form-group">
                     <label for="post_type">Type of the post</label>
                     <select id="post_type" data-placeholder="Choose type of the post" class="form-control select2">
                       <option>Featured ($100) </option>
@@ -196,10 +196,18 @@
                   <div class="col-xl-4 form-group">
                     <label for="apply_url">Apply URL <span class="note">(users will apply on your website)</span></label>
                     <input id="apply_url" type="url" class="form-control">
+                  </div> -->
+                  <div class="col-xl-4 form-group">
+                    <label for="validity">Start Date</label>
+                    <input id="validity" type="date" class="form-control" name="startDate" value="<%= internship.startDate%> ">
                   </div>
                   <div class="col-xl-4 form-group">
-                    <label for="validity">Validity of the post</label>
-                    <input id="validity" type="date" class="form-control">
+                    <label for="validity">End Date</label>
+                    <input id="validity" type="date" class="form-control" name="endDate" value="<%= internship.endDate%> ">
+                  </div>
+                  <div class="col-xl-4 form-group">
+                    <label for="validity">Date Posted</label>
+                    <input id="validity" type="date" class="form-control" name="datePosted" value="<%= internship.datePosted%> ">
                   </div>
                 </div>
                 <div class="row">
@@ -217,29 +225,29 @@
                 <div class="row">
                   <div class="col-lg-12 form-group">
                     <label for="company_name">Company name</label>
-                    <input id="company_name" type="text" class="form-control">
+                    <input id="company_name" type="text" class="form-control" name="companyName" value="<%= internship.companyName%> ">
                     <p class="help-block text-small">Example block-level help text here. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>
                   </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col-lg-12 form-group">
                     <label for="company_description">Company Description</label>
                     <textarea id="company_description" rows="3" class="form-control"></textarea>
                     <p class="help-block text-small">Example block-level help text here. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>
                   </div>
-                </div>
+                </div> -->
                 <div class="row">
                   <div class="col-lg-4 form-group">
-                    <label for="company_website">Website</label>
-                    <input id="company_website" type="url" class="form-control">
+                    <label for="company_website">Website Link</label>
+                    <input id="company_website" type="url" class="form-control" name="link" value="<%= internship.link%> ">
                   </div>
-                  <div class="col-lg-4 form-group">
+                  <!-- <div class="col-lg-4 form-group">
                     <label for="company_logo">Logo</label>
                     <input id="company_logo" type="file" class="form-control">
-                  </div>
+                  </div> -->
                   <div class="col-lg-4 form-group">
-                    <label for="company_twitter">Twitter</label>
-                    <input id="company_twitter" placeholder="@getbootstrap" class="form-control">
+                    <label for="company_twitter">Email</label>
+                    <input id="company_twitter" placeholder="service@mail.com" class="form-control" class="form-control" name="email" value="<%= internship.email%> ">
                   </div>
                 </div>
                 <div class="row">
