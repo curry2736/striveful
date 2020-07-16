@@ -180,9 +180,18 @@
                 <% var daysSincePost = Math.round((Date.now() - value.datePosted.getTime()) / (1000 * 60 * 60 * 24))%>
                 Posted <%= daysSincePost%> days ago
               </div>
-              <div class="col-sm-12 col-md-2 col-lg-1">
-                <div class="job__star"><a href="#" data-toggle="tooltip" data-placement="top" title="Save to favourites" class="job__star__link"><i class="fa fa-star"></i></a></div>
-              </div>
+              <form action="/favorite" method="POST" target="hiddenFrame">
+                <div class="col-sm-12 col-md-2 col-lg-1">
+
+                  <input type="hidden" name="_id" value= <%= value._id %> />
+
+                  <div class="job__star">
+                    <button onclick="this.parentNode.parentNode.parentNode.submit()" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link">
+                      <i class="fa fa-star"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         <% }) %>
@@ -208,9 +217,18 @@
                 <% var daysSincePost = Math.round((Date.now() - value.datePosted.getTime()) / (1000 * 60 * 60 * 24))%>
                 Posted <%= daysSincePost%> days ago
               </div>
-              <div class="col-sm-12 col-md-2 col-lg-1">
-                <div class="job__star"><a href="#" data-toggle="tooltip" data-placement="top" title="Save to favourites" class="job__star__link"><i class="fa fa-star"></i></a></div>
-              </div>
+              <form action="/favorite" method="POST" target="hiddenFrame">
+                <div class="col-sm-12 col-md-2 col-lg-1">
+
+                  <input type="hidden" name="_id" value= <%= value._id %> />
+
+                  <div class="job__star">
+                    <button onclick="this.parentNode.parentNode.parentNode.submit()" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link">
+                      <i class="fa fa-star"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         <% }) %>
@@ -236,13 +254,13 @@
                 <% var daysSincePost = Math.round((Date.now() - value.datePosted.getTime()) / (1000 * 60 * 60 * 24))%>
                 Posted <%= daysSincePost%> days ago
               </div>
-              <form action="/api/favorite" method="POST" target="hiddenFrame">
+              <form action="/favorite" method="POST" target="hiddenFrame">
                 <div class="col-sm-12 col-md-2 col-lg-1">
 
                   <input type="hidden" name="_id" value= <%= value._id %> />
 
                   <div class="job__star">
-                    <button onclick="this.parentNode.parentNode.parentNode.submit()" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link">
+                    <button onclick="this.parentNode.parentNode.parentNode.submit();" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link">
                       <i class="fa fa-star"></i>
                     </button>
                   </div>
