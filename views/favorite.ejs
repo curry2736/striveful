@@ -108,7 +108,7 @@
                     <input type="hidden" name="_id" value= <%= value._id %> />
   
                     <div class="job__star">
-                      <button onclick="this.parentNode.parentNode.parentNode.submit()" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link">
+                      <button onclick="favorite(this)" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link favorited-star">
                         <i class="fa fa-star"></i>
                       </button>
                     </div>
@@ -145,7 +145,7 @@
                     <input type="hidden" name="_id" value= <%= value._id %> />
   
                     <div class="job__star">
-                      <button onclick="favorite(this)" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link">
+                      <button onclick="favorite(this)" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link favorited-star">
                         <i class="fa fa-star favorite_icon"></i>
                       </button>
                     </div>
@@ -182,7 +182,7 @@
                     <input type="hidden" name="_id" value= <%= value._id %> />
   
                     <div class="job__star">
-                      <button onclick="this.parentNode.parentNode.parentNode.submit()" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link">
+                      <button onclick="favorite(this)" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link favorited-star">
                         <i class="fa fa-star"></i>
                       </button>
                     </div>
@@ -241,6 +241,17 @@
     </section>
 
     <iframe name="hiddenFrame" width="0" height="0" style="display:none;"></iframe>
+    <script>
+      function favorite(star) {
+        star.parentNode.parentNode.parentNode.submit();
+        star.classList.toggle("favorited-star");
+      }
+    </script>
+    <style>
+      .favorited-star {
+        color: #ff7473
+      }
+    </style>
 
     <footer class="footer">
       <div class="footer__block">
@@ -342,17 +353,7 @@
     <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/bootstrap-select/js/bootstrap-select.min.js">   </script>
     <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/js/front.js"></script>
 
-    <script>
-      function favorite(star) {
-        star.parentNode.parentNode.parentNode.submit();
-        star.classList.toggle("yellow-star");
-      }
-    </script>
-    <style>
-      .yellow-star {
-        color: goldenrod
-      }
-    </style>
+
   </body>
 
 <!-- Mirrored from demo.bootstrapious.com/jobs/2-1-0/category.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 29 Jun 2020 05:28:06 GMT -->
