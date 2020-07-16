@@ -5,25 +5,36 @@ const { Internship }= require('../models/internship');
 const {Volunteering} = require('../models/volunteering');
 const { Workshop }= require('../models/workshop');
 const e = require('express');
-//onst jwt = require('jsonwebtoken');
-//const config = require('config');
-//const Joi = require('joi');
-//const bcrypt = require('bcrypt');
-//const _ = require('lodash');
+let ObjectID = require('mongodb').ObjectID;
 
-router.get('/', (req,res) => {
-    res.render('details.ejs');
-});
 
 //Show details
 router.get('/:id', async (req,res) =>{
     try {
-        console.log(req.params.id);
-        let internship = await Internship.findOne({ _id:req.params.id}, 'jobTitle').exec(function (err, adventure) {});
-        console.log(internship);
+        console.log(req.params.id); 
 
-        //res.write({});
-        //res.end(); 
+        var result = await Internship.findById(req.params.id);
+        if (!result){
+            var result = await Volunteering.findById(req.params.id).exec();
+            if (!result){
+                var result = await Workshop.findById(req.params.id);
+            }
+        };
+        console.log(result);
+
+        if (!result.jobTitle){
+            var name = result.eventName;
+        } else if (!result.eventName){
+            var name = result.jobTitle;
+        };
+
+        if (!result.companyName){
+            var org = result.organization;
+        } else if (!result.organization){
+            var org = result.companyName;
+        };
+
+        res.render('details.ejs', {details: {result: result, name: name, org: org}});
     } catch (err){
         console.log(err);
         res.redirect('/');

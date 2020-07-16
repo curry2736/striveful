@@ -1,6 +1,7 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
 require('mongoose-type-url');
+let ObjectID = require('mongodb').ObjectID;
 
 const Internship = mongoose.model('Internship', new mongoose.Schema({
     jobTitle: {
@@ -14,7 +15,7 @@ const Internship = mongoose.model('Internship', new mongoose.Schema({
         required: true,
         minlength: 5,
         maxlength: 255,
-        unique: true
+        unique: false
     },
     companyName: {
         type: String,
@@ -57,6 +58,10 @@ const Internship = mongoose.model('Internship', new mongoose.Schema({
         type: Date,
         required: true
     }
+    // opportunityType: {
+    //     type: String,
+    //     required: true
+    // }
 }));
  
 function validateInternship(internship) {

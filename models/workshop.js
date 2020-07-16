@@ -1,6 +1,7 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
 require('mongoose-type-url');
+let ObjectID = require('mongodb').ObjectID;
 
 const Workshop = mongoose.model('Workshop', new mongoose.Schema({
     eventName: {
