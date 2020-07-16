@@ -17,24 +17,30 @@ router.get('/', async (req, res) => {
     console.log(user)
     const eventsCreated = user.eventsCreated;
     console.log(eventsCreated)
+    console.log("NEW __________________")
     for (let i = 0; i < eventsCreated.length; i++) {
         event = eventsCreated[i]
-        if (event.type == "workshop") {
-            console.log("workshop");
-            workshops.push(await Workshop.findById(event.id))
-        } else if (event.type == "internship") {
-            console.log("internship")
+        if (event.type == "internship") {
+            console.log("internship");
             internships.push(await Internship.findById(event.id))
-        } else if (event.type == "volunteering") {
+        } 
+        else if (event.type == "volunteering") {
             console.log("volunteering")
             volunteerings.push(await Volunteering.findById(event.id))
         }
+        else if (event.type == "workshop") {
+            console.log("workshop")
+            workshops.push(await Workshop.findById(event.id))
+        }
     }
-
-    console.log(workshops)
+    let date = internships[0].startDate;
+    date.toLocaleDateString('en-US')
+    
     console.log(internships)
     console.log(volunteerings)
-    res.render("client-dashboard");
+    console.log(workshops)
+    console.log(internships[0].startDate.toLocaleDateString('en-US'));
+    res.render("client-dashboard", {internships: internships, volunteerings: volunteerings, workshops: workshops});
 })
  
 module.exports = router; 

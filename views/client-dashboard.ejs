@@ -88,17 +88,19 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th><a href="client-job.html">Webdesigner</a>
-                    </th>
-                    <td> <span class="badge badge-success">Filled</span>
-                    </td>
-                    <td>21/10/2017</td>
-                    <td>31/12/2017</td>
-                    <td> <a href="client-applicants.html" class="btn btn-success"> <i class="fa fa-users"></i>4 <span class="hidden-xs hidden-sm">Applicants</span></a>
-                    </td>
-                    <td> <a href="client-job.html" class="btn btn-outline-white-secondary"> <i class="fa fa-edit"></i>Edit</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-check-circle-o"></i><span class="hidden-xs hidden-sm">Mark as </span>filled</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-times-circle-o"></i>Delete</a></td>
-                  </tr>
+                  <% internships.forEach(internship => { %>
+                    <tr>
+                      <th><a href="/details/<%= internship._id %>"><%= internship.jobTitle %></a>
+                      </th>
+                      <td> <span class="badge badge-success">Filled</span>
+                      </td>
+                      <td><%= internship.datePosted.toLocaleDateString('en-US') %></td>
+                      <td>31/12/2017</td>
+                      <td> <a href="client-applicants.html" class="btn btn-success"> <i class="fa fa-users"></i>4 <span class="hidden-xs hidden-sm">Applicants</span></a>
+                      </td>
+                      <td> <a href="client-job.html" class="btn btn-outline-white-secondary"> <i class="fa fa-edit"></i>Edit</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-check-circle-o"></i><span class="hidden-xs hidden-sm">Mark as </span>filled</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-times-circle-o"></i>Delete</a></td>
+                    </tr>
+                  <% }) %>
                   <tr>
                     <th><a href="client-job.html">Front End developer</a><br /><span class="badge badge-info">Featured</span>
                     </th>
