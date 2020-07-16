@@ -65,7 +65,7 @@ app.use('/client-dashboard', clientDashboard)
 app.use('/', indexRouter)
 app.use('/api/users', users);
 app.use('/api/auth', auth);
-app.use('/api/favorite', favorite)
+app.use('/favorite', favorite)
 app.use('/api/tokenTest', tokenTest);
 app.use('/login123', login);
 app.use('/signup', signup);
