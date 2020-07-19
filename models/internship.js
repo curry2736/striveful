@@ -57,6 +57,9 @@ const Internship = mongoose.model('Internship', new mongoose.Schema({
     datePosted: {
         type: Date,
         required: true
+    },
+    visits: {
+        type: Number
     }
     // opportunityType: {
     //     type: String,
@@ -75,7 +78,8 @@ function validateInternship(internship) {
         startDate: Joi.date().required(),
         endDate: Joi.date().required(),
         datePosted: Joi.date().required(),
-        link: Joi.string().uri()
+        link: Joi.string().uri(),
+        visits: Joi.number()
     };
     return Joi.validate(internship, schema);
 }
