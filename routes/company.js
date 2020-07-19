@@ -1,9 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const { Internship, validate } = require('../models/internship');
+const { Volunteering } = require('../models/volunteering.js');
+const { Workshop } = require('../models/workshop');
+const { User, jwtVerification } = require('../models/user');
+
 
 
 router.get('/', (req, res) => {
+    const didIGetIn = jwtVerification(req, res);
+    console.log(didIGetIn + "metro boomin");
     res.render('company', { internship: new Internship() })
     
 })
@@ -17,7 +23,7 @@ router.post('/', async (req, res) => {
     //     return res.status(400).send(error.details[0].message);
     // }
     // if (req.body.opportunity == 'internships') {
-    
+    // if (collection is internship) {
     const internship = new Internship({
         jobTitle: req.body.jobTitle,
         email: req.body.email,
@@ -33,17 +39,14 @@ router.post('/', async (req, res) => {
     console.log(req.body);
     const { error } = validate(req.body);
     console.log(error);
-    // if (error) {
-    //     return res.status(400).send(error.details[0].message);
-    // }
-        try {
+    try {
         
-            const newInternship = await internship.save()
-            res.redirect('company')
-        } catch {
-            res.render('company', {
-                 internship: internship,
-                 errorMessage: error.details[0].message
+        const newInternship = await internship.save()
+        res.redirect('company')
+    } catch {
+        res.render('company', {
+                internship: internship,
+                errorMessage: error.details[0].message
             })
         }
     
@@ -51,17 +54,7 @@ router.post('/', async (req, res) => {
     
     
    
-    // internship.save((err, newInternship) => {
-    //     if (err) {
-    //         res.render('company', {
-    //             internship: internship,
-    //             errorMessage: 'Fool'
-    //         })
-    //     } else {
-    //         res.redirect('meme')
-    //     }
-    // })
-    //res.send(req.body.jobTitle)
+   
 
 })
 
