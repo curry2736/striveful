@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     <!-- Bootstrap CSS-->
+
     <link rel="stylesheet" href="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
     <link rel="stylesheet" href="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/font-awesome/css/font-awesome.min.css">
@@ -54,6 +55,7 @@
         </div>
       </nav>
     </header>
+
     <section class="bg-light-gray">
       <div class="container">
         <div class="row">
@@ -72,14 +74,22 @@
     </section>
     <section>
       <div class="container">
-        <div class="row">
+        <div class="row-client-dashboard">
           <div class="col-lg-12 text-right mb-5"><a href="client-job.html" class="btn btn-outline-white-primary"> <i class="fa fa-plus"></i>Add new position</a></div>
           <div class="col-lg-12">
             <div class="table-responsive">
+              <button onclick="test()">asdasdasdasd</button>
+              <script>
+                function test() {
+                  var internsh = <%- JSON.stringify(events.internships) %>
+                  console.log(internsh[0].evetName);
+                }
+              </script>
               <table class="table table-striped table-hover table-client-dashboard"> 
                 <thead>
                   <tr>
-                    <th>Job title</th>
+                    <th>Event title</th>
+                    <th>Location</th>
                     <th>Position filled</th>
                     <th>Date posted</th>
                     <th>Date expiring</th>
@@ -88,61 +98,49 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th><a href="client-job.html">Webdesigner</a>
-                    </th>
-                    <td> <span class="badge badge-success">Filled</span>
-                    </td>
-                    <td>21/10/2017</td>
-                    <td>31/12/2017</td>
-                    <td> <a href="client-applicants.html" class="btn btn-success"> <i class="fa fa-users"></i>4 <span class="hidden-xs hidden-sm">Applicants</span></a>
-                    </td>
-                    <td> <a href="client-job.html" class="btn btn-outline-white-secondary"> <i class="fa fa-edit"></i>Edit</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-check-circle-o"></i><span class="hidden-xs hidden-sm">Mark as </span>filled</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-times-circle-o"></i>Delete</a></td>
-                  </tr>
-                  <tr>
-                    <th><a href="client-job.html">Front End developer</a><br /><span class="badge badge-info">Featured</span>
-                    </th>
-                    <td> <span class="badge badge-secondary">Not Filled</span>
-                    </td>
-                    <td>10/10/2017</td>
-                    <td>16/11/2017</td>
-                    <td> 
-                    </td>
-                    <td> <a href="client-job.html" class="btn btn-outline-white-secondary"> <i class="fa fa-edit"></i>Edit</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-check-circle-o"></i><span class="hidden-xs hidden-sm">Mark as </span>filled</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-times-circle-o"></i>Delete</a></td>
-                  </tr>
-                  <tr>
-                    <th><a href="client-job.html">Webdesigner</a>
-                    </th>
-                    <td> <span class="badge badge-secondary">Not Filled</span>
-                    </td>
-                    <td>30/10/2017</td>
-                    <td>30/11/2017</td>
-                    <td> <a href="client-applicants.html" class="btn btn-success"> <i class="fa fa-users"></i>4 <span class="hidden-xs hidden-sm">Applicants</span></a>
-                    </td>
-                    <td> <a href="client-job.html" class="btn btn-outline-white-secondary"> <i class="fa fa-edit"></i>Edit</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-check-circle-o"></i><span class="hidden-xs hidden-sm">Mark as </span>filled</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-times-circle-o"></i>Delete</a></td>
-                  </tr>
-                  <tr>
-                    <th><a href="client-job.html">Team Leader</a><br /><span class="badge badge-info">Featured</span>
-                    </th>
-                    <td> <span class="badge badge-secondary">Not Filled</span>
-                    </td>
-                    <td>19/02/2017</td>
-                    <td>31/10/2017</td>
-                    <td> <a href="client-applicants.html" class="btn btn-success"> <i class="fa fa-users"></i>4 <span class="hidden-xs hidden-sm">Applicants</span></a>
-                    </td>
-                    <td> <a href="client-job.html" class="btn btn-outline-white-secondary"> <i class="fa fa-edit"></i>Edit</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-check-circle-o"></i><span class="hidden-xs hidden-sm">Mark as </span>filled</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-times-circle-o"></i>Delete</a></td>
-                  </tr>
-                  <tr>
-                    <th><a href="client-job.html">Software Engineer</a>
-                    </th>
-                    <td> <span class="badge badge-secondary">Not Filled</span>
-                    </td>
-                    <td>21/10/2017</td>
-                    <td>31/11/2017</td>
-                    <td> 
-                    </td>
-                    <td> <a href="client-job.html" class="btn btn-outline-white-secondary"> <i class="fa fa-edit"></i>Edit</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-check-circle-o"></i><span class="hidden-xs hidden-sm">Mark as </span>filled</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-times-circle-o"></i>Delete</a></td>
-                  </tr>
+                  <% events.internships.forEach(event => { %>
+                    <tr>
+                      <th><a href="/details/<%= event._id %>"><%= event.jobTitle %></a>
+                      
+                      </th>
+                      <td><%= event.city %>, <%= event.state %></td>
+                      <td> <span class="badge badge-success">Filled</span>
+                      <td><%= event.datePosted.toLocaleDateString('en-US') %></td>
+                      
+                      </td>
+                      <td> <a href="client-applicants.html" class="btn btn-success"> <i class="fa fa-users"></i>4 <span class="hidden-xs hidden-sm">Applicants</span></a>
+                      </td>
+                      <td> <a href="client-job.html" class="btn btn-outline-white-secondary"> <i class="fa fa-edit"></i>Edit</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-check-circle-o"></i><span class="hidden-xs hidden-sm">Mark as </span>filled</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-times-circle-o"></i>Delete</a></td>
+                    </tr>
+                  <% }) %>
+                  <% events.volunteerings.forEach(event => { %>
+                    <tr>
+                      <th><a href="/details/<%= event._id %>"><%= event.eventName %></a>
+                      </th>
+                      <td><%= event.city %>, <%= event.state %></td>
+                      <td> <span class="badge badge-success">Filled</span>
+                      <td><%= event.datePosted.toLocaleDateString('en-US') %></td>
+                      
+                      </td>
+                      <td> <a href="client-applicants.html" class="btn btn-success"> <i class="fa fa-users"></i>4 <span class="hidden-xs hidden-sm">Applicants</span></a>
+                      </td>
+                      <td> <a href="client-job.html" class="btn btn-outline-white-secondary"> <i class="fa fa-edit"></i>Edit</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-check-circle-o"></i><span class="hidden-xs hidden-sm">Mark as </span>filled</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-times-circle-o"></i>Delete</a></td>
+                    </tr>
+                  <% }) %>
+                  <% events.workshops.forEach(event => { %>
+                    <tr>
+                      <th><a href="/details/<%= event._id %>"><%= event.eventName %></a>
+                      </th>
+                      <td><%= event.city %>, <%= event.state %></td>
+                      <td> <span class="badge badge-success">Filled</span>
+                      <td><%= event.datePosted.toLocaleDateString('en-US') %></td>
+                      
+                      </td>
+                      <td> <a href="client-applicants.html" class="btn btn-success"> <i class="fa fa-users"></i>4 <span class="hidden-xs hidden-sm">Applicants</span></a>
+                      </td>
+                      <td> <a href="client-job.html" class="btn btn-outline-white-secondary"> <i class="fa fa-edit"></i>Edit</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-check-circle-o"></i><span class="hidden-xs hidden-sm">Mark as </span>filled</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-times-circle-o"></i>Delete</a></td>
+                    </tr>
+                  <% }) %>
                 </tbody>
               </table>
             </div>
