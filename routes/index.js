@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 
     //console.log(volunteerings)
     //console.log(workshops)
-
+    console.log(internships[0])
     res.render('index', {recents : {internships: internships, volunteerings: volunteerings, workshops: workshops}})
 })
 

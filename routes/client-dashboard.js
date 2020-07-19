@@ -36,7 +36,8 @@ router.get('/', async (req, res) => {
             workshops.push(await Workshop.findById(event.id))
         }
     }
-    res.render("client-dashboard", {internships: internships, volunteerings: volunteerings, workshops: workshops});
+    console.log(internships[0].eventName)
+    res.render("client-dashboard", {events: {internships: internships, volunteerings: volunteerings, workshops: workshops}});
 })
  
 module.exports = router; 

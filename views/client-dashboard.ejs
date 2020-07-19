@@ -81,8 +81,8 @@
               <button onclick="test()">asdasdasdasd</button>
               <script>
                 function test() {
-                  var internsh = <%- JSON.stringify(internships) %>
-                  console.log(internsh[0].eventName);
+                  var internsh = <%- JSON.stringify(events.internships) %>
+                  console.log(internsh[0].evetName);
                 }
               </script>
               <table class="table table-striped table-hover table-client-dashboard"> 
@@ -98,9 +98,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% internships.forEach(event => {let event2 = JSON.stringify(event) %>
+                  <% events.internships.forEach(event => { %>
                     <tr>
-                      <th><a href="/details/<%= event._id %>"><%= event.eventName %></a>
+                      <th><a href="/details/<%= event._id %>"><%= event.jobTitle %></a>
                       
                       </th>
                       <td><%= event.city %>, <%= event.state %></td>
@@ -113,7 +113,7 @@
                       <td> <a href="client-job.html" class="btn btn-outline-white-secondary"> <i class="fa fa-edit"></i>Edit</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-check-circle-o"></i><span class="hidden-xs hidden-sm">Mark as </span>filled</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-times-circle-o"></i>Delete</a></td>
                     </tr>
                   <% }) %>
-                  <% volunteerings.forEach(event => { %>
+                  <% events.volunteerings.forEach(event => { %>
                     <tr>
                       <th><a href="/details/<%= event._id %>"><%= event.eventName %></a>
                       </th>
@@ -127,7 +127,7 @@
                       <td> <a href="client-job.html" class="btn btn-outline-white-secondary"> <i class="fa fa-edit"></i>Edit</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-check-circle-o"></i><span class="hidden-xs hidden-sm">Mark as </span>filled</a><br><a href="#" class="btn btn-outline-white-secondary"> <i class="fa fa-times-circle-o"></i>Delete</a></td>
                     </tr>
                   <% }) %>
-                  <% workshops.forEach(event => { %>
+                  <% events.workshops.forEach(event => { %>
                     <tr>
                       <th><a href="/details/<%= event._id %>"><%= event.eventName %></a>
                       </th>
