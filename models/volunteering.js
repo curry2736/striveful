@@ -57,6 +57,9 @@ const Volunteering = mongoose.model('Volunteering', new mongoose.Schema({
     link: {
         type: String,
         required: false
+    },
+    visits: {
+        type: Number
     }
 }));
  
@@ -71,7 +74,8 @@ function validateVolunteering(volunteering) {
         startDate: Joi.date().required(),
         endDate: Joi.date().required(),
         datePosted: Joi.date().required(),
-        link: Joi.string().uri()
+        link: Joi.string().uri(),
+        visits: Joi.number()
     };
     return Joi.validate(volunteering, schema);
 }

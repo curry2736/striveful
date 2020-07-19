@@ -57,6 +57,9 @@ const Workshop = mongoose.model('Workshop', new mongoose.Schema({
     link: {
         type: String,
         required: false
+    },
+    visits: {
+        type: Number
     }
 }));
  
@@ -71,7 +74,8 @@ function validateWorkshop(workshop) {
         state: Joi.string().min(1).max(50).required(),
         startDate: Joi.date().required(),
         endDate: Joi.date().required(),
-        datePosted: Joi.date().required()
+        datePosted: Joi.date().required(),
+        visits: Joi.number()
     };
     return Joi.validate(workshop, schema);
 }

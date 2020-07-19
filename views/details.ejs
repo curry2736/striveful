@@ -92,7 +92,7 @@
       
         <h1 class="heading"><%= details.name %><br><small>at <a href="#"> <%= details.org%></a></small></h1>
         <div class="job-detail-description"><i class="fa fa-map-marker job__location"> </i>Palo Alto
-          | <%= details.result.datePosted%> |<span class="badge featured-badge badge-success">Full Time</span>
+          | <%= details.dates.datePosted%> |<span class="badge featured-badge badge-success">Full Time</span>
         </div>
       </div>
   
@@ -105,8 +105,8 @@
             <p><strong><%= details.result.description%></strong></p>
             <h4>Header Level 4</h4>
             <ol>
-              <li>This event starts at: <%= details.result.StartDate%></li>
-              <li>This event ends at: <%= details.result.EndDate%></li>
+              <li>This event starts at: <%= details.dates.startDate%></li>
+              <li>This event ends at: <%= details.dates.endDate%></li>
             </ol>
             <blockquote class="blockquote">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p>
