@@ -58,6 +58,10 @@ const Internship = mongoose.model('Internship', new mongoose.Schema({
         type: Date,
         required: true
     },
+    dateExpiring: {
+        type: Date,
+        required: true
+    },
     visits: {
         type: Number
     }

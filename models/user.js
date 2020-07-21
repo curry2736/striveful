@@ -93,6 +93,10 @@ function isUser(req, res) {
     return token._id;
 }
 
+function logout(req,res) {
+    cookies.set('token', {expires: Date.now()})
+}
+
 function validateUser(user) {
     const schema = {
         isCompany: Joi.boolean().required(),
@@ -108,6 +112,7 @@ function validateUser(user) {
 
 
 exports.User = User;
+exports.logout = logout;
 exports.isUser = isUser;
 exports.validate = validateUser;
 exports.jwtVerification = jwtVerification;
