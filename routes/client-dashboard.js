@@ -38,7 +38,6 @@ router.get('/', async (req, res) => {
             workshops.push(await Workshop.findById(event.id))
         }
     }
-    console.log(internships[0].datePosted);
     //console.log(internships[0].eventName)
     res.render("client-dashboard", {user: user, events: {internships: internships, volunteerings: volunteerings, workshops: workshops}});
 })
