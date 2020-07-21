@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
 
     console.log(user)
 
-    res.render('index', {recents : {internships: internships, volunteerings: volunteerings, workshops: workshops, user: user}})
+    res.render('index', {user: user, recents : {internships: internships, volunteerings: volunteerings, workshops: workshops}})
 })
 
 module.exports = router; 
