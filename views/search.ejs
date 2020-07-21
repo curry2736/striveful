@@ -94,53 +94,126 @@
             <div class="row align-items-end">
               <div class="col-sm-1 col-lg-2"></div>
               <div class="col-sm-5 col-lg-4 form-group">
-                <label for="jobTitle">Opportunity</label>
-                <input type="text" id="jobTitle" name="jobTitle" placeholder="Enter the name" class="form-control">
+                <label for="name">Opportunity</label>
+                <input type="text" id="name" name="name" placeholder="Enter the name" class="form-control">
               </div>
               <div class="col-sm-5 col-lg-4 form-group">
                 <!-- <label for="location">Location</label>
                 <input type="text" id="location" name="location" placeholder="Any particular location?" value="Bay Area" class="form-control">
               </div> -->
               <div class="col-sm-1 col-lg-2 form-group">
-                <button onclick="retard()" type="submit" class="btn btn-outline-white-primary job-main-form__button"><i class="fa fa-search"></i></button>
-                <script>
-                  function retard() {
-                    console.log('chandra da goat')
-                  }
-                </script>
+                <button type="submit" class="btn btn-outline-white-primary job-main-form__button"><i class="fa fa-search"></i></button>
               </div>
             </div>
           </div>
         </form>
       </div>
     </section>
-    <section>
+
+    <section class="listings">
       <div class="container">
-        <h3 class="heading">We have found <span class="accent">40</span> jobs</h3>
-        <div class="job-listing job-listing--featured ">
+        <h3 class="heading"> <%= results.searchNum %> </h3>
+
+        <%results.internships.forEach( value => { %>
+          <div class="job-listing">
+            <div class="row">
+              <div class="col-md-12 col-lg-6">
+                <div class="row">
+                  <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-1.png" alt="LoremIpsum " class="img-fluid"></div>
+                  <div class="col-10">
+                    <h4 class="job__title"><a href="detail.html"> <%=value.jobTitle%> </a></h4>
+                    <p class="job__company">
+                      <%=value.companyName%>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i><%=value.city%>, <%=value.state%></div>
+              <div class="col-10 col-md-3 col-lg-3 ml-auto">
+                <%var daysSincePost = Math.round((Date.now() - value.datePosted.getTime()) / (1000 * 60 * 60 * 24))%>
+                <p>Posted <%=daysSincePost %> days ago</p>
+              </div>
+              <form action="/favorite" method="POST" target="hiddenFrame"></form>
+                <div class="col-sm-12 col-md-2 col-lg-1">
+                  <input type="hidden" name="_id" value= <%= value._id %> />
+                  <div class="job__star">
+                    <button onclick="favorite(this);" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link">
+                      <i class="fa fa-star"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        <% }) %>
+
+        <%results.volunteerings.forEach( value => { %>
+        <div class="job-listing">
           <div class="row">
             <div class="col-md-12 col-lg-6">
               <div class="row">
                 <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-1.png" alt="LoremIpsum " class="img-fluid"></div>
                 <div class="col-10">
-                  <h4 class="job__title"><a href="detail.html">Webdesigner</a></h4>
+                  <h4 class="job__title"><a href="detail.html"> <%=value.eventName%> </a></h4>
                   <p class="job__company">
-                     
-                    LoremIpsum
+                    <%=value.organization%>
                   </p>
                 </div>
               </div>
             </div>
-            <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i>San Francisco</div>
+            <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i><%=value.city%>, <%=value.state%></div>
             <div class="col-10 col-md-3 col-lg-3 ml-auto">
-              <p>Posted 5 days ago</p>
+              <%var daysSincePost = Math.round((Date.now() - value.datePosted.getTime()) / (1000 * 60 * 60 * 24))%>
+              <p>Posted <%=daysSincePost %> days ago</p>
             </div>
-            <div class="col-sm-12 col-md-2 col-lg-1">
-              <div class="job__star"><a href="#" data-toggle="tooltip" data-placement="top" title="Save to favourites" class="job__star__link"><i class="fa fa-star"></i></a></div>
-            </div>
+            <form action="/favorite" method="POST" target="hiddenFrame"></form>
+              <div class="col-sm-12 col-md-2 col-lg-1">
+                <input type="hidden" name="_id" value= <%= value._id %> />
+                <div class="job__star">
+                  <button onclick="favorite(this);" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link">
+                    <i class="fa fa-star"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
-        <div class="job-listing  ">
+        <% }) %>
+
+        <%results.workshops.forEach( value => { %>
+        <div class="job-listing">
+          <div class="row"> 
+            <div class="col-md-12 col-lg-6">
+              <div class="row">
+                <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-1.png" alt="LoremIpsum " class="img-fluid"></div>
+                <div class="col-10">
+                  <h4 class="job__title"><a href="detail.html"> <%=value.eventName%> </a></h4>
+                  <p class="job__company">
+                    <%=value.organization%>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i><%=value.city%>, <%=value.state%></div>
+            <div class="col-10 col-md-3 col-lg-3 ml-auto">
+              <%var daysSincePost = Math.round((Date.now() - value.datePosted.getTime()) / (1000 * 60 * 60 * 24))%>
+              <p>Posted <%=daysSincePost %> days ago</p>
+            </div>
+            <form action="/favorite" method="POST" target="hiddenFrame"></form>
+              <div class="col-sm-12 col-md-2 col-lg-1">
+                <input type="hidden" name="_id" value= <%= value._id %> />
+                <div class="job__star">
+                  <button onclick="favorite(this);" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link">
+                    <i class="fa fa-star"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <% }) %>
+        
+        <!--<div class="job-listing  ">
           <div class="row">
             <div class="col-md-12 col-lg-6">
               <div class="row">
@@ -315,6 +388,7 @@
           </nav>
         </div>
       </div>
+    -->
     </section>
     <section class="bg-light-gray">
       <div class="container">

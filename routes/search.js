@@ -5,33 +5,65 @@ const router = express.Router();
 const { Internship} = require('../models/internship');
 const { Volunteering} = require('../models/volunteering.js');
 const { Workshop} = require('../models/workshop');
+const { query } = require('express');
+
+
 
 router.get('/', async(req, res) => {
-    res.render('search')
+
+    var searchNum = 'All available opportunities'
+
+    let internships = await Internship.find({"datePosted":{$lte: Date.now()}}).sort({"datePosted":-1})
+    let volunteerings = await Volunteering.find({"datePosted":{$lte: Date.now()}}).sort({"datePosted":-1})
+    let workshops = await Workshop.find({"datePosted":{$lte: Date.now()}}).sort({"datePosted":-1})
+
+    res.render('search', {results : {searchNum, internships : internships, volunteerings : volunteerings, workshops : workshops}})
+
 })
 
 router.get('/query', async (req, res) => {
 
-    var title = req.query.jobTitle
-    console.log(title)
+    var searchNum
 
-    let internships = await Internship.find({"jobTitle": {$regex:title,$options:'i'}})
-    console.log(internships)
-    let volunteerings =  await Volunteering.find({"eventName": {$regex:title,$options:'i'}})
-    console.log(volunteerings)
-    let workshops = await Workshop.find({"eventName": {$regex:title,$options:'i'}})
-    console.log(workshops)
+    var name = req.query.name.toLowerCase()
+    //name = name.replace(/\s+/g, ''); //removes whitespaces
+    console.log('query: ' + name)
 
+    let internships = await Internship.find({"jobTitle": {$regex:name,$options:'i'}}).exec()
+    //console.log(internships)
+    let volunteerings =  await Volunteering.find({"eventName": {$regex:name,$options:'i'}}).exec()
+    //console.log(volunteerings)
+    let workshops = await Workshop.find({"eventName": {$regex:name,$options:'i'}}).exec()
+    //console.log(workshops)
+    
+    var totalResults = internships.length + volunteerings.length + workshops.length
+
+    if (name == '') {
+        searchNum = 'We have found 0 opportunities'
+    }
+    else if (totalResults == 1) {
+        searchNum = 'We have found ' + totalResults +  ' opportunity'
+    }
+    else {
+        searchNum = 'We have found ' + totalResults +  ' opportunities'
+    }
+
+    console.log('total results: ' + totalResults)
+
+    if (name != null)
     internships.forEach(internship => {
-        console.log('An internship')
+        console.log(internship.jobTitle)
     })
-    volunteerings.forEach(volunteerin => {
-        console.log('A volunteering')
+    volunteerings.forEach(volunteering => {
+        console.log(volunteering.eventName)
     })
     workshops.forEach(workshop => {
-        console.log('A workshop')
+        console.log(workshop.eventName)
     })
+
+    console.log('--------------------------------------------')
     
-    res.render('search')
+    res.render('search', {results: {searchNum : searchNum, internships : internships, volunteerings : volunteerings, workshops : workshops}})
+
 })
 module.exports = router;
