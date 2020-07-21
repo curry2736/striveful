@@ -70,6 +70,29 @@ function jwtVerification(req, res) {
     return (buff.toString('ascii'));
 }
 
+function isUser(req, res) {
+    const cookies = req.headers.cookie.split("; ");
+    let authToken = "";
+    let buff = "";
+    cookies.forEach( cookie => {
+        if (cookie.includes("token")) {
+            authToken = cookie.split("=")[1];
+        }
+    });
+    if (!authToken) {
+        return null
+    }
+    jwt.verify(authToken, config.get('PrivateKey') , (err) => {
+        if (err) {
+            console.log(err);
+            return null
+        }
+        buff = new Buffer(authToken.split(".")[1], 'base64')
+    });
+    const token = JSON.parse(buff.toString('ascii'))
+    return token._id;
+}
+
 function validateUser(user) {
     const schema = {
         isCompany: Joi.boolean().required(),
@@ -85,5 +108,6 @@ function validateUser(user) {
 
 
 exports.User = User;
+exports.isUser = isUser;
 exports.validate = validateUser;
 exports.jwtVerification = jwtVerification;

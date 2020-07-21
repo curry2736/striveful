@@ -1,3 +1,4 @@
+
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 const express = require('express');
@@ -5,7 +6,7 @@ const router = express.Router();
 const { Internship } = require('../models/internship');
 const { Volunteering } = require('../models/volunteering');
 const { Workshop } = require('../models/workshop');
-const { User, jwtVerification } = require('../models/user')
+const { User, jwtVerification, isUser } = require('../models/user')
  
 
 router.get('/', async (req, res) => {
@@ -14,6 +15,7 @@ router.get('/', async (req, res) => {
         yes: "hi",
         no: "bad"
     }
+    console.log(isUser(req,res));
     //TODO: ADD JWT VERIF
     let internships = [];
     let volunteerings = [];
