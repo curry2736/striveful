@@ -138,7 +138,7 @@
                 <div class="row">
                   <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-1.png" alt="LoremIpsum " class="img-fluid"></div>
                   <div class="col-10">
-                    <h4 class="job__title"><a href="detail.html"> <%=value.jobTitle%> </a></h4>
+                    <h4 class="job__title"><a href="/details/<%=value.id %>"> <%=value.jobTitle%> </a></h4>
                     <p class="job__company">
                       <%=value.companyName%>
                     </p>
@@ -171,7 +171,7 @@
               <div class="row">
                 <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-1.png" alt="LoremIpsum " class="img-fluid"></div>
                 <div class="col-10">
-                  <h4 class="job__title"><a href="detail.html"> <%=value.eventName%> </a></h4>
+                  <h4 class="job__title"><a href="/details/<%=value.id %>"> <%=value.eventName%> </a></h4>
                   <p class="job__company">
                     <%=value.organization%>
                   </p>
@@ -204,7 +204,7 @@
               <div class="row">
                 <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-1.png" alt="LoremIpsum " class="img-fluid"></div>
                 <div class="col-10">
-                  <h4 class="job__title"><a href="detail.html"> <%=value.eventName%> </a></h4>
+                  <h4 class="job__title"><a href="/details/<%=value.id %>"> <%=value.eventName%> </a></h4>
                   <p class="job__company">
                     <%=value.organization%>
                   </p>
@@ -528,23 +528,7 @@
         </div>
       </div>
     </footer>
-    <button type="button" data-toggle="collapse" data-target="#style-switch" id="style-switch-button" class="btn btn-primary btn-sm hidden-xs hidden-sm"><i class="fa fa-cog fa-2x"></i></button>
-    <div id="style-switch" class="collapse">
-      <h4 class="text-uppercase">Select theme colour</h4>
-      <form class="mb-3">
-        <select name="colour" id="colour" class="form-control">
-          <option value="">select colour variant</option>
-          <option value="default">red</option>
-          <option value="pink">pink</option>
-          <option value="green">green</option>
-          <option value="violet">violet</option>
-          <option value="sea">sea</option>
-          <option value="blue">blue</option>
-        </select>
-      </form>
-      <p><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/template-mac.png" alt="" class="img-fluid"></p>
-      <p class="text-muted text-small">Stylesheet switching is done via JavaScript and can cause a blink while page loads. This will not happen in your production code.</p>
-    </div>
+
     <!-- JavaScript files-->
     <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/jquery/jquery.min.js"></script>
     <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
