@@ -66,10 +66,10 @@ router.get('/query', async (req, res) => {
     console.log('total results: ' + totalResults)
 
     if (totalResults == 1) {
-        searchNum = 'We have found ' + totalResults +  ' opportunity'
+        searchNum = totalResults +  ' result for "' + name + '"'
     }
     else {
-        searchNum = 'We have found ' + totalResults +  ' opportunities'
+        searchNum = totalResults +  ' results for "' + name + '"'
     }
 
     console.log('--------------------------------------------------------------------')

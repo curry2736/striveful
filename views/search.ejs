@@ -128,22 +128,9 @@
       </div>
     </section>
 
-    <!--<div class="col-sm-2 form-group">
-      <input type="checkbox" id="internship" name="internshipCheck" class="form-control">
-      <label for="internship">Internship</label>
-    <div class="col-sm-2 form-group">
-      <input type="checkbox" id="volunteering" name="volunteeringCheck" class="form-control">
-      <label for="volunteering">Volunteering</label>
-    </div>
-    <div class="col-sm-2 form-group">
-      <input type="checkbox" id="workshop" name="workshopCheck" class="form-control">
-      <label for="workshop">Workshop</label>
-    </div>-->
-
     <section class="listings">
       <div class="container">
         <h3 class="heading"> <%= results.searchNum %> </h3>
-
         <% if (results.internshipIsChecked) { results.internships.forEach( value => { %>
           <div class="job-listing">
             <div class="row">
