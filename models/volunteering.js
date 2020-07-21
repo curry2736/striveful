@@ -58,6 +58,10 @@ const Volunteering = mongoose.model('Volunteering', new mongoose.Schema({
         type: String,
         required: false
     },
+    dateExpiring: {
+        type: Date,
+        required: true
+    },
     visits: {
         type: Number
     }

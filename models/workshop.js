@@ -58,6 +58,10 @@ const Workshop = mongoose.model('Workshop', new mongoose.Schema({
         type: String,
         required: false
     },
+    dateExpiring: {
+        type: Date,
+        required: true
+    },
     visits: {
         type: Number
     }
