@@ -3,6 +3,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const tokenTest = require('./routes/tokenTest');
+const logout = require('./routes/logout');
 const cookieParser = require('cookie-parser');
 const config = require('config');
 const Joi = require('joi');
@@ -65,6 +66,7 @@ app.use('/client-dashboard', clientDashboard)
 app.use('/', indexRouter)
 app.use('/api/users', users);
 app.use('/api/auth', auth);
+app.use('/api/logout', logout);
 app.use('/favorite', favorite)
 app.use('/api/tokenTest', tokenTest);
 app.use('/login123', login);
@@ -73,6 +75,7 @@ app.use('/test', test);
 app.use('/search', search);
 app.use('/company', company)
 app.use('/details',details);
+
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)

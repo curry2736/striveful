@@ -54,8 +54,9 @@
               <% if (recents.user == null) { %>
                 <li class="nav-item dropdown"><a href="#loginModal" data-toggle="modal" class="btn navbar-btn btn-outline-light mb-5 mb-lg-0"> <i class="fa fa-sign-in"></i>Login</a></li>
               <% } else {%>
-                <li class="nav-item dropdown"><a id="clientZone" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Client Zone</a>
+                <li class="nav-item dropdown"><a id="clientZone" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><%= recents.user.firstName%></a>
                   <div aria-labelledby="clientZone" class="dropdown-menu">
+                    <a href="/api/logout" class="dropdown-item">Logout</a>
                     <a href="/client-dashboard" class="dropdown-item">Dashboard</a>
                     <a href="/favorite" class="dropdown-item">Favorites</a>
                     <% if (recents.user.isCompany == true) { %>
