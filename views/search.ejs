@@ -92,29 +92,59 @@
         <form id="job-main-form" method="GET" action="/search/query" class="job-main-form">
           <div class="controls">
             <div class="row align-items-end">
-              <div class="col-sm-1 col-lg-2"></div>
+              <div class="col-sm-1 col-lg-1"></div>
               <div class="col-sm-5 col-lg-4 form-group">
                 <label for="name">Opportunity</label>
                 <input type="text" id="name" name="name" placeholder="Enter the name" class="form-control">
               </div>
               <div class="col-sm-5 col-lg-4 form-group">
-                <!-- <label for="location">Location</label>
+                <label for="location">Location</label>
                 <input type="text" id="location" name="location" placeholder="Any particular location?" value="Bay Area" class="form-control">
-              </div> -->
+              </div>
               <div class="col-sm-1 col-lg-2 form-group">
                 <button type="submit" class="btn btn-outline-white-primary job-main-form__button"><i class="fa fa-search"></i></button>
               </div>
+            </div>
+          </div>
+          <div class="controls">
+            <div class="row align-items-end">
+              <div class="col-sm-2 col-lg-2"></div>
+              <div class="col-sm-3 col-lg-3">
+                <label for="internshipCheck">Internship</label>
+                <input type="checkbox" id="internshipCheck" name="internshipCheck">
+              </div>
+              <div class="col-sm-3 col-lg-3">
+                <label for="volunteeringCheck">Volunteering</label>
+                <input type="checkbox" id="volunteeringCheck" name="volunteeringCheck">
+              </div>
+              <div class="col-sm-3 col-lg-3">
+                <label for="workshopCheck">Workshop</label>
+                <input type="checkbox" id="workshopCheck" name="workshopCheck">
+              </div>
+              <div class="col-sm-1 col-lg-1"></div>
             </div>
           </div>
         </form>
       </div>
     </section>
 
+    <!--<div class="col-sm-2 form-group">
+      <input type="checkbox" id="internship" name="internshipCheck" class="form-control">
+      <label for="internship">Internship</label>
+    <div class="col-sm-2 form-group">
+      <input type="checkbox" id="volunteering" name="volunteeringCheck" class="form-control">
+      <label for="volunteering">Volunteering</label>
+    </div>
+    <div class="col-sm-2 form-group">
+      <input type="checkbox" id="workshop" name="workshopCheck" class="form-control">
+      <label for="workshop">Workshop</label>
+    </div>-->
+
     <section class="listings">
       <div class="container">
         <h3 class="heading"> <%= results.searchNum %> </h3>
 
-        <%results.internships.forEach( value => { %>
+        <% if (results.internshipIsChecked) { results.internships.forEach( value => { %>
           <div class="job-listing">
             <div class="row">
               <div class="col-md-12 col-lg-6">
@@ -145,9 +175,9 @@
               </form>
             </div>
           </div>
-        <% }) %>
+        <% })} %>
 
-        <%results.volunteerings.forEach( value => { %>
+        <% if (results.volunteeringIsChecked) { results.volunteerings.forEach( value => { %>
         <div class="job-listing">
           <div class="row">
             <div class="col-md-12 col-lg-6">
@@ -178,9 +208,9 @@
             </form>
           </div>
         </div>
-        <% }) %>
+        <% })} %>
 
-        <%results.workshops.forEach( value => { %>
+        <%if (results.workshopIsChecked) { results.workshops.forEach( value => { %>
         <div class="job-listing">
           <div class="row"> 
             <div class="col-md-12 col-lg-6">
@@ -211,7 +241,7 @@
             </form>
           </div>
         </div>
-        <% }) %>
+        <% })} %>
         
         <!--<div class="job-listing  ">
           <div class="row">
