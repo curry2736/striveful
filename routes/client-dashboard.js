@@ -40,7 +40,7 @@ router.get('/', async (req, res) => {
     }
     console.log(internships[0].datePosted);
     //console.log(internships[0].eventName)
-    res.render("client-dashboard", {events: {internships: internships, volunteerings: volunteerings, workshops: workshops}});
+    res.render("client-dashboard", {user: user, events: {internships: internships, volunteerings: volunteerings, workshops: workshops}});
 })
  
 module.exports = router; 
