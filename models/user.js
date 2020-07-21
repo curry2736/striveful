@@ -72,7 +72,7 @@ function jwtVerification(req, res) {
 
 function isUser(req, res) {
     const cookies = req.headers.cookie.split("; ");
-    let authToken = "";
+    let authToken = null;
     let buff = "";
     cookies.forEach( cookie => {
         if (cookie.includes("token")) {

@@ -5,6 +5,7 @@ const router = express.Router();
 const { Internship} = require('../models/internship');
 const { Volunteering} = require('../models/volunteering.js');
 const { Workshop} = require('../models/workshop');
+const { User, validate, isUser } = require('../models/user');
 
  
 router.get('/', async (req, res) => {
@@ -14,10 +15,17 @@ router.get('/', async (req, res) => {
 
     let workshops = await Workshop.find({"datePosted":{$lte: Date.now()}}).sort({"datePosted":-1}).limit(3)
 
-    //console.log(volunteerings)
-    //console.log(workshops)
-    console.log(internships[0])
-    res.render('index', {recents : {internships: internships, volunteerings: volunteerings, workshops: workshops}})
+    const userVerification = isUser(req, res);
+
+    let user = null
+
+    if (userVerification != null ){
+        user = await User.findOne({ _id: userVerification });
+    }
+
+    console.log(user)
+
+    res.render('index', {recents : {internships: internships, volunteerings: volunteerings, workshops: workshops, user: user}})
 })
 
 module.exports = router; 
