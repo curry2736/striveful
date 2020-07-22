@@ -6,21 +6,28 @@ const { Workshop } = require('../models/workshop');
 const { User, jwtVerification } = require('../models/user');
 
 
-router.get('/', (req, res) => {
+router.get('/', async(req, res) => {
     // const didIGetIn = jwtVerification(req, res);
     // console.log(didIGetIn + "metro boomin");
-    // const verif = JSON.parse(jwtVerification(req,res));
-    // const user = User.findById(verif._id);
-    const didIGetIn = jwtVerification(req, res);
-    console.log(didIGetIn);
+    const verif = await JSON.parse(jwtVerification(req,res));
+    const user = await User.findById(verif._id);
+    console.log(user.isCompany)
+    // const didIGetIn = jwtVerification(req, res);
+    // console.log(didIGetIn);
+    if (user.isCompany) {
+        res.render('company')
+        
+    }
+    else{
+        res.redirect("/")
+    }
     
     
-    
-    res.render('company')
     
 })
 
 router.post('/', async (req, res) => {
+   
     // First Validate The Request
     // const { error } = validate(req.body);
     // console.log(validate(req.body));
@@ -28,11 +35,13 @@ router.post('/', async (req, res) => {
     // if (error) {
     //     return res.status(400).send(error.details[0].message);
     // }
-    // if (req.body.opportunity == 'internships') {
-    const verif = JSON.parse(jwtVerification(req,res));
+    
+
+
+    const verif = await JSON.parse(jwtVerification(req,res));
     const user = await User.findById(verif._id);
     console.log(user);
-    const eventsCreated = user.eventsCreated;
+    // const eventsCreated = user.eventsCreated;
     if (req.body.category == "Internship") {
     const internship = new Internship({
         jobTitle: req.body.jobTitle,
@@ -44,10 +53,18 @@ router.post('/', async (req, res) => {
         state: req.body.state,
         startDate: req.body.startDate,
         endDate: req.body.endDate,
-        datePosted: req.body.datePosted
+        datePosted: req.body.datePosted,
+        dateExpiring: req.body.dateExpiring
     })
     try {
         const newInternship = await internship.save()
+        console.log(newInternship._id)
+        var event = {
+            id: newInternship._id.toString(),
+            type: "internship"
+          };
+          user.eventsCreated.push(event)
+          await user.save()
         res.redirect('company')
     } catch {
         res.render('company', {
@@ -68,20 +85,21 @@ router.post('/', async (req, res) => {
         startDate: req.body.startDate,
         endDate: req.body.endDate,
         datePosted: req.body.datePosted,
-        // type: "internship"
-    })
-    // const volunteeringArr = new Volunteering({
-    //     id: .id,
-    //     email: req.body.email,
+        dateExpiring: req.body.dateExpiring
         
-    // })
+    })
     // console.log(req.body);
     // const { error } = validate(req.body);
     // console.log(error);
     try {
         const newVolunteering = await volunteering.save();
         eventsCreated.push(newVolunteering);
-        console.log(user.eventsCreated)
+        var event = {
+            id: newVolunteering._id.toString(),
+            type: "volunteering"
+          };
+          user.eventsCreated.push(event)
+          await user.save()
         res.redirect('company')
     } catch {
         res.render('company', {
@@ -101,13 +119,20 @@ router.post('/', async (req, res) => {
             state: req.body.state,
             startDate: req.body.startDate,
             endDate: req.body.endDate,
-            datePosted: req.body.datePosted
+            datePosted: req.body.datePosted,
+            dateExpiring: req.body.dateExpiring
         })
         // console.log(req.body);
         // const { error } = validate(req.body);
         // console.log(error);
         try {
             const newWorkshop = await workshop.save()
+            var event = {
+                id: newWorkshop._id.toString(),
+                type: "workshop"
+              };
+              user.eventsCreated.push(event)
+              await user.save()
             res.redirect('company')
         } catch {
             res.render('company', {
@@ -116,26 +141,7 @@ router.post('/', async (req, res) => {
                 })
             }
         }
-    // let internships = [];
-    // let volunteerings = [];
-    // let workshops = [];
     
-    
-    // for (let i = 0; i < eventsCreated.length; i++) {
-    //     event = eventsCreated[i]
-        
-    //     if (event.type == "internship") {
-    //         let test = await Internship.findById(event.id);
-    //         console.log(test);
-    //         internships.push(await Internship.findById(event.id));
-    //     } 
-    //     else if (event.type == "volunteering") {
-    //         volunteerings.push(await Volunteering.findById(event.id))
-    //     }
-    //     else if (event.type == "workshop") {
-    //         workshops.push(await Workshop.findById(event.id))
-    //     }
-    // }
     
     
    
