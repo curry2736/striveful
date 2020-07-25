@@ -18,11 +18,17 @@ router.get('/', async(req, res) => {
     var volunteeringIsChecked = true
     var workshopIsChecked = true
 
+    var opportunityPlaceholder = ''
+    console.log(opportunityPlaceholder)
+    var locationPlaceholder = ''
+    console.log(locationPlaceholder)
+
     let internships = await Internship.find({"datePosted":{$lte: Date.now()}}).sort({"datePosted":-1}).exec()
     let volunteerings = await Volunteering.find({"datePosted":{$lte: Date.now()}}).sort({"datePosted":-1}).exec()
     let workshops = await Workshop.find({"datePosted":{$lte: Date.now()}}).sort({"datePosted":-1}).exec()
 
-    res.render('search', {results : {searchNum, internships : internships, volunteerings : volunteerings, workshops : workshops, internshipIsChecked, volunteeringIsChecked, workshopIsChecked}})
+    res.render('search', {results : {searchNum, internships : internships, volunteerings : volunteerings, workshops : workshops, internshipIsChecked, volunteeringIsChecked, workshopIsChecked,
+                                    opportunityPlaceholder, locationPlaceholder}})
 
 })
 
@@ -34,6 +40,11 @@ router.get('/query', async (req, res) => {
     var name = req.query.name.toLowerCase()
     //name = name.replace(/\s+/g, ''); //removes whitespaces
     console.log('query: ' + name)
+    var opportunityPlaceholder = req.query.name
+    console.log(opportunityPlaceholder)
+    var locationPlaceholder = req.query.location
+    console.log(locationPlaceholder)
+
     var internshipIsChecked = req.query.internshipCheck
     console.log('internship: ' + internshipIsChecked)
     var volunteeringIsChecked = req.query.volunteeringCheck
@@ -45,6 +56,8 @@ router.get('/query', async (req, res) => {
     let volunteerings =  await Volunteering.find({"eventName": {$regex:name,$options:'i'}}).exec()
     let workshops = await Workshop.find({"eventName": {$regex:name,$options:'i'}}).exec()
     
+    
+
     if (internshipIsChecked) {
         totalResults += internships.length
         internships.forEach(internship => {
@@ -74,7 +87,8 @@ router.get('/query', async (req, res) => {
 
     console.log('--------------------------------------------------------------------')
     
-    res.render('search', {results: {searchNum, internships : internships, volunteerings : volunteerings, workshops : workshops, internshipIsChecked, volunteeringIsChecked, workshopIsChecked}})
+    res.render('search', {results : {searchNum, internships : internships, volunteerings : volunteerings, workshops : workshops, internshipIsChecked, volunteeringIsChecked, workshopIsChecked,
+                                    opportunityPlaceholder, locationPlaceholder}})
 
 })
 module.exports = router;

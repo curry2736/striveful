@@ -95,14 +95,14 @@
               <div class="col-sm-1 col-lg-1"></div>
               <div class="col-sm-5 col-lg-4 form-group">
                 <label for="name">Opportunity</label>
-                <input type="text" id="name" name="name" placeholder="Enter the name" class="form-control">
+                <input type="text" id="name" name="name" class="form-control" placeholder="Enter a name" value=<%=results.opportunityPlaceholder%>>
               </div>
               <div class="col-sm-5 col-lg-4 form-group">
                 <label for="location">Location</label>
-                <input type="text" id="location" name="location" placeholder="Any particular location?" value="Bay Area" class="form-control">
+                <input type="text" id="location" name="location" class="form-control" placeholder="Enter a location" value=<%=results.locationPlaceholder%>>
               </div>
               <div class="col-sm-1 col-lg-2 form-group">
-                <button type="submit" class="btn btn-outline-white-primary job-main-form__button"><i class="fa fa-search"></i></button>
+                <button onclick=console.log(results.locationPlaceholder) type="submit" class="btn btn-outline-white-primary job-main-form__button"><i class="fa fa-search"></i></button>
               </div>
             </div>
           </div>
@@ -111,15 +111,15 @@
               <div class="col-sm-2 col-lg-2"></div>
               <div class="col-sm-3 col-lg-3">
                 <label for="internshipCheck">Internship</label>
-                <input type="checkbox" id="internshipCheck" name="internshipCheck">
+                <input type="checkbox" id="internshipCheck" name="internshipCheck" checked>
               </div>
               <div class="col-sm-3 col-lg-3">
                 <label for="volunteeringCheck">Volunteering</label>
-                <input type="checkbox" id="volunteeringCheck" name="volunteeringCheck">
+                <input type="checkbox" id="volunteeringCheck" name="volunteeringCheck" checked>
               </div>
               <div class="col-sm-3 col-lg-3">
                 <label for="workshopCheck">Workshop</label>
-                <input type="checkbox" id="workshopCheck" name="workshopCheck">
+                <input type="checkbox" id="workshopCheck" name="workshopCheck" checked>
               </div>
               <div class="col-sm-1 col-lg-1"></div>
             </div>
@@ -152,7 +152,7 @@
               </div>
               <form action="/favorite" method="POST" target="hiddenFrame"></form>
                 <div class="col-sm-12 col-md-2 col-lg-1">
-                  <input type="hidden" name="_id" value= <%= value._id %> />
+                  <input type="hidden" name="_id" value= <%= value.id %> />
                   <div class="job__star">
                     <button onclick="favorite(this);" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link">
                       <i class="fa fa-star"></i>
