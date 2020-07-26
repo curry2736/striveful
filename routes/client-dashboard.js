@@ -41,5 +41,50 @@ router.get('/', async (req, res) => {
     //console.log(internships[0].eventName)
     res.render("client-dashboard", {user: user, events: {internships: internships, volunteerings: volunteerings, workshops: workshops}});
 })
+
+router.delete('/internships/:id', async (req, res) => {
+    await Internship.deleteOne({"_id": req.params.id})
+    await User.update(
+        {'_id': req.body.userId}, 
+        { $pull: { "eventsCreated" : { id: req.params.id } } }, (err, data) => {
+            if(err) {
+                return res.status(500).json({'error' : 'error in deleting address'});
+            }
+            console.log(data)
+        },
+    );
+    console.log(req.body)
+    res.send("yes")
+})
+
+router.delete('/workshops/:id', async (req, res) => {
+    await Workshop.deleteOne({"_id": req.params.id})
+    await User.update(
+        {'_id': req.body.userId}, 
+        { $pull: { "eventsCreated" : { id: req.params.id } } }, (err, data) => {
+            if(err) {
+                return res.status(500).json({'error' : 'error in deleting address'});
+            }
+            console.log(data)
+        },
+    );
+    console.log(req.body)
+    res.send("yes")
+})
+
+router.delete('/volunteerings/:id', async (req, res) => {
+    await Volunteering.deleteOne({"_id": req.params.id})
+    await User.update(
+        {'_id': req.body.userId}, 
+        { $pull: { "eventsCreated" : { id: req.params.id } } }, (err, data) => {
+            if(err) {
+                return res.status(500).json({'error' : 'error in deleting address'});
+            }
+            console.log(data)
+        },
+    );
+    console.log(req.body)
+    res.send("yes")
+})
  
 module.exports = router; 

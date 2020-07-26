@@ -15,14 +15,14 @@ const Volunteering = mongoose.model('Volunteering', new mongoose.Schema({
         required: true,
         minlength: 1,
         maxlength: 128,
-        unique: true
+        //unique: true
     },
     email: {
         type: String,
         required: true,
         minlength: 5,
         maxlength: 255,
-        unique: true
+        //unique: true
     },
     description: {
         type: String,
