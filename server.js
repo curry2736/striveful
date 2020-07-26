@@ -16,6 +16,7 @@ const auth = require('./routes/auth');
 const test = require('./routes/test');
 const clientDashboard = require('./routes/client-dashboard')
 const details = require('./routes/details');
+const about = require('./routes/about');
 const indexRouter = require('./routes/index')
 const company = require('./routes/company');
 const express = require('express');
@@ -75,6 +76,7 @@ app.use('/test', test);
 app.use('/search', search);
 app.use('/company', company)
 app.use('/details',details);
+app.use('/about', about);
 
 
 app.listen(port, () => {
