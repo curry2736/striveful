@@ -33,20 +33,27 @@
     <!-- navbar-->
     <header class="header">
       <nav class="navbar navbar-expand-lg">
-        <div class="container"><a href="index-2.html" class="navbar-brand"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo.png" alt="logo" class="d-none d-lg-block"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo-small.png" alt="logo" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>
+        <div class="container"><a href="/" class="navbar-brand"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo.png" alt="logo" class="d-none d-lg-block"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo-small.png" alt="logo" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>
           <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars"></i></button>
           <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item active"><a href="category.html" class="nav-link">Jobs <span class="sr-only">(current)</span></a></li>
-              <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
-              <li class="nav-item dropdown"><a id="clientZone" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Client Zone</a>
-                <div aria-labelledby="clientZone" class="dropdown-menu"><a href="client-register.html" class="dropdown-item">Login or Register</a><a href="client-dashboard.html" class="dropdown-item">Dashboard</a><a href="client-applicants.html" class="dropdown-item">Applicants                </a><a href="client-job.html" class="dropdown-item">Post a new job  </a></div>
-              </li>
-              <li class="nav-item dropdown"><a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Pages</a>
-                <div aria-labelledby="pages" class="dropdown-menu"><a href="index-2.html" class="dropdown-item">Home</a><a href="category.html" class="dropdown-item">Job Listing</a><a href="detail.html" class="dropdown-item">Job Detail                </a><a href="about.html" class="dropdown-item">About                </a><a href="contact.html" class="dropdown-item">Contact                </a><a href="blog.html" class="dropdown-item">Blog Listing                </a><a href="post.html" class="dropdown-item">Blog Post                </a><a href="packages.html" class="dropdown-item">Pricing packages    </a><a href="testimonials.html" class="dropdown-item">Testimonials    </a><a href="text.html" class="dropdown-item">Text Page    </a><a href="faq.html" class="dropdown-item">FAQ</a></div>
-              </li>
-              <li class="nav-item">   <a href="contact.html" class="nav-link">Contact</a></li>
-              <li class="nav-item dropdown"><a href="#loginModal" data-toggle="modal" class="btn navbar-btn btn-outline-light mb-5 mb-lg-0"> <i class="fa fa-sign-in"></i>Login</a></li>
+              <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+              <li class="nav-item"><a href="/about" class="nav-link">About Us </a></li>
+              <li class="nav-item active"><a href="/search" class="nav-link">Search <span class="sr-only">(current)</span> </a></li>
+              <% if (results.user == null) { %>
+                <li class="nav-item dropdown"><a href="#loginModal" data-toggle="modal" class="btn navbar-btn btn-outline-light mb-5 mb-lg-0"> <i class="fa fa-sign-in"></i>Login</a></li>
+              <% } else {%>
+                <li class="nav-item dropdown"><a id="clientZone" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><%= results.user.firstName%></a>
+                  <div aria-labelledby="clientZone" class="dropdown-menu">
+                    <a href="/api/logout" class="dropdown-item">Logout</a>
+                    <a href="/client-dashboard" class="dropdown-item">Dashboard</a>
+                    <a href="/favorite" class="dropdown-item">Favorites</a>
+                    <% if (results.user.isCompany == true) { %>
+                      <a href="/company" class="dropdown-item">Post a new opportunity</a>
+                    <% } %>
+                    </div>
+                </li>
+              <% } %>
             </ul>
           </div>
         </div>
@@ -62,19 +69,20 @@
             <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
           </div>
           <div class="modal-body">
-            <form action="https://demo.bootstrapious.com/jobs/2-1-0/customer-orders.html" method="post">
+            <form method="POST" action="/api/auth">
+              <input type="hidden" name="isSearchPage" value=true>
               <div class="form-group">
-                <input id="email_modal" type="text" placeholder="email" class="form-control">
+                <input name="email" id="email" type="text" placeholder="Email" class="form-control">
               </div>
               <div class="form-group">
-                <input id="password_modal" type="password" placeholder="password" class="form-control">
+                <input name="password" id="password" type="password" placeholder="Password" class="form-control">
               </div>
               <p class="text-center">
-                <button type="button" class="btn btn-outline-white-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                <button type="submit" class="btn btn-outline-white-primary"><i class="fa fa-sign-in"></i> Log in</button>
               </p>
             </form>
             <p class="text-center text-muted">Not registered yet?</p>
-            <p class="text-center text-muted"><a href="client-register.html"><strong>Register now</strong></a>! It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
+            <p class="text-center text-muted"><a href="/signup"><strong>Register now</strong></a>! It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
           </div>
         </div>
       </div>
@@ -84,8 +92,8 @@
       <div class="container">
         <nav aria-label="breadcrumb">
           <ul class="breadcrumb d-flex justify-content-center">
-            <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-            <li aria-current="page" class="breadcrumb-item active">obs in Bay Area</li>
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li aria-current="page" class="breadcrumb-item active">Search</li>
           </ul>
         </nav>
         <h4 class="heading">Find an opportunity you will <span class="accent">love</span></h4>
@@ -102,7 +110,7 @@
                 <input type="text" id="location" name="location" class="form-control" placeholder="Enter a location" value=<%=results.locationPlaceholder%>>
               </div>
               <div class="col-sm-1 col-lg-2 form-group">
-                <button onclick=console.log(results.locationPlaceholder) type="submit" class="btn btn-outline-white-primary job-main-form__button"><i class="fa fa-search"></i></button>
+                <button type="submit" class="btn btn-outline-white-primary job-main-form__button"><i class="fa fa-search"></i></button>
               </div>
             </div>
           </div>
@@ -127,7 +135,7 @@
         </form>
       </div>
     </section>
-
+    <!-- *** LISTINGS *** -->
     <section class="listings">
       <div class="container">
         <h3 class="heading"> <%= results.searchNum %> </h3>
@@ -163,7 +171,6 @@
             </div>
           </div>
         <% })} %>
-
         <% if (results.volunteeringIsChecked) { results.volunteerings.forEach( value => { %>
         <div class="job-listing">
           <div class="row">
@@ -196,7 +203,6 @@
           </div>
         </div>
         <% })} %>
-
         <%if (results.workshopIsChecked) { results.workshops.forEach( value => { %>
         <div class="job-listing">
           <div class="row"> 
@@ -229,185 +235,9 @@
           </div>
         </div>
         <% })} %>
-        
-        <!--<div class="job-listing  ">
-          <div class="row">
-            <div class="col-md-12 col-lg-6">
-              <div class="row">
-                <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-3.png" alt="Bootstrapious " class="img-fluid"></div>
-                <div class="col-10">
-                  <h4 class="job__title"><a href="detail.html">Front End developer</a></h4>
-                  <p class="job__company">
-                     
-                    Bootstrapious
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i>Palo Alto</div>
-            <div class="col-10 col-md-3 col-lg-3 ml-auto">
-              <p>Posted 10 days ago</p>
-            </div>
-            <div class="col-sm-12 col-md-2 col-lg-1">
-              <div class="job__star"><a href="#" data-toggle="tooltip" data-placement="top" title="Save to favourites" class="job__star__link"><i class="fa fa-star"></i></a></div>
-            </div>
-          </div>
-        </div>
-        <div class="job-listing  ">
-          <div class="row">
-            <div class="col-md-12 col-lg-6">
-              <div class="row">
-                <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-2.png" alt="Ipsioou " class="img-fluid"></div>
-                <div class="col-10">
-                  <h4 class="job__title"><a href="detail.html">Webdesigner</a></h4>
-                  <p class="job__company">
-                     
-                    Ipsioou
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i>San Francisco</div>
-            <div class="col-10 col-md-3 col-lg-3 ml-auto">
-              <p>Posted 5 days ago</p>
-            </div>
-            <div class="col-sm-12 col-md-2 col-lg-1">
-              <div class="job__star"><a href="#" data-toggle="tooltip" data-placement="top" title="Save to favourites" class="job__star__link"><i class="fa fa-star"></i></a></div>
-            </div>
-          </div>
-        </div>
-        <div class="job-listing  ">
-          <div class="row">
-            <div class="col-md-12 col-lg-6">
-              <div class="row">
-                <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-4.png" alt="ShareBoardd " class="img-fluid"></div>
-                <div class="col-10">
-                  <h4 class="job__title"><a href="detail.html">Team Leader</a></h4>
-                  <p class="job__company">
-                     
-                    ShareBoardd
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i>Palo Alto</div>
-            <div class="col-10 col-md-3 col-lg-3 ml-auto">
-              <p>Posted 10 days ago</p>
-            </div>
-            <div class="col-sm-12 col-md-2 col-lg-1">
-              <div class="job__star"><a href="#" data-toggle="tooltip" data-placement="top" title="Save to favourites" class="job__star__link"><i class="fa fa-star"></i></a></div>
-            </div>
-          </div>
-        </div>
-        <div class="job-listing  ">
-          <div class="row">
-            <div class="col-md-12 col-lg-6">
-              <div class="row">
-                <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-4.png" alt="ShareBoardd " class="img-fluid"></div>
-                <div class="col-10">
-                  <h4 class="job__title"><a href="detail.html">Software Engineer</a></h4>
-                  <p class="job__company">
-                     
-                    ShareBoardd
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i>Palo Alto</div>
-            <div class="col-10 col-md-3 col-lg-3 ml-auto">
-              <p>Posted 14 days ago</p>
-            </div>
-            <div class="col-sm-12 col-md-2 col-lg-1">
-              <div class="job__star"><a href="#" data-toggle="tooltip" data-placement="top" title="Save to favourites" class="job__star__link"><i class="fa fa-star"></i></a></div>
-            </div>
-          </div>
-        </div>
-        <div class="job-listing  ">
-          <div class="row">
-            <div class="col-md-12 col-lg-6">
-              <div class="row">
-                <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-3.png" alt="Bootstrapious " class="img-fluid"></div>
-                <div class="col-10">
-                  <h4 class="job__title"><a href="detail.html">Front End developer</a></h4>
-                  <p class="job__company">
-                     
-                    Bootstrapious
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i>Palo Alto</div>
-            <div class="col-10 col-md-3 col-lg-3 ml-auto">
-              <p>Posted 10 days ago</p>
-            </div>
-            <div class="col-sm-12 col-md-2 col-lg-1">
-              <div class="job__star"><a href="#" data-toggle="tooltip" data-placement="top" title="Save to favourites" class="job__star__link"><i class="fa fa-star"></i></a></div>
-            </div>
-          </div>
-        </div>
-        <div class="job-listing  ">
-          <div class="row">
-            <div class="col-md-12 col-lg-6">
-              <div class="row">
-                <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-2.png" alt="Ipsioou " class="img-fluid"></div>
-                <div class="col-10">
-                  <h4 class="job__title"><a href="detail.html">Webdesigner</a></h4>
-                  <p class="job__company">
-                     
-                    Ipsioou
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i>San Francisco</div>
-            <div class="col-10 col-md-3 col-lg-3 ml-auto">
-              <p>Posted 5 days ago</p>
-            </div>
-            <div class="col-sm-12 col-md-2 col-lg-1">
-              <div class="job__star"><a href="#" data-toggle="tooltip" data-placement="top" title="Save to favourites" class="job__star__link"><i class="fa fa-star"></i></a></div>
-            </div>
-          </div>
-        </div>
-        <div class="job-listing  job-listing--last">
-          <div class="row">
-            <div class="col-md-12 col-lg-6">
-              <div class="row">
-                <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-4.png" alt="ShareBoardd " class="img-fluid"></div>
-                <div class="col-10">
-                  <h4 class="job__title"><a href="detail.html">Team Leader</a></h4>
-                  <p class="job__company">
-                     
-                    ShareBoardd
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i>Palo Alto</div>
-            <div class="col-10 col-md-3 col-lg-3 ml-auto">
-              <p>Posted 10 days ago</p>
-            </div>
-            <div class="col-sm-12 col-md-2 col-lg-1">
-              <div class="job__star"><a href="#" data-toggle="tooltip" data-placement="top" title="Save to favourites" class="job__star__link"><i class="fa fa-star"></i></a></div>
-            </div>
-          </div>
-        </div>
-        <div class="pages">
-          <p class="load-more"><a href="#" class="mb-4 btn btn-outline-white-primary"><i class="fa fa-chevron-down"> </i>Load more</a></p>
-          <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-4 mb-4">
-            <ul class="pagination">
-              <li class="page-item"><a href="#" aria-label="Previous" class="page-link"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-              <li class="page-item active"><a href="#" class="page-link">1</a></li>
-              <li class="page-item"><a href="#" class="page-link">2</a></li>
-              <li class="page-item"><a href="#" class="page-link">3</a></li>
-              <li class="page-item"><a href="#" class="page-link">4</a></li>
-              <li class="page-item"><a href="#" aria-label="Next" class="page-link"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    -->
     </section>
-    <section class="bg-light-gray">
+
+    <!--<section class="bg-light-gray">
       <div class="container">
         <h3 class="heading">Featured jobs</h3>
         <div class="row featured align-items-stretch">
@@ -452,65 +282,24 @@
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
+
     <footer class="footer">
       <div class="footer__block">
         <div class="container">
           <div class="row">
             <div class="col-lg-4 col-md-12 mb-5">
-              <h4 class="h5">About Jobs</h4>
-              <p>Jobs is a <strong>Bootstrap 4 jobs board theme </strong> developed in the middle of Europe by <a href="http://ondrejsvestka.cz/">Ondrej Svestka</a></p>
-              <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. </p>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-5">
-              <h4 class="h5">This Theme</h4>
-              <ul class="list-unstyled">
-                <li><a href="index-2.html">Home</a></li>
-                <li><a href="category.html">Jobs Listing</a></li>
-                <li><a href="detail.html">Job detail</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="blog.html">Blog listing</a></li>
-                <li><a href="post.html">Blog Post</a></li>
-                <li><a href="packages.html">Pricing packages</a></li>
-                <li><a href="testimonials.html">Testimonials</a></li>
-                <li><a href="text.html">Text page</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-              </ul>
+              <h4 class="h5">About Us</h4>
+              <p>Striveful is a website designed to give students opportunities to explore various fields through workshops, internships, and volunteering activities. 
+                <br><br>We strive to allow every student to have an opportunity to have gain experiences in various fields or in a field that they know they love already.</p>
             </div>
             <div class="col-lg-4 col-md-6">
-              <h4 class="h5">Our offices</h4>
-              <h5>London</h5>
-              <p> Donec eleifend<br />libero at sagittis<br />mollis + 44 2556 789 8799</p>
-              <h5>Paris</h5>
-              <p> Donec eleifend<br />libero at sagittis<br />mollis + 41 2556 789 8799</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-4 col-md-6 mb-5">
-              <h4 class="h5">Client zone</h4>
-              <ul class="list-unstyled">
-                <li><a href="client-register.html">Login or Register</a></li>
-                <li><a href="client-dashboard.html">Dashboard</a></li>
-                <li><a href="client-applicants.html">Applicants</a></li>
-                <li><a href="client-job.html">Post a new job</a></li>
-              </ul>
+              <h4 class="h5">Contact Us</h4>
+              <p>strivefulnet@gmail.com</p>
             </div>
             <div class="col-lg-4 col-md-6 mb-5">
               <h4 class="h5">Let's be Friends</h4>
               <p class="social"><a href="#" data-animate-hover="pulse" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" data-animate-hover="pulse" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" data-animate-hover="pulse" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" data-animate-hover="pulse" class="email"><i class="fa fa-envelope"></i></a></p>
-            </div>
-            <div class="col-lg-4 col-md-12 mb-5">
-              <h4 class="h5">News and Updates</h4>
-              <p>Sign up to get weekly portion of fresh jobs and news from us.</p>
-              <form class="footer__newsletter">
-                <div class="input-group">
-                  <input type="text" placeholder="Enter your email address" aria-describedby="emailAddress" class="form-control">
-                  <div class="input-group-append">
-                    <button id="emailAddress" type="button" class="btn btn-default input-group-text"><i class="fa fa-send"></i></button>
-                  </div>
-                </div>
-              </form>
             </div>
           </div>
         </div>
@@ -519,10 +308,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-6 text-md-left text-center">
-              <p>&copy;2020 Best company</p>
-            </div>
-            <div class="col-md-6 text-md-right text-center">
-              <p class="credit">Theme by <a href="https://bootstrapious.com/">Bootstrapious</a></p>
+              <p>&copy;2020 Striveful</p>
             </div>
           </div>
         </div>

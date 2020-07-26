@@ -59,6 +59,6 @@ router.get('/', async (req, res) => {
 
     console.log([internships, volunteerings, workshops])
 
-    res.render('favorite', {favorites: {internships: internships, volunteerings: volunteerings, workshops: workshops}});
+    res.render('favorite', {user: user, favorites: {internships: internships, volunteerings: volunteerings, workshops: workshops}});
 
 });

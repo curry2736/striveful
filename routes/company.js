@@ -11,7 +11,7 @@ router.get('/', async(req, res) => {
     // console.log(didIGetIn + "metro boomin");
     const verif = await JSON.parse(jwtVerification(req,res));
     const user = await User.findById(verif._id);
-    console.log(user.isCompany)
+    //console.log(user.isCompany)
     // const didIGetIn = jwtVerification(req, res);
     // console.log(didIGetIn);
     if (user.isCompany) {
@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
 
     const verif = await JSON.parse(jwtVerification(req,res));
     const user = await User.findById(verif._id);
-    console.log(user);
+    //console.log(user);
     // const eventsCreated = user.eventsCreated;
     if (req.body.category == "Internship") {
     const internship = new Internship({
@@ -93,7 +93,6 @@ router.post('/', async (req, res) => {
     // console.log(error);
     try {
         const newVolunteering = await volunteering.save();
-        eventsCreated.push(newVolunteering);
         var event = {
             id: newVolunteering._id.toString(),
             type: "volunteering"
@@ -150,3 +149,6 @@ router.post('/', async (req, res) => {
 })
 
 module.exports = router;
+
+
+//dont worry about error.details for now

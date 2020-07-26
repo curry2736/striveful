@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- COPIED FROM ABOUT.HTML -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bootstrap Jobs - Bootstrap 4 template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Roboto for copy, Montserrat for headings-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <!-- owl carousel-->
+    <link rel="stylesheet" href="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/owl.carousel/assets/owl.carousel.css">
+    <link rel="stylesheet" href="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/owl.carousel/assets/owl.theme.default.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="favicon.png">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+  </head>
+  <body>
+    <!-- navbar-->
+    <header class="header">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container"><a href="/" class="navbar-brand"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo.png" alt="logo" class="d-none d-lg-block"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo-small.png" alt="logo" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>
+          <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars"></i></button>
+          <div id="navbarSupportedContent" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><a href="/" class="nav-link">Home </a></li>
+              <li class="nav-item active"><a href="/about" class="nav-link">About Us <span class="sr-only">(current)</span></a></li>
+              <li class="nav-item"><a href="/search" class="nav-link">Search </a></li>
+              <% if (user == null) { %>
+                <li class="nav-item dropdown"><a href="#loginModal" data-toggle="modal" class="btn navbar-btn btn-outline-light mb-5 mb-lg-0"> <i class="fa fa-sign-in"></i>Login</a></li>
+              <% } else {%>
+                <li class="nav-item dropdown"><a id="clientZone" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><%=user.firstName%></a>
+                  <div aria-labelledby="clientZone" class="dropdown-menu">
+                    <a href="/api/logout" class="dropdown-item">Logout</a>
+                    <a href="/client-dashboard" class="dropdown-item">Dashboard</a>
+                    <a href="/favorite" class="dropdown-item">Favorites</a>
+                    <% if (user.isCompany == true) { %>
+                      <a href="/company" class="dropdown-item">Post a new opportunity</a>
+                    <% } %>
+                    </div>
+                </li>
+              <% } %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- *** LOGIN MODAL ***_________________________________________________________
+    -->
+    <div id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade">
+      <div role="document" class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 id="exampleModalLabel" class="modal-title">Customer Login</h4>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+          </div>
+          <div class="modal-body">
+            <form action="https://demo.bootstrapious.com/jobs/2-1-0/customer-orders.html" method="post">
+              <div class="form-group">
+                <input id="email_modal" type="text" placeholder="email" class="form-control">
+              </div>
+              <div class="form-group">
+                <input id="password_modal" type="password" placeholder="password" class="form-control">
+              </div>
+              <p class="text-center">
+                <button type="button" class="btn btn-outline-white-primary"><i class="fa fa-sign-in"></i> Log in</button>
+              </p>
+            </form>
+            <p class="text-center text-muted">Not registered yet?</p>
+            <p class="text-center text-muted"><a href="client-register.html"><strong>Register now</strong></a>! It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- *** LOGIN MODAL END ***-->
+    <section class="bg-light-gray">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-8 mx-auto">
+            <nav aria-label="breadcrumb">
+              <ul class="breadcrumb d-flex justify-content-center">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li aria-current="page" class="breadcrumb-item active">About us</li>
+              </ul>
+            </nav>
+            <h1 class="heading">About us</h1>
+            <p class="lead text-center">Our mission is to facilitate students' search for opportunities with a comprehensive and accessible online platform.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-8 mx-auto">
+            <p><strong>Striveful began as a project during the COVID-19 pandemic</strong> to ease the process of finding opportunities such as internships and workshops during quarantine. We reached our true potential when schools began distance learning for the school year. Striveful allows students to find opporunities such as school clubs online instead of in-p </p>
+            <h2>Striveful is For You!</h2>
+            <ul>
+              <li>For students: Search for opportunities you can use to enhance your knowledge in certain field or to add to your college resume!</li>
+              <li>For companies: Market to students looking for internship or volunteering opportunities, or offer workshops!</li>
+              <li>For schools: Use Striveful to host a Club Rush event!</li>
+            </ul>
+            <blockquote>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section style="background-image: url('../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/startup.jpg'); " class="section-divider">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h4 style="color: white; padding-bottom: 1rem">Start searching for opportunities now! </h4>
+            <p><a href="/search" class="btn btn-outline-light">See all available opportunities</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="heading">Our team</h2>
+            <p class="lead text-center">This is the lead paragraph of the article. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget.</p>
+          </div>
+        </div>
+        <div class="row team">
+          <div class="col-lg-1 col-sm-1"></div>
+
+          <div class="col-lg-2 col-sm-6">
+            <div class="team-member">
+              <div class="image"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/person-1.jpg" alt="" class="img-fluid rounded-circle"></div>
+              <h3 class="h4"><a href="#">Pranay Jha</a></h3>
+              <p class="role">memer</p>
+              <div class="social"><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" class="email"><i class="fa fa-envelope"></i></a></div>
+              <div class="text">
+                <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-sm-6">
+            <div class="team-member">
+              <div class="image"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/person-2.jpg" alt="" class="img-fluid rounded-circle"></div>
+              <h3 class="h4"><a href="#">Sid Khillon</a></h3>
+              <p class="role">memer</p>
+              <div class="social"><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" class="email"><i class="fa fa-envelope"></i></a></div>
+              <div class="text">
+                <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-sm-6">
+            <div class="team-member">
+              <div class="image"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/person-3.jpg" alt="" class="img-fluid rounded-circle"></div>
+              <h3 class="h4"><a href="#">Arisrei Lim</a></h3>
+              <p class="role">memer</p>
+              <div class="social"><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" class="email"><i class="fa fa-envelope"></i></a></div>
+              <div class="text">
+                <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-sm-6">
+            <div class="team-member">
+              <div class="image"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/person-4.jpg" alt="" class="img-fluid rounded-circle"></div>
+              <h3 class="h4"><a href="#">Mo Sridhar</a></h3>
+              <p class="role">memer</p>
+              <div class="social"><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" class="email"><i class="fa fa-envelope"></i></a></div>
+              <div class="text">
+                <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+              </div>
+            </div>
+          </div>
+
+            <div class="col-lg-2 col-sm-6">
+              <div class="team-member">
+                <div class="image"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/person-4.jpg" alt="" class="img-fluid rounded-circle"></div>
+                <h3 class="h4"><a href="#">Rohit  Srivats</a></h3>
+                <p class="role">memer</p>
+                <div class="social"><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" class="email"><i class="fa fa-envelope"></i></a></div>
+                <div class="text">
+                  <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-lg-1 col-sm-1"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__block">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-12 mb-5">
+              <h4 class="h5">About Us</h4>
+              <p>Striveful is a website designed to give students opportunities to explore various fields through workshops, internships, and volunteering activities. 
+                <br><br>We strive to allow every student to have an opportunity to have gain experiences in various fields or in a field that they know they love already.</p>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <h4 class="h5">Contact Us</h4>
+              <p>strivefulnet@gmail.com</p>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-5">
+              <h4 class="h5">Let's be Friends</h4>
+              <p class="social"><a href="#" data-animate-hover="pulse" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" data-animate-hover="pulse" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" data-animate-hover="pulse" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" data-animate-hover="pulse" class="email"><i class="fa fa-envelope"></i></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__copyright">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 text-md-left text-center">
+              <p>&copy;2020 Striveful</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript files-->
+    <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/jquery/jquery.min.js"></script>
+    <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/bootstrap-select/js/bootstrap-select.min.js">   </script>
+    <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/js/front.js"></script>
+  </body>
+
+<!-- Mirrored from demo.bootstrapious.com/jobs/2-1-0/about.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 29 Jun 2020 05:28:06 GMT -->
+</html>
