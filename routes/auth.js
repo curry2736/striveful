@@ -32,7 +32,9 @@ router.post('/', async (req, res) => {
     const token = jwt.sign({ _id: user._id, email: user.email }, config.get('PrivateKey'));
     
     res.cookie('token', token);
+    
     res.redirect('/')
+    
     //return res.header('x-auth-token', token).send(_.pick(user, ['_id', 'firstName', 'lastname', 'email']));
 });
 

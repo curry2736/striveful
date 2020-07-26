@@ -7,10 +7,17 @@ const { Volunteering} = require('../models/volunteering.js');
 const { Workshop} = require('../models/workshop');
 const { query } = require('express');
 const { on } = require('nodemon');
-
+const { User, validate, isUser } = require('../models/user');
 
 
 router.get('/', async(req, res) => {
+
+    const userVerification = isUser(req, res);
+    let user = null
+    if (userVerification != null ){
+        user = await User.findOne({ _id: userVerification });
+    }
+    console.log(user)
 
     var searchNum = 'All available opportunities'
     var totalResults = null
@@ -27,18 +34,24 @@ router.get('/', async(req, res) => {
     let volunteerings = await Volunteering.find({"datePosted":{$lte: Date.now()}}).sort({"datePosted":-1}).exec()
     let workshops = await Workshop.find({"datePosted":{$lte: Date.now()}}).sort({"datePosted":-1}).exec()
 
-    res.render('search', {results : {searchNum, internships : internships, volunteerings : volunteerings, workshops : workshops, internshipIsChecked, volunteeringIsChecked, workshopIsChecked,
+    res.render('search', {results : {user, searchNum, internships : internships, volunteerings : volunteerings, workshops : workshops, internshipIsChecked, volunteeringIsChecked, workshopIsChecked,
                                     opportunityPlaceholder, locationPlaceholder}})
 
 })
 
 router.get('/query', async (req, res) => {
 
+    const userVerification = isUser(req, res);
+    let user = null
+    if (userVerification != null ){
+        user = await User.findOne({ _id: userVerification });
+    }
+    console.log(user)
+
     var searchNum = null
     var totalResults = 0
 
     var name = req.query.name.toLowerCase()
-    //name = name.replace(/\s+/g, ''); //removes whitespaces
     console.log('query: ' + name)
     var opportunityPlaceholder = req.query.name
     console.log(opportunityPlaceholder)
@@ -56,8 +69,6 @@ router.get('/query', async (req, res) => {
     let volunteerings =  await Volunteering.find({"eventName": {$regex:name,$options:'i'}}).exec()
     let workshops = await Workshop.find({"eventName": {$regex:name,$options:'i'}}).exec()
     
-    
-
     if (internshipIsChecked) {
         totalResults += internships.length
         internships.forEach(internship => {
@@ -87,7 +98,7 @@ router.get('/query', async (req, res) => {
 
     console.log('--------------------------------------------------------------------')
     
-    res.render('search', {results : {searchNum, internships : internships, volunteerings : volunteerings, workshops : workshops, internshipIsChecked, volunteeringIsChecked, workshopIsChecked,
+    res.render('search', {results : {user, searchNum, internships : internships, volunteerings : volunteerings, workshops : workshops, internshipIsChecked, volunteeringIsChecked, workshopIsChecked,
                                     opportunityPlaceholder, locationPlaceholder}})
 
 })
