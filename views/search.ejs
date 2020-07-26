@@ -33,12 +33,12 @@
     <!-- navbar-->
     <header class="header">
       <nav class="navbar navbar-expand-lg">
-        <div class="container"><a href="index-2.html" class="navbar-brand"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo.png" alt="logo" class="d-none d-lg-block"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo-small.png" alt="logo" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>
+        <div class="container"><a href="/" class="navbar-brand"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo.png" alt="logo" class="d-none d-lg-block"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo-small.png" alt="logo" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>
           <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars"></i></button>
           <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item"><a href="/" class="nav-link">Opportunities</a></li>
-              <li class="nav-item"><a href="/" class="nav-link">About Us </a></li>
+              <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+              <li class="nav-item"><a href="/about" class="nav-link">About Us </a></li>
               <li class="nav-item active"><a href="/search" class="nav-link">Search <span class="sr-only">(current)</span> </a></li>
               <% if (results.user == null) { %>
                 <li class="nav-item dropdown"><a href="#loginModal" data-toggle="modal" class="btn navbar-btn btn-outline-light mb-5 mb-lg-0"> <i class="fa fa-sign-in"></i>Login</a></li>
@@ -70,6 +70,7 @@
           </div>
           <div class="modal-body">
             <form method="POST" action="/api/auth">
+              <input type="hidden" name="isSearchPage" value=true>
               <div class="form-group">
                 <input name="email" id="email" type="text" placeholder="Email" class="form-control">
               </div>
@@ -134,7 +135,7 @@
         </form>
       </div>
     </section>
-    <!-- LISTINGS -->
+    <!-- *** LISTINGS *** -->
     <section class="listings">
       <div class="container">
         <h3 class="heading"> <%= results.searchNum %> </h3>
@@ -283,7 +284,7 @@
       </div>
     </section>-->
 
-       <footer class="footer">
+    <footer class="footer">
       <div class="footer__block">
         <div class="container">
           <div class="row">

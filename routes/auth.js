@@ -32,7 +32,11 @@ router.post('/', async (req, res) => {
     const token = jwt.sign({ _id: user._id, email: user.email }, config.get('PrivateKey'));
     
     res.cookie('token', token);
-    
+
+    if (req.body.isSearchPage == 'true') {
+        res.redirect('/search')
+    }
+
     res.redirect('/')
     
     //return res.header('x-auth-token', token).send(_.pick(user, ['_id', 'firstName', 'lastname', 'email']));
@@ -61,6 +65,7 @@ router.post('/', async (req, res) => {
  
 function validate(req) {
     const schema = {
+        isSearchPage: Joi.string(),
         email: Joi.string().min(5).max(255).required().email(),
         password: Joi.string().min(5).max(255).required()
     };

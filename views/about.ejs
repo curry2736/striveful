@@ -33,20 +33,27 @@
     <!-- navbar-->
     <header class="header">
       <nav class="navbar navbar-expand-lg">
-        <div class="container"><a href="index-2.html" class="navbar-brand"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo.png" alt="logo" class="d-none d-lg-block"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo-small.png" alt="logo" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>
+        <div class="container"><a href="/" class="navbar-brand"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo.png" alt="logo" class="d-none d-lg-block"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo-small.png" alt="logo" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>
           <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars"></i></button>
           <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item active"><a href="category.html" class="nav-link">Jobs <span class="sr-only">(current)</span></a></li>
-              <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
-              <li class="nav-item dropdown"><a id="clientZone" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Client Zone</a>
-                <div aria-labelledby="clientZone" class="dropdown-menu"><a href="client-register.html" class="dropdown-item">Login or Register</a><a href="client-dashboard.html" class="dropdown-item">Dashboard</a><a href="client-applicants.html" class="dropdown-item">Applicants                </a><a href="client-job.html" class="dropdown-item">Post a new job  </a></div>
-              </li>
-              <li class="nav-item dropdown"><a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Pages</a>
-                <div aria-labelledby="pages" class="dropdown-menu"><a href="index-2.html" class="dropdown-item">Home</a><a href="category.html" class="dropdown-item">Job Listing</a><a href="detail.html" class="dropdown-item">Job Detail                </a><a href="about.html" class="dropdown-item">About                </a><a href="contact.html" class="dropdown-item">Contact                </a><a href="blog.html" class="dropdown-item">Blog Listing                </a><a href="post.html" class="dropdown-item">Blog Post                </a><a href="packages.html" class="dropdown-item">Pricing packages    </a><a href="testimonials.html" class="dropdown-item">Testimonials    </a><a href="text.html" class="dropdown-item">Text Page    </a><a href="faq.html" class="dropdown-item">FAQ</a></div>
-              </li>
-              <li class="nav-item">   <a href="contact.html" class="nav-link">Contact</a></li>
-              <li class="nav-item dropdown"><a href="#loginModal" data-toggle="modal" class="btn navbar-btn btn-outline-light mb-5 mb-lg-0"> <i class="fa fa-sign-in"></i>Login</a></li>
+              <li class="nav-item"><a href="/" class="nav-link">Home </a></li>
+              <li class="nav-item active"><a href="/about" class="nav-link">About Us <span class="sr-only">(current)</span></a></li>
+              <li class="nav-item"><a href="/search" class="nav-link">Search </a></li>
+              <% if (user == null) { %>
+                <li class="nav-item dropdown"><a href="#loginModal" data-toggle="modal" class="btn navbar-btn btn-outline-light mb-5 mb-lg-0"> <i class="fa fa-sign-in"></i>Login</a></li>
+              <% } else {%>
+                <li class="nav-item dropdown"><a id="clientZone" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><%=user.firstName%></a>
+                  <div aria-labelledby="clientZone" class="dropdown-menu">
+                    <a href="/api/logout" class="dropdown-item">Logout</a>
+                    <a href="/client-dashboard" class="dropdown-item">Dashboard</a>
+                    <a href="/favorite" class="dropdown-item">Favorites</a>
+                    <% if (user.isCompany == true) { %>
+                      <a href="/company" class="dropdown-item">Post a new opportunity</a>
+                    <% } %>
+                    </div>
+                </li>
+              <% } %>
             </ul>
           </div>
         </div>
@@ -86,12 +93,12 @@
           <div class="col-xl-8 mx-auto">
             <nav aria-label="breadcrumb">
               <ul class="breadcrumb d-flex justify-content-center">
-                <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li aria-current="page" class="breadcrumb-item active">About us</li>
               </ul>
             </nav>
             <h1 class="heading">About us</h1>
-            <p class="lead text-center">Our mission is to facilitate students' search for opportunities with a comprehensive and accessible online platform</p>
+            <p class="lead text-center">Our mission is to facilitate students' search for opportunities with a comprehensive and accessible online platform.</p>
           </div>
         </div>
       </div>
@@ -100,7 +107,7 @@
       <div class="container">
         <div class="row">
           <div class="col-xl-8 mx-auto">
-            <p><strong>Striveful began as a project during COVID-19</strong> to ease the process of finding opportunities such as internships and workshops during quarantine. We reached our true potential when schools began distance learning for the school year. Striveful allows students to find opporunities such as school clubs online instead of in-p </p>
+            <p><strong>Striveful began as a project during the COVID-19 pandemic</strong> to ease the process of finding opportunities such as internships and workshops during quarantine. We reached our true potential when schools began distance learning for the school year. Striveful allows students to find opporunities such as school clubs online instead of in-p </p>
             <h2>Striveful is For You!</h2>
             <ul>
               <li>For students: Search for opportunities you can use to enhance your knowledge in certain field or to add to your college resume!</li>
@@ -119,12 +126,13 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <p>Start searching for your new job now! </p>
-            <p><a href="#" class="btn btn-outline-light">See our job offers </a></p>
+            <h4 style="color: white; padding-bottom: 1rem">Start searching for opportunities now! </h4>
+            <p><a href="/search" class="btn btn-outline-light">See all available opportunities</a></p>
           </div>
         </div>
       </div>
     </section>
+
     <section>
       <div class="container">
         <div class="row">
@@ -134,119 +142,89 @@
           </div>
         </div>
         <div class="row team">
-          <div class="col-lg-3 col-sm-6">
+          <div class="col-lg-1 col-sm-1"></div>
+
+          <div class="col-lg-2 col-sm-6">
             <div class="team-member">
               <div class="image"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/person-1.jpg" alt="" class="img-fluid rounded-circle"></div>
-              <h3 class="h4"><a href="#">Han Solo</a></h3>
-              <p class="role">founder</p>
+              <h3 class="h4"><a href="#">Pranay Jha</a></h3>
+              <p class="role">memer</p>
               <div class="social"><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" class="email"><i class="fa fa-envelope"></i></a></div>
               <div class="text">
                 <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
               </div>
             </div>
-            <!-- /.team-member-->
-            
           </div>
-          <div class="col-lg-3 col-sm-6">
+
+          <div class="col-lg-2 col-sm-6">
             <div class="team-member">
               <div class="image"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/person-2.jpg" alt="" class="img-fluid rounded-circle"></div>
-              <h3 class="h4"><a href="#">Luke Skywalker</a></h3>
-              <p class="role">CTO</p>
+              <h3 class="h4"><a href="#">Sid Khillon</a></h3>
+              <p class="role">memer</p>
               <div class="social"><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" class="email"><i class="fa fa-envelope"></i></a></div>
               <div class="text">
                 <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
               </div>
             </div>
-            <!-- /.team-member-->
-            
           </div>
-          <div class="col-lg-3 col-sm-6">
+
+          <div class="col-lg-2 col-sm-6">
             <div class="team-member">
               <div class="image"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/person-3.jpg" alt="" class="img-fluid rounded-circle"></div>
-              <h3 class="h4"><a href="#">Princess Leia</a></h3>
-              <p class="role">Team Leader</p>
+              <h3 class="h4"><a href="#">Arisrei Lim</a></h3>
+              <p class="role">memer</p>
               <div class="social"><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" class="email"><i class="fa fa-envelope"></i></a></div>
               <div class="text">
                 <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
               </div>
             </div>
-            <!-- /.team-member-->
-            
           </div>
-          <div class="col-lg-3 col-sm-6">
+
+          <div class="col-lg-2 col-sm-6">
             <div class="team-member">
               <div class="image"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/person-4.jpg" alt="" class="img-fluid rounded-circle"></div>
-              <h3 class="h4"><a href="#">Jabba Hut</a></h3>
-              <p class="role">Lead developer</p>
+              <h3 class="h4"><a href="#">Mo Sridhar</a></h3>
+              <p class="role">memer</p>
               <div class="social"><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" class="email"><i class="fa fa-envelope"></i></a></div>
               <div class="text">
                 <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
               </div>
             </div>
-            <!-- /.team-member-->
-            
           </div>
+
+            <div class="col-lg-2 col-sm-6">
+              <div class="team-member">
+                <div class="image"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/person-4.jpg" alt="" class="img-fluid rounded-circle"></div>
+                <h3 class="h4"><a href="#">Rohit  Srivats</a></h3>
+                <p class="role">memer</p>
+                <div class="social"><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" class="email"><i class="fa fa-envelope"></i></a></div>
+                <div class="text">
+                  <p> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-lg-1 col-sm-1"></div>
         </div>
       </div>
     </section>
+
     <footer class="footer">
       <div class="footer__block">
         <div class="container">
           <div class="row">
             <div class="col-lg-4 col-md-12 mb-5">
-              <h4 class="h5">About Jobs</h4>
-              <p>Striveful is a website designed to give students opportunities to explore various fields through workshops, internships, and volunteering activities.</p>
-              <p> We strive to allow every student to have an opportunity to have gain experiences in various fields or in a field that they know they love already. </p>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-5">
-              <h4 class="h5">This Theme</h4>
-              <ul class="list-unstyled">
-                <li><a href="index-2.html">Home</a></li>
-                <li><a href="category.html">Jobs Listing</a></li>
-                <li><a href="detail.html">Job detail</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="blog.html">Blog listing</a></li>
-                <li><a href="post.html">Blog Post</a></li>
-                <li><a href="packages.html">Pricing packages</a></li>
-                <li><a href="testimonials.html">Testimonials</a></li>
-                <li><a href="text.html">Text page</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-              </ul>
+              <h4 class="h5">About Us</h4>
+              <p>Striveful is a website designed to give students opportunities to explore various fields through workshops, internships, and volunteering activities. 
+                <br><br>We strive to allow every student to have an opportunity to have gain experiences in various fields or in a field that they know they love already.</p>
             </div>
             <div class="col-lg-4 col-md-6">
-              <h4 class="h5">Our offices</h4>
-              <h5>London</h5>
-              <p> Donec eleifend<br />libero at sagittis<br />mollis + 44 2556 789 8799</p>
-              <h5>Paris</h5>
-              <p> Donec eleifend<br />libero at sagittis<br />mollis + 41 2556 789 8799</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-4 col-md-6 mb-5">
-              <h4 class="h5">Client zone</h4>
-              <ul class="list-unstyled">
-                <li><a href="client-register.html">Login or Register</a></li>
-                <li><a href="client-dashboard.html">Dashboard</a></li>
-                <li><a href="client-applicants.html">Applicants</a></li>
-                <li><a href="client-job.html">Post a new job</a></li>
-              </ul>
+              <h4 class="h5">Contact Us</h4>
+              <p>strivefulnet@gmail.com</p>
             </div>
             <div class="col-lg-4 col-md-6 mb-5">
               <h4 class="h5">Let's be Friends</h4>
               <p class="social"><a href="#" data-animate-hover="pulse" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" data-animate-hover="pulse" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" data-animate-hover="pulse" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" data-animate-hover="pulse" class="email"><i class="fa fa-envelope"></i></a></p>
-            </div>
-            <div class="col-lg-4 col-md-12 mb-5">
-              <h4 class="h5">News and Updates</h4>
-              <p>Sign up to get weekly portion of fresh jobs and news from us.</p>
-              <form class="footer__newsletter">
-                <div class="input-group">
-                  <input type="text" placeholder="Enter your email address" aria-describedby="emailAddress" class="form-control">
-                  <div class="input-group-append">
-                    <button id="emailAddress" type="button" class="btn btn-default input-group-text"><i class="fa fa-send"></i></button>
-                  </div>
-                </div>
-              </form>
             </div>
           </div>
         </div>
@@ -255,10 +233,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-6 text-md-left text-center">
-              <p>&copy;2020 Best company</p>
-            </div>
-            <div class="col-md-6 text-md-right text-center">
-              <p class="credit">Theme by <a href="https://bootstrapious.com/">Bootstrapious</a></p>
+              <p>&copy;2020 Striveful</p>
             </div>
           </div>
         </div>
