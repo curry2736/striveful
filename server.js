@@ -10,6 +10,7 @@ const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 const mongoose = require('mongoose');
 const users = require('./routes/users');
+const clubRush = require('./routes/club-rush')
 const signup = require('./routes/signup');
 const login = require('./routes/login');
 const auth = require('./routes/auth');
@@ -64,6 +65,7 @@ db.once('open', () => {
 });
 
 app.use('/client-dashboard', clientDashboard)
+app.use('/club-rush', clubRush);
 app.use('/', indexRouter)
 app.use('/api/users', users);
 app.use('/api/auth', auth);
