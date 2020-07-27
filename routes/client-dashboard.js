@@ -54,7 +54,7 @@ router.delete('/internships/:id', async (req, res) => {
         },
     );
     console.log(req.body)
-    res.send("yes")
+    res.redirect("/client-dashboard")
 })
 
 router.delete('/workshops/:id', async (req, res) => {
@@ -69,7 +69,7 @@ router.delete('/workshops/:id', async (req, res) => {
         },
     );
     console.log(req.body)
-    res.send("yes")
+    res.redirect("/client-dashboard")
 })
 
 router.delete('/volunteerings/:id', async (req, res) => {
@@ -84,7 +84,7 @@ router.delete('/volunteerings/:id', async (req, res) => {
         },
     );
     console.log(req.body)
-    res.send("yes")
+    res.redirect("/client-dashboard")
 })
  
 module.exports = router; 

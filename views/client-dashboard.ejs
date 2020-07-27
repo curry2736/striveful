@@ -90,6 +90,7 @@
                 <thead>
                   <tr>
                     <th>Event title</th>
+                    <th>Event type</th>
                     <th>Location</th>
                     <th>Position filled</th>
                     <th>Date posted</th>
@@ -104,6 +105,7 @@
                       <th><a href="/details/<%= event._id %>"><%= event.jobTitle %></a>
                       
                       </th>
+                      <td>Internship</td>
                       <td><%= event.city %>, <%= event.state %></td>
                       <td> <span class="badge badge-success">Filled</span>
                       <td><%= event.datePosted.toLocaleDateString('en-US') %></td>
@@ -123,11 +125,11 @@
                     <tr>
                       <th><a href="/details/<%= event._id %>"><%= event.eventName %></a>
                       </th>
+                      <td>Volunteering</td>
                       <td><%= event.city %>, <%= event.state %></td>
                       <td> <span class="badge badge-success">Filled</span>
                       <td><%= event.datePosted.toLocaleDateString('en-US') %></td>
                       <td><%= event.dateExpiring.toLocaleDateString('en-US') %></td>
-                      <td></td>
                       <td> <a href="client-applicants.html" class="btn btn-success"> <i class="fa fa-users"></i>4 <span class="hidden-xs hidden-sm">Applicants</span></a>
                       </td>
                       <td> <a href="client-job.html" class="btn btn-outline-white-secondary"> <i class="fa fa-edit"></i>Edit</a><br>
@@ -142,6 +144,7 @@
                     <tr>
                       <th><a href="/details/<%= event._id %>"><%= event.eventName %></a>
                       </th>
+                      <td>Workshop</td>
                       <td><%= event.city %>, <%= event.state %></td>
                       <td> <span class="badge badge-success">Filled</span>
                       <td><%= event.datePosted.toLocaleDateString('en-US') %></td>
