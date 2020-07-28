@@ -34,7 +34,7 @@ router.get('/', async(req, res) => {
         let volunteerings = await Volunteering.find({"datePosted":{$lte: Date.now()}}).sort({"datePosted":-1}).exec()
         let workshops = await Workshop.find({"datePosted":{$lte: Date.now()}}).sort({"datePosted":-1}).exec()
 
-        res.render('club-rush', {results : {user, searchNum, internships : internships, volunteerings : volunteerings, workshops : workshops, internshipIsChecked, volunteeringIsChecked, workshopIsChecked,
+        res.render('club-rush', {user: user, results : {user, searchNum, internships : internships, volunteerings : volunteerings, workshops : workshops, internshipIsChecked, volunteeringIsChecked, workshopIsChecked,
                                         opportunityPlaceholder, locationPlaceholder}})
     }
     catch (err) {

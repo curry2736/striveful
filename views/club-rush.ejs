@@ -140,16 +140,48 @@
               <%var daysSincePost = Math.round((Date.now() - value.datePosted.getTime()) / (1000 * 60 * 60 * 24))%>
               <p>Posted <%=daysSincePost %> days ago</p>
             </div>
-            <form action="/favorite" method="POST" target="hiddenFrame"></form>
-              <div class="col-sm-12 col-md-2 col-lg-1">
-                <input type="hidden" name="_id" value= <%= value._id %> />
-                <div class="job__star">
-                  <button onclick="favorite(this);" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link">
-                    <i class="fa fa-star"></i>
-                  </button>
+            <% if (user != null) { %>
+              <% if (user.favorites.includes(value.id)) {%>
+                <form action="/favorite" method="POST" target="hiddenFrame">
+                  <div class="col-sm-12 col-md-2 col-lg-1">
+  
+                    <input type="hidden" name="_id" value= <%= value._id %> />
+  
+                    <div class="job__star">
+                      <button onclick="favorite(this);" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link favorited-star">
+                        <i class="fa fa-star"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              <% } else { %>
+                <form action="/favorite" method="POST" target="hiddenFrame">
+                  <div class="col-sm-12 col-md-2 col-lg-1">
+  
+                    <input type="hidden" name="_id" value= <%= value._id %> />
+  
+                    <div class="job__star">
+                      <button onclick="favorite(this);" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link">
+                        <i class="fa fa-star"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              <% } %>
+            <% } else {%>
+              <form action="/signup">
+                <div class="col-sm-12 col-md-2 col-lg-1">
+
+                  <input type="hidden" name="_id" value= <%= value._id %> />
+
+                  <div class="job__star">
+                    <button type="submit" data-toggle="tooltip" data-placement="top" title="Login to save to favorites" class="job__star__link">
+                      <i class="fa fa-star"></i>
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            <% } %>
           </div>
         </div>
         <% })} %>
@@ -202,13 +234,27 @@
       </div>
     </section>-->
 
+    <iframe name="hiddenFrame" width="0" height="0" style="display:none;"></iframe>
+    <script>
+      function favorite(star) {
+        star.parentNode.parentNode.parentNode.submit();
+        star.classList.toggle("favorited-star");
+      }
+    </script>
+    <style>
+      .favorited-star {
+        color: #ff7473
+      }
+    </style>
+
+
     <footer class="footer">
       <div class="footer__block">
         <div class="container">
           <div class="row">
             <div class="col-lg-4 col-md-12 mb-5">
               <h4 class="h5">About Us</h4>
-              <p>Striveful is a website designed to give students opportunities to explore various fields through workshops, internships, and volunteering activities. 
+              <p>Striveful is a website designed to give students opportunities to explore various fields through workshops, internships, and clubs. 
                 <br><br>We strive to allow every student to have an opportunity to have gain experiences in various fields or in a field that they know they love already.</p>
             </div>
             <div class="col-lg-4 col-md-6">
