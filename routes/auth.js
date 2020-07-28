@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
     res.cookie('token', token);
 
     if (req.body.isSearchPage == 'true') {
-        res.redirect('/club-rush')
+        res.redirect('/search')
     }
 
     res.redirect('/')
