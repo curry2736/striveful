@@ -47,14 +47,16 @@ router.get('/:id', async (req,res) =>{
         } else if (!result.organization){
             var org = result.companyName;
         };
-
+        const city = result.city;
+        const state = result.state;
+        
         let dates = {
             datePosted: result.datePosted.toLocaleDateString('en-US'),
             startDate: result.startDate.toLocaleDateString('en-US'),
             endDate: result.endDate.toLocaleDateString('en-US')
         };
         
-        res.render('details.ejs', {user: user, details: {result: result, name: name, org: org, dates: dates}});
+        res.render('details.ejs', {user: user, details: {result: result, name: name, org: org, dates: dates, city: city, state: state}});
     } catch (err){
         //console.log(err);
         res.redirect('/');
