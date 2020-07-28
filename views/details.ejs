@@ -90,9 +90,10 @@
           </ul>
         </nav>
       
-        <h1 class="heading"><%= details.name %><br><small>at <a href="#"> <%= details.org%></a></small></h1>
+        <h1 class="heading"><%= details.name %><br><!--<small>at <a href="#"> <%= details.org%></a></small></h1>-->
+        <br>
         <div class="job-detail-description"><i class="fa fa-map-marker job__location"> </i>Palo Alto
-          | <%= details.dates.datePosted%> |<span class="badge featured-badge badge-success">Full Time</span>
+          | <%= details.dates.startDate%> - <%= details.dates.endDate%><!-- |<span class="badge featured-badge badge-success">Full Time</span> -->
         </div>
       </div>
   
@@ -102,16 +103,17 @@
         <div class="row">
           <div class="col-lg-8">
             <h3><%= details.org%> Presents</h3>
-            <p><strong><%= details.result.description%></strong></p>
-            <h4>Header Level 4</h4>
+            <p>Posted: <%= details.dates.datePosted%></p>
+            <h4><%= details.name %></h4>
             <ol>
               <li>Start Date: <%= details.dates.startDate%></li>
               <li>End Date: <%= details.dates.endDate%></li>
             </ol>
+            <h5>Description</h5>
             <blockquote class="blockquote">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p>
+              <p><%= details.result.description%></p>
             </blockquote>
-            <h5>Header Level 5</h5>
+            <!-- <h5>Header Level 5</h5>
             <ul>
               <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
               <li>Aliquam tincidunt mauris eu risus.</li>
@@ -128,7 +130,7 @@
             <ul>
               <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
               <li>Aliquam tincidunt mauris eu risus.</li>
-            </ul>
+            </ul>-->
             <!--<div class="job-detail__apply-bottom"><a href="#" class="btn btn-outline-white-primary">Apply for this job</a></div>-->
           </div>
           <div class="col-lg-1"></div>
@@ -137,10 +139,10 @@
             <p class="job-detail__company-description">Have any questions? Email us at: <%= details.result.email%></p>
             <p class="job-detail__social social social--outline"><a href= <%= details.result.link%> data-toggle="tooltip" data-placement="top" title="Website" class="link">
                  
-                <i class="fa fa-link"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter" class="twitter">
+                <i class="fa fa-link"></i> </a><!--<a href="#" data-toggle="tooltip" data-placement="top" title="Twitter" class="twitter">
                  
-                <i class="fa fa-twitter"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook" class="facebook"><i class="fa fa-facebook"></i> </a></p>
-            <div class="job-detail__apply-top"><a href="#" class="btn btn-outline-white-primary">Apply for this job</a></div>
+                <i class="fa fa-twitter"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook" class="facebook"><i class="fa fa-facebook"></i>--> </a></p>
+            <<div class="job-detail__apply-top"><a href=<%= details.result.link%> class="btn btn-outline-white-primary">Apply for this job</a></div>
           </div>
         </div>
       </div>
