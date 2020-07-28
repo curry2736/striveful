@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { User, isUser} = require('../models/user');
 
-router.get('/', (req, res) => {
-    const user = isUser(req,res);
+router.get('/', async (req, res) => {
+    const id = isUser(req,res);
+    const user = await User.findById(id);
+    console.log(user)
     res.render('signup', {
         user: user
     });
