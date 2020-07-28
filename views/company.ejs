@@ -35,22 +35,25 @@
     <!-- navbar-->
     <header class="header">
       <nav class="navbar navbar-expand-lg">
-        <div class="container"><a href="index-2.html" class="navbar-brand"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo.png" alt="logo" class="d-none d-lg-block"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo-small.png" alt="logo" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>
+        <div class="container"><a href="/" class="navbar-brand"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo.png" alt="logo" class="d-none d-lg-block"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo-small.png" alt="logo" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>
+        <!--<div class="container"><a href="/" class="navbar-brand"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo.svg" alt="logo" class="d-none d-lg-block"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo-small.png" alt="logo" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>-->
           <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars"></i></button>
           <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item active"><a href="category.html" class="nav-link">Jobs <span class="sr-only">(current)</span></a></li>
-              <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
-              <li class="nav-item dropdown"><a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Pages</a>
-                <div aria-labelledby="pages" class="dropdown-menu"><a href="index-2.html" class="dropdown-item">Home</a><a href="category.html" class="dropdown-item">Job Listing</a><a href="detail.html" class="dropdown-item">Job Detail                </a><a href="about.html" class="dropdown-item">About                </a><a href="contact.html" class="dropdown-item">Contact                </a><a href="blog.html" class="dropdown-item">Blog Listing                </a><a href="post.html" class="dropdown-item">Blog Post                </a><a href="packages.html" class="dropdown-item">Pricing packages    </a><a href="testimonials.html" class="dropdown-item">Testimonials    </a><a href="text.html" class="dropdown-item">Text Page    </a><a href="faq.html" class="dropdown-item">FAQ</a></div>
-              </li>
-              <li class="nav-item">   <a href="contact.html" class="nav-link">Contact</a></li>
-              <li class="nav-item dropdown"><a id="clientZone" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle has-img mb-3 mb-lg-0 mt-3 mt-lg-0">
-                  <div class="client-menu-image">
-                    <div class="inner"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-1.png" alt="..." class="img-fluid"></div>
-                  </div>Logged Client</a>
-                <div aria-labelledby="clientZone" class="dropdown-menu"><a href="client-register.html" class="dropdown-item">Login or Register</a><a href="client-dashboard.html" class="dropdown-item">Dashboard</a><a href="client-applicants.html" class="dropdown-item">Applicants                </a><a href="client-job.html" class="dropdown-item">Post a new job  </a></div>
-              </li>
+              <li class="nav-item active"><a href="/" class="nav-link">Home <span class="sr-only">(current)</span></a></li>
+              <li class="nav-item"><a href="/about" class="nav-link">About Us</a></li>
+              <li class="nav-item"><a href="/search" class="nav-link">Search</a></li>
+
+
+                <li class="nav-item dropdown"><a id="clientZone" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><%= user.firstName%></a>
+                  <div aria-labelledby="clientZone" class="dropdown-menu">
+                    <a href="/api/logout" class="dropdown-item">Logout</a>
+                    
+                    <a href="/favorite" class="dropdown-item">Favorites</a>
+                      <a href="/company" class="dropdown-item">Post a new opportunity</a>
+                      <a href="/client-dashboard" class="dropdown-item">Dashboard</a>
+                    </div>
+                </li>
             </ul>
           </div>
         </div>
@@ -62,12 +65,12 @@
           <div class="col-lg-8 mx-auto">
             <nav aria-label="breadcrumb">
               <ul class="breadcrumb d-flex justify-content-center">
-                <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="client-dashboard.html">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/client-dashboard">Dashboard</a></li>
                 <li aria-current="page" class="breadcrumb-item active">Add a new position</li>
               </ul>
             </nav>
-            <h1 class="heading">Add a new position</h1>
+            <h1 class="heading">Add a new opportunity</h1>
           </div>
         </div>
       </div>
@@ -80,19 +83,19 @@
               <form action="/company" id="job-main-form" method="POST" class="job-add-form">
                 <div class="row">
                   <div class="col-lg-12">
-                    <h4>Job details</h4>
+                    <h4>Organization details</h4>
                     <hr>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-12 form-group">
-                    <label for="title">Job Title</label>
+                    <label for="title">Organization Title</label>
                     <input id="title" type="text" class="form-control" name="jobTitle">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-12 form-group">
-                    <label for="text">Job Description</label>
+                    <label for="text">Organization Description</label>
                     <textarea id="text" rows="5"  class="form-control" name="description"></textarea>
                   </div>
                 </div>
@@ -194,6 +197,7 @@
                     <label for="apply_url">Apply URL <span class="note">(users will apply on your website)</span></label>
                     <input id="apply_url" type="url" class="form-control">
                   </div> -->
+
                   <div class="col-xl-4 form-group">
                     <label for="validity">First meeting (approx)</label>
                     <input id="validity" type="date" class="form-control" name="startDate">
@@ -209,7 +213,7 @@
                     <input id="validity" type="date" class="form-control" name="datePosted">
                   </div>
                   <div class="col-xl-4 form-group">
-                    <label for="validity"></label>
+                    <label for="validity">Signup Deadline</label>
                     <input id="validity" type="date" class="form-control" name="dateExpiring">
                   </div>
                 </div>

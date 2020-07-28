@@ -15,7 +15,9 @@ router.get('/', async(req, res) => {
     // const didIGetIn = jwtVerification(req, res);
     // console.log(didIGetIn);
     if (user.isCompany) {
-        res.render('company')
+        res.render('company', {
+            user: user
+        })
         
     }
     else{
@@ -65,9 +67,13 @@ router.post('/', async (req, res) => {
           };
           user.eventsCreated.push(event)
           await user.save()
-        res.redirect('company')
-    } catch {
         res.render('company', {
+            user: user
+        })
+    } catch (err) {
+        console.log(err)
+        res.render('company', {
+                user: user,
                 internship: internship,
                 errorMessage: "error.details[0].message"
             })
@@ -99,7 +105,9 @@ router.post('/', async (req, res) => {
           };
           user.eventsCreated.push(event)
           await user.save()
-        res.redirect('company')
+          res.render('company', {
+            user: user
+        })
     } catch {
         res.render('company', {
                 volunteering: volunteering,
@@ -132,7 +140,9 @@ router.post('/', async (req, res) => {
               };
               user.eventsCreated.push(event)
               await user.save()
-            res.redirect('company')
+              res.render('company', {
+                user: user
+            })
         } catch {
             res.render('company', {
                     workshop: workshop,

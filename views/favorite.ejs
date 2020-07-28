@@ -49,10 +49,11 @@
                 <li class="nav-item active dropdown"><a id="clientZone" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><%= user.firstName%></a>
                   <div aria-labelledby="clientZone" class="dropdown-menu">
                     <a href="/api/logout" class="dropdown-item">Logout</a>
-                    <a href="/client-dashboard" class="dropdown-item">Dashboard</a>
+                    
                     <a href="/favorite" class="dropdown-item">Favorites</a>
                     <% if (user.isCompany == true) { %>
                       <a href="/company" class="dropdown-item">Post a new opportunity</a>
+<a href="/client-dashboard" class="dropdown-item">Dashboard</a>
                     <% } %>
                     </div>
                 </li>
