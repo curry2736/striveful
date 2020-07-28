@@ -4,6 +4,8 @@ const router = express.Router();
 const { Internship }= require('../models/internship');
 const {Volunteering} = require('../models/volunteering');
 const { Workshop }= require('../models/workshop');
+const { User, isUser } = require('../models/user');
+
 let ObjectID = require('mongodb').ObjectID;
 
 
@@ -11,7 +13,8 @@ let ObjectID = require('mongodb').ObjectID;
 router.get('/:id', async (req,res) =>{
     try {
         //console.log(req.params.id); 
-        
+        const id =  isUser(req, res);
+        const user = await User.findById(id);
         var result = await Internship.findById(req.params.id);
         if (!result){
             var result = await Volunteering.findById(req.params.id).exec();
@@ -51,7 +54,7 @@ router.get('/:id', async (req,res) =>{
             endDate: result.endDate.toLocaleDateString('en-US')
         };
         
-        res.render('details.ejs', {details: {result: result, name: name, org: org, dates: dates}});
+        res.render('details.ejs', {user: user, details: {result: result, name: name, org: org, dates: dates}});
     } catch (err){
         //console.log(err);
         res.redirect('/');
