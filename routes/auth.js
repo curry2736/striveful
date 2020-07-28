@@ -9,14 +9,13 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
     // First Validate The HTTP Request
-    console.log(req.body);
+
     const { error } = validate(req.body);
-    console.log(error);
+
     if (error) {
         return res.status(400).send(error.details[0].message);
     }
 
-    console.log(req.body)
     //  Now find the user by their email address
     let user = await User.findOne({ email: req.body.email });
     if (!user) {

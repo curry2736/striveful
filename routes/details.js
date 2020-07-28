@@ -10,7 +10,7 @@ let ObjectID = require('mongodb').ObjectID;
 //Show details
 router.get('/:id', async (req,res) =>{
     try {
-        console.log(req.params.id); 
+        //console.log(req.params.id); 
         
         var result = await Internship.findById(req.params.id);
         if (!result){
@@ -31,7 +31,7 @@ router.get('/:id', async (req,res) =>{
             });
         };
         
-        console.log(result);
+        //console.log(result);
 
         if (!result.jobTitle){
             var name = result.eventName;
@@ -53,7 +53,7 @@ router.get('/:id', async (req,res) =>{
         
         res.render('details.ejs', {details: {result: result, name: name, org: org, dates: dates}});
     } catch (err){
-        console.log(err);
+        //console.log(err);
         res.redirect('/');
     }
 });
