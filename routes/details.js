@@ -15,11 +15,14 @@ router.get('/:id', async (req,res) =>{
         //console.log(req.params.id); 
         const id =  isUser(req, res);
         const user = await User.findById(id);
+        let type = "";
         var result = await Internship.findById(req.params.id);
         if (!result){
             var result = await Volunteering.findById(req.params.id).exec();
+            type = "Volunteering"
             if (!result){
                 var result = await Workshop.findById(req.params.id);
+                type = "Workshop"
                 Workshop.updateOne({ _id: req.params.id }, {$inc: {visits: 1}}, (err,res) =>{
                     if (err) throw (err);
                 });
@@ -29,6 +32,7 @@ router.get('/:id', async (req,res) =>{
                 });
             };
         } else {
+            type = "Internship"
             Internship.updateOne({ _id: req.params.id }, {$inc: {visits: 1}}, (err,res) =>{
                 if (err) throw (err);
             });
@@ -56,7 +60,7 @@ router.get('/:id', async (req,res) =>{
             endDate: result.endDate.toLocaleDateString('en-US')
         };
         
-        res.render('details.ejs', {user: user, details: {result: result, name: name, org: org, dates: dates, city: city, state: state}});
+        res.render('details.ejs', {user: user, details: {result: result, name: name, org: org, dates: dates, city: city, state: state, type: type}});
     } catch (err){
         //console.log(err);
         res.redirect('/');

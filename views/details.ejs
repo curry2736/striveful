@@ -152,7 +152,13 @@
                 <i class="fa fa-link"></i> </a><!--<a href="#" data-toggle="tooltip" data-placement="top" title="Twitter" class="twitter">
                  
                 <i class="fa fa-twitter"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook" class="facebook"><i class="fa fa-facebook"></i>--> </a></p>
-            <div class="job-detail__apply-top"><a href=<%= details.result.link%> class="btn btn-outline-white-primary">Apply for this job</a></div>
+            <% if (details.type == "Internship") { %> 
+              <div class="job-detail__apply-top"><a href=<%= details.result.link%> class="btn btn-outline-white-primary">Apply for this job</a></div>
+            <% } else if (details.type == "Workshop" ) { %>
+              <div class="job-detail__apply-top"><a href=<%= details.result.link%> class="btn btn-outline-white-primary">Sign up to this workshop</a></div>
+            <% } else { %>
+              <div class="job-detail__apply-top"><a href=<%= details.result.link%> class="btn btn-outline-white-primary">Join this club</a></div>
+            <% } %>
           </div>
         </div>
       </div>
