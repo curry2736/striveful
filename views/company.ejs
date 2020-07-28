@@ -3,6 +3,7 @@
   
 <!-- Mirrored from demo.bootstrapious.com/jobs/2-1-0/client-job.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 29 Jun 2020 05:28:06 GMT -->
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Bootstrap Jobs - Bootstrap 4 template</title>
@@ -27,6 +28,7 @@
     <link rel="stylesheet" href="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="favicon.png">
+    
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -161,14 +163,34 @@
                     </select>
                   </div>
                 </div>
+                <script>
+                  function changeDateinfo() {
+                    console.log(document.getElementById("dateInfo1").value)
+                    if (document.getElementById("category").value == "Internship") {
+                      document.getElementById("dateInfo1").innerHTML = "Start Date";
+                      document.getElementById("dateInfo2").innerHTML = "End Date"
+                      document.getElementById("dateInfo3").innerHTML = "Date Posted"
+                      document.getElementById("dateInfo4").innerHTML = "Date Expiring"
+                    } else if (document.getElementById("category").value == "Workshop") {
+                      document.getElementById("dateInfo1").innerHTML = "Start Date";
+                      document.getElementById("dateInfo2").innerHTML = "End Date"
+                      document.getElementById("dateInfo3").innerHTML = "Date Posted"
+                      document.getElementById("dateInfo4").innerHTML = "Date Expiring"
+                    } else {
+                      document.getElementById("dateInfo1").innerHTML = "First meeting (approx)"
+                      document.getElementById("dateInfo2").innerHTML = "Last meeting (approx)"
+                      document.getElementById("dateInfo3").innerHTML = "Date Posted"
+                      document.getElementById("dateInfo4").innerHTML = "Signup Deadline"
+                    }
+                  }
+                </script>
                 <div class="row">
                   <div class="col-lg-12 form-group">
                     <label for="category">Category</label>
-                    <select id="category" placeholder="Choose category" class="form-control select2" name="category"> 
+                    <select onchange="changeDateinfo()" id="category" placeholder="Choose category" class="form-control select2" name="category"> 
                       <option>Internship  </option>
                       <option>Club</option>
                       <option>Workshop</option>
-                      
                     </select>
                   </div>
                 </div>
@@ -199,21 +221,21 @@
                   </div> -->
 
                   <div class="col-xl-4 form-group">
-                    <label for="validity">First meeting (approx)</label>
+                    <label id="dateInfo1" for="validity">Start Date</label>
                     <input id="validity" type="date" class="form-control" name="startDate">
                   </div>
                   <div class="col-xl-4 form-group">
-                    <label for="validity">Last meeting (approx)</label>
+                    <label id="dateInfo2" for="validity">End Date</label>
                     <input id="validity" type="date" class="form-control" name="endDate">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-xl-4 form-group">
-                    <label for="validity">Date Posted</label>
+                    <label id="dateInfo3" for="validity">Date Posted</label>
                     <input id="validity" type="date" class="form-control" name="datePosted">
                   </div>
                   <div class="col-xl-4 form-group">
-                    <label for="validity">Signup Deadline</label>
+                    <label id="dateInfo4" for="validity">Date Expiring</label>
                     <input id="validity" type="date" class="form-control" name="dateExpiring">
                   </div>
                 </div>
@@ -308,23 +330,6 @@
         </div>
       </div>
     </footer>
-    <button type="button" data-toggle="collapse" data-target="#style-switch" id="style-switch-button" class="btn btn-primary btn-sm hidden-xs hidden-sm"><i class="fa fa-cog fa-2x"></i></button>
-    <div id="style-switch" class="collapse">
-      <h4 class="text-uppercase">Select theme colour</h4>
-      <form class="mb-3">
-        <select name="colour" id="colour" class="form-control">
-          <option value="">select colour variant</option>
-          <option value="default">red</option>
-          <option value="pink">pink</option>
-          <option value="green">green</option>
-          <option value="violet">violet</option>
-          <option value="sea">sea</option>
-          <option value="blue">blue</option>
-        </select>
-      </form>
-      <p><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/template-mac.png" alt="" class="img-fluid"></p>
-      <p class="text-muted text-small">Stylesheet switching is done via JavaScript and can cause a blink while page loads. This will not happen in your production code.</p>
-    </div>
     <!-- JavaScript files-->
     <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/jquery/jquery.min.js"></script>
     <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

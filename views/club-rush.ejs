@@ -98,7 +98,7 @@
         </nav>
         <h4 style="text-align:center;">Welcome <span class="accent">FHS</span> Students!</h4>
         <h3 class="heading">Find a club you will <span class="accent">love</span></h4>
-        <form id="job-main-form" method="GET" action="/search/query" class="job-main-form">
+        <form id="job-main-form" method="GET" action="/club-rush/query" class="job-main-form">
           <div class="controls">
 
             <div class="row align-items-end">
@@ -119,73 +119,9 @@
     <section class="listings">
       <div class="container">
         <h3 class="heading"> <%= results.searchNum %> </h3>
-        <% if (results.internshipIsChecked) { results.internships.forEach( value => { %>
-          <div class="job-listing">
-            <div class="row">
-              <div class="col-md-12 col-lg-6">
-                <div class="row">
-                  <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-1.png" alt="LoremIpsum " class="img-fluid"></div>
-                  <div class="col-10">
-                    <h4 class="job__title"><a href="/details/<%=value.id %>"> <%=value.jobTitle%> </a></h4>
-                    <p class="job__company">
-                      <%=value.companyName%>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i><%=value.city%>, <%=value.state%></div>
-              <div class="col-10 col-md-3 col-lg-3 ml-auto">
-                <%var daysSincePost = Math.round((Date.now() - value.datePosted.getTime()) / (1000 * 60 * 60 * 24))%>
-                <p>Posted <%=daysSincePost %> days ago</p>
-              </div>
-              <form action="/favorite" method="POST" target="hiddenFrame"></form>
-                <div class="col-sm-12 col-md-2 col-lg-1">
-                  <input type="hidden" name="_id" value= <%= value.id %> />
-                  <div class="job__star">
-                    <button onclick="favorite(this);" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link">
-                      <i class="fa fa-star"></i>
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        <% })} %>
-        <% if (results.volunteeringIsChecked) { results.volunteerings.forEach( value => { %>
+        <% if (true) { results.volunteerings.forEach( value => { %>
         <div class="job-listing">
           <div class="row">
-            <div class="col-md-12 col-lg-6">
-              <div class="row">
-                <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-1.png" alt="LoremIpsum " class="img-fluid"></div>
-                <div class="col-10">
-                  <h4 class="job__title"><a href="/details/<%=value.id %>"> <%=value.eventName%> </a></h4>
-                  <p class="job__company">
-                    <%=value.organization%>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-10 col-md-3 col-lg-2 ml-auto"><i class="fa fa-map-marker job__location"></i><%=value.city%>, <%=value.state%></div>
-            <div class="col-10 col-md-3 col-lg-3 ml-auto">
-              <%var daysSincePost = Math.round((Date.now() - value.datePosted.getTime()) / (1000 * 60 * 60 * 24))%>
-              <p>Posted <%=daysSincePost %> days ago</p>
-            </div>
-            <form action="/favorite" method="POST" target="hiddenFrame"></form>
-              <div class="col-sm-12 col-md-2 col-lg-1">
-                <input type="hidden" name="_id" value= <%= value._id %> />
-                <div class="job__star">
-                  <button onclick="favorite(this);" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link">
-                    <i class="fa fa-star"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <% })} %>
-        <%if (results.workshopIsChecked) { results.workshops.forEach( value => { %>
-        <div class="job-listing">
-          <div class="row"> 
             <div class="col-md-12 col-lg-6">
               <div class="row">
                 <div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-1.png" alt="LoremIpsum " class="img-fluid"></div>
