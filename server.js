@@ -28,7 +28,7 @@ const methodOverride = require('method-override')
 const port = process.env.PORT || 3000;
 const expressLayouts = require('express-ejs-layouts');
 
-const search = require('./routes/search')
+const search = require('./routes/club-rush')
 
 
 
@@ -75,7 +75,7 @@ app.use('/api/tokenTest', tokenTest);
 app.use('/login123', login);
 app.use('/signup', signup);
 app.use('/test', test);
-app.use('/search', search);
+app.use('/club-rush', search);
 app.use('/company', company)
 app.use('/details',details);
 app.use('/about', about);
