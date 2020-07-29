@@ -80,6 +80,7 @@ app.use('/company', company)
 app.use('/details',details);
 app.use('/about', about);
 app.use('/search', express.static('public'))
+app.use('/club-rush', express.static('public'))
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
