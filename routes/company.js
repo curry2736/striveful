@@ -79,7 +79,7 @@ router.post('/', async (req, res) => {
             })
         }
     }
-    else if (req.body.category == "Volunteering"){
+    else if (req.body.category == "Club"){
     const volunteering = new Volunteering({
         eventName: req.body.jobTitle,
         email: req.body.email,

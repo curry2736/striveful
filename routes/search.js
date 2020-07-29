@@ -71,7 +71,11 @@ router.get('/query', async (req, res) => {
         let internships = await Internship.find({"jobTitle": {$regex:name,$options:'i'}}).exec()
         let volunteerings =  await Volunteering.find({"eventName": {$regex:name,$options:'i'}}).exec()
         let workshops = await Workshop.find({"eventName": {$regex:name,$options:'i'}}).exec()
-        
+
+        let internshipsLocation = await Internship.find({"jobTitle": {$regex:name,$options:'i'}}).exec()
+        let volunteeringsLocation =  await Volunteering.find({"eventName": {$regex:name,$options:'i'}}).exec()
+        let workshopsLocation = await Workshop.find({"eventName": {$regex:name,$options:'i'}}).exec()
+
         if (internshipIsChecked) {
             totalResults += internships.length
             internships.forEach(internship => {
@@ -90,6 +94,8 @@ router.get('/query', async (req, res) => {
                 console.log(workshop.eventName)
             })
         }
+
+
         console.log('total results: ' + totalResults)
 
         if (totalResults == 1) {
