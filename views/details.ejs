@@ -39,7 +39,7 @@
           <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars"></i></button>
           <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item active"><a href="/" class="nav-link">Home <span class="sr-only">(current)</span></a></li>
+              <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
               <li class="nav-item"><a href="/about" class="nav-link">About Us</a></li>
               <li class="nav-item"><a href="/search" class="nav-link">Search</a></li>
               <li class="nav-item"><a href="/club-rush" class="nav-link">FHS Club Rush</a></li>
@@ -152,13 +152,7 @@
                 <i class="fa fa-link"></i> </a><!--<a href="#" data-toggle="tooltip" data-placement="top" title="Twitter" class="twitter">
                  
                 <i class="fa fa-twitter"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook" class="facebook"><i class="fa fa-facebook"></i>--> </a></p>
-            <% if (details.type == "Internship") { %> 
-              <div class="job-detail__apply-top"><a href=<%= details.result.link%> class="btn btn-outline-white-primary">Apply for this job</a></div>
-            <% } else if (details.type == "Workshop" ) { %>
-              <div class="job-detail__apply-top"><a href=<%= details.result.link%> class="btn btn-outline-white-primary">Sign up to this workshop</a></div>
-            <% } else { %>
-              <div class="job-detail__apply-top"><a href=<%= details.result.link%> class="btn btn-outline-white-primary">Join this club</a></div>
-            <% } %>
+            <div class="job-detail__apply-top"><a href=<%= details.result.link%> class="btn btn-outline-white-primary">Apply for this job</a></div>
           </div>
         </div>
       </div>
@@ -215,7 +209,7 @@
           <div class="row">
             <div class="col-lg-4 col-md-12 mb-5">
               <h4 class="h5">About Us</h4>
-              <p>Striveful is a website designed to give students opportunities to explore various fields through workshops, internships, and clubs. 
+              <p>Striveful is a website designed to give students opportunities to explore various fields through workshops, internships, and volunteering activities. 
                 <br><br>We strive to allow every student to have an opportunity to have gain experiences in various fields or in a field that they know they love already.</p>
             </div>
             <div class="col-lg-4 col-md-6">
