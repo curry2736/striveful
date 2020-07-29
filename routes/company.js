@@ -145,6 +145,7 @@ router.post('/', async (req, res) => {
             })
         } catch {
             res.render('company', {
+                    user: user,
                     workshop: workshop,
                     errorMessage: "error.details[0].message"
                 })

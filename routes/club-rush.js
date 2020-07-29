@@ -30,9 +30,9 @@ router.get('/', async(req, res) => {
         var locationPlaceholder = ''
         console.log(locationPlaceholder)
 
-        let internships = await Internship.find({"datePosted":{$lte: Date.now()}}).sort({"datePosted":-1}).exec()
-        let volunteerings = await Volunteering.find({"datePosted":{$lte: Date.now()}}).sort({"datePosted":-1}).exec()
-        let workshops = await Workshop.find({"datePosted":{$lte: Date.now()}}).sort({"datePosted":-1}).exec()
+        let internships = await Internship.find({"datePosted":{$lte: Date.now()}, "dateExpiring":{$gte: Date.now()}}).sort({"datePosted":-1}).exec()
+        let volunteerings = await Volunteering.find({"datePosted":{$lte: Date.now()}, "dateExpiring":{$gte: Date.now()}}).sort({"datePosted":-1}).exec()
+        let workshops = await Workshop.find({"datePosted":{$lte: Date.now()}, "dateExpiring":{$gte: Date.now()}}).sort({"datePosted":-1}).exec()
 
         res.render('club-rush', {user: user, results : {user, searchNum, internships : internships, volunteerings : volunteerings, workshops : workshops, internshipIsChecked, volunteeringIsChecked, workshopIsChecked,
                                         opportunityPlaceholder, locationPlaceholder}})
@@ -68,10 +68,10 @@ router.get('/query', async (req, res) => {
         console.log('volunteering: ' + volunteeringIsChecked)
         var workshopIsChecked = req.query.workshopCheck
         console.log('workshop: ' + workshopIsChecked)
-
-        let internships = await Internship.find({"jobTitle": {$regex:name,$options:'i'}}).exec()
-        let volunteerings =  await Volunteering.find({"eventName": {$regex:name,$options:'i'}}).exec()
-        let workshops = await Workshop.find({"eventName": {$regex:name,$options:'i'}}).exec()
+        
+        let internships = await Internship.find({"jobTitle": {$regex:name,$options:'i'}, "datePosted":{$lte: Date.now()}, "dateExpiring":{$gte: Date.now()}}).exec()
+        let volunteerings =  await Volunteering.find({"eventName": {$regex:name,$options:'i'}, "datePosted":{$lte: Date.now()}, "dateExpiring":{$gte: Date.now()}}).exec()
+        let workshops = await Workshop.find({"eventName": {$regex:name,$options:'i'}, "datePosted":{$lte: Date.now()}, "dateExpiring":{$gte: Date.now()}}).exec()
         
         totalResults = volunteerings.length;
 
@@ -85,7 +85,6 @@ router.get('/query', async (req, res) => {
         }
 
         console.log('--------------------------------------------------------------------')
-        
         res.render('club-rush', {results : {user, searchNum, internships : internships, volunteerings : volunteerings, workshops : workshops, internshipIsChecked, volunteeringIsChecked, workshopIsChecked,
                                         opportunityPlaceholder, locationPlaceholder}})
     }
