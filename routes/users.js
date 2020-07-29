@@ -1,4 +1,4 @@
-const { User, validate } = require('../models/user');
+const { User, validateUser } = require('../models/user');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const bcrypt = require('bcrypt');
@@ -8,8 +8,7 @@ const router = express.Router();
  
 router.post('/', async (req, res) => {
     // First Validate The Request
-    const { error } = validate(req.body);
-    console.log(validate(req.body));
+    const { error } = validateUser(req.body);
     console.log(req.body);
     
     if (error) {
