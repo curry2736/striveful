@@ -120,5 +120,5 @@ function validateUser(user) {
 exports.User = User;
 exports.logout = logout;
 exports.isUser = isUser;
-exports.validate = validateUser;
+exports.validateUser = validateUser;
 exports.jwtVerification = jwtVerification;

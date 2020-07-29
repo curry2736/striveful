@@ -85,4 +85,4 @@ function validateVolunteering(volunteering) {
 }
  
 exports.Volunteering = Volunteering;
-exports.validate = validateVolunteering;
+exports.validateVolunteering = validateVolunteering;
