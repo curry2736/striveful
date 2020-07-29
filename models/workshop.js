@@ -85,4 +85,4 @@ function validateWorkshop(workshop) {
 }
  
 exports.Workshop = Workshop;
-exports.validate = validateWorkshop;
+exports.validateWorkshop = validateWorkshop;
