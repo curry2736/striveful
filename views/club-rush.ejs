@@ -140,8 +140,8 @@
               <%var daysSincePost = Math.round((Date.now() - value.datePosted.getTime()) / (1000 * 60 * 60 * 24))%>
               <p>Posted <%=daysSincePost %> days ago</p>
             </div>
-            <% if (user != null) { %>
-              <% if (user.favorites.includes(value.id)) {%>
+            <% if (results.user != null) { %>
+              <% if (results.user.favorites.includes(value.id)) {%>
                 <form action="/favorite" method="POST" target="hiddenFrame">
                   <div class="col-sm-12 col-md-2 col-lg-1">
   
