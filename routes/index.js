@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 
     let workshops = await Workshop.find({"datePosted":{$lte: Date.now()}}).sort({"datePosted":-1}).limit(3)
 
-    const userVerification = null; //isUser(req, res);
+    const userVerification = isUser(req,res); //isUser(req, res);
 
     let user = null
 
