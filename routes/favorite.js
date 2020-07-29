@@ -51,11 +51,11 @@ router.get('/', async (req, res) => {
 
     const favorites = user["favorites"]
 
-    let internships = await Internship.find({"_id":  { $in: favorites}});
+    let internships = await Internship.find({"_id":  { $in: favorites}, "dateExpiring":{ $gte: Date.now()}});
 
-    let volunteerings = await Volunteering.find({"_id":  { $in: favorites}});
+    let volunteerings = await Volunteering.find({"_id":  { $in: favorites}, "dateExpiring":{ $gte: Date.now()}});
 
-    let workshops = await Workshop.find({"_id":  { $in: favorites}});
+    let workshops = await Workshop.find({"_id":  { $in: favorites}, "dateExpiring":{ $gte: Date.now()}});
 
     console.log([internships, volunteerings, workshops])
 
