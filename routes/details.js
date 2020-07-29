@@ -60,7 +60,7 @@ router.get('/:id', async (req,res) =>{
             endDate: result.endDate.toLocaleDateString('en-US')
         };
         
-        res.render('details.ejs', {user: user, details: {result: result, name: name, org: org, dates: dates, city: city, state: state, type: type}});
+        res.render('details.ejs', {type: type, user: user, details: {result: result, name: name, org: org, dates: dates, city: city, state: state, type: type}});
     } catch (err){
         //console.log(err);
         res.redirect('/');
