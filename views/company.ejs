@@ -42,7 +42,7 @@
           <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars"></i></button>
           <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item active"><a href="/" class="nav-link">Home <span class="sr-only">(current)</span></a></li>
+              <li class="nav-item"><a href="/" class="nav-link">Home <span class="sr-only">(current)</span></a></li>
               <li class="nav-item"><a href="/about" class="nav-link">About Us</a></li>
               <li class="nav-item"><a href="/search" class="nav-link">Search</a></li>
               <li class="nav-item"><a href="/club-rush" class="nav-link">FHS Club Rush</a></li>
@@ -93,12 +93,13 @@
                 <div class="row">
                   <div class="col-lg-12 form-group">
                     <label id="memberTitle" for="title">Organization Title</label>
-                    <input id="title" type="text" class="form-control" name="jobTitle">
+                    <input id="title" type="text "placholder="e.g. Interact Member" class="form-control"  name="jobTitle">
+                    <p class="text-muted text-small">e.g. Interact Member</p>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-12 form-group">
-                    <label for="text">Organization Description</label>
+                    <label id="description" for="text">Organization Description</label>
                     <textarea id="text" rows="5"  class="form-control" name="description"></textarea>
                   </div>
                 </div>
@@ -168,16 +169,22 @@
                   function changeDateinfo() {
                     console.log(document.getElementById("dateInfo1").value)
                     if (document.getElementById("category").value == "Internship") {
+                      document.getElementById("memberTitle").innerHTML = "Job Title";
+                      document.getElementById("description").innerHTML = "Internship Description";
                       document.getElementById("dateInfo1").innerHTML = "Start Date";
                       document.getElementById("dateInfo2").innerHTML = "End Date"
                       document.getElementById("dateInfo3").innerHTML = "Date Posted"
                       document.getElementById("dateInfo4").innerHTML = "Date Expiring"
                     } else if (document.getElementById("category").value == "Workshop") {
+                      document.getElementById("memberTitle").innerHTML = "Workshop Name";
+                      document.getElementById("description").innerHTML = "Workshop Description";
                       document.getElementById("dateInfo1").innerHTML = "Start Date";
                       document.getElementById("dateInfo2").innerHTML = "End Date"
                       document.getElementById("dateInfo3").innerHTML = "Date Posted"
                       document.getElementById("dateInfo4").innerHTML = "Date Expiring"
                     } else {
+                      document.getElementById("memberTitle").innerHTML = "Member Title";
+                      document.getElementById("description").innerHTML = "Club Description";
                       document.getElementById("dateInfo1").innerHTML = "First meeting (approx)"
                       document.getElementById("dateInfo2").innerHTML = "Last meeting (approx)"
                       document.getElementById("dateInfo3").innerHTML = "Date Posted"
@@ -293,7 +300,7 @@
                   <div class="col-lg-12 text-center">
                     <hr>
                     <button type="submit" class="btn btn-outline-white-primary"> <i class="fa fa-magic"></i> Save and publish</button>
-                    <button type="submit" class="btn btn-outline-white-secondary"> <i class="fa fa-save"></i> Save draft</button>
+                    <!--<button type="submit" class="btn btn-outline-white-secondary"> <i class="fa fa-save"></i> Save draft</button>-->
                   </div>
                 </div>
               </form>
