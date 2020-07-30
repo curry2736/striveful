@@ -14,6 +14,7 @@ router.get('/:id', async (req,res) =>{
     try {
         //console.log(req.params.id); 
         const id =  isUser(req, res);
+        console.log(id)
         const user = await User.findById(id);
         let type = "";
         var result = await Internship.findById(req.params.id);
