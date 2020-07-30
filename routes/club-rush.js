@@ -12,11 +12,12 @@ const { User, validate, isUser } = require('../models/user');
 
 router.get('/', async(req, res) => {
     try {
+        let userVerification = null
         if (isUser(req,res)) {
-            const userVerification = isUser(req, res);
+            userVerification = isUser(req, res);
         }
         let user = null
-        if (userVerification != null ){
+        if (userVerification != null){
             user = await User.findOne({ _id: userVerification });
         }
         console.log(user)
@@ -40,7 +41,7 @@ router.get('/', async(req, res) => {
                                         opportunityPlaceholder, locationPlaceholder}})
     }
     catch (err) {
-        console.log(error)
+        console.log(err)
     }
 })
 
