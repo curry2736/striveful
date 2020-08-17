@@ -73,15 +73,15 @@
             <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
           </div>
           <div class="modal-body">
-            <form action="https://demo.bootstrapious.com/jobs/2-1-0/customer-orders.html" method="post">
+            <form method="POST" action="/api/auth">
               <div class="form-group">
-                <input id="email_modal" type="text" placeholder="email" class="form-control">
+                <input name="email" id="email" type="email" placeholder="Email" class="form-control" required>
               </div>
               <div class="form-group">
-                <input id="password_modal" type="password" placeholder="password" class="form-control">
+                <input name="password" id="password" type="password" placeholder="Password" class="form-control" required>
               </div>
               <p class="text-center">
-                <button type="button" class="btn btn-outline-white-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                <button type="submit" class="btn btn-outline-white-primary"><i class="fa fa-sign-in"></i> Log in</button>
               </p>
             </form>
             <p class="text-center text-muted">Not registered yet?</p>
