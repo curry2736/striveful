@@ -10,32 +10,39 @@ const router = express.Router();
 router.post('/', async (req, res) => {
     // First Validate The HTTP Request
 
-    const { error } = validate(req.body);
+    // const { error } = validate(req.body);
 
-    if (error) {
-        return res.status(400).send(error.details[0].message);
-    }
+    // if (error) {
+    //     return res.status(400).send(error.details[0].message);
+    // }
 
     //  Now find the user by their email address
     let user = await User.findOne({ email: req.body.email });
     if (!user) {
-        return res.status(400).send('Incorrect email or password.');
+        //return res.status(400).send('Incorrect email or password.');
+        req.flash('error', 'Incorrect email or password');
+        res.redirect('/');
+        //res.locals.message = req.flash();
     }
     
     // Then validate the Credentials in MongoDB match
     // those provided in the request
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     if (!validPassword) {
-        return res.status(400).send('Incorrect email or password.');
+        req.flash('error', 'Incorrect email or password');
+        res.redirect('/');
     }
     const token = jwt.sign({ _id: user._id, email: user.email }, config.get('PrivateKey'));
     
     res.cookie('token', token);
-
+    
     if (req.body.isSearchPage == 'true') {
         res.redirect('/search')
     }
-
+    if (req.body.isAboutPage == 'true') {
+        res.redirect('/about')
+    }
+   
     res.redirect('/')
     
     //return res.header('x-auth-token', token).send(_.pick(user, ['_id', 'firstName', 'lastname', 'email']));
