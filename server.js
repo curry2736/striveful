@@ -5,6 +5,8 @@ if (process.env.NODE_ENV !== 'production') {
 const tokenTest = require('./routes/tokenTest');
 const logout = require('./routes/logout');
 const cookieParser = require('cookie-parser');
+const flash = require('connect-flash');
+const session = require('express-session');
 const config = require('config');
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
@@ -39,7 +41,10 @@ if (!config.get('PrivateKey')) {
 }
 
 app.use(methodOverride('_method'))
-app.use(cookieParser());
+app.use(cookieParser('secret'));
+app.use(session({cookie: { maxAge: 60000 }}));
+app.use(flash());
+
 app.use(express.json());
 app.use('/details', express.static('public'))
 app.use(express.static(__dirname + '/public'));
