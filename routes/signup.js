@@ -7,7 +7,8 @@ router.get('/', async (req, res) => {
     const user = await User.findById(id);
     console.log(user)
     res.render('signup', {
-        user: user
+        user: user,
+        message: req.flash('error') 
     });
 })
 module.exports = router;
