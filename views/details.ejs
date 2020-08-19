@@ -102,7 +102,7 @@
       
         <h1 class="heading"><%= details.name %><br><!--<small>at <a href="#"> <%= details.org%></a></small></h1>-->
         <br>
-        <div class="job-detail-description"><i class="fa fa-map-marker job__location"> </i><%=details.city%>, <%=details.state%>
+        <div class="job-detail-description"><i class="fa fa-map-marker job__location"> </i><%=details.result.city%>, <%=details.result.state%>
           | <%= details.dates.startDate%> - <%= details.dates.endDate%><!-- |<span class="badge featured-badge badge-success">Full Time</span> -->
         </div>
       </div>
@@ -112,9 +112,10 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
-            <h3><%= details.org%> Presents</h3>
+        
+            <h3><%= details.org%> Presents </h3>
             <p>Posted: <%= details.dates.datePosted%></p>
-            <h4><%= details.name %></h4>
+            <h4><%= details.name %></h4>       
             <ol>
               <li>Start Date: <%= details.dates.startDate%></li>
               <li>End Date: <%= details.dates.endDate%></li>
@@ -145,14 +146,30 @@
           </div>
           <div class="col-lg-1"></div>
           <div class="col-lg-3">
-            <h4>About <%= details.org%></h4>
-            <p class="job-detail__company-description">Have any questions? Email us at: <%= details.result.email%></p>
-            <p class="job-detail__social social social--outline"><a href= <%= details.result.link%> target="_blank" data-toggle="tooltip" data-placement="top" title="Website" class="link">
+            <% if (details.type === "Volunteering"){%>
+              <h4>About <%= details.org%></h4>
+              <p class="job-detail__company-description"><h5>Contact Information</h5><br>
+                <ul>
+                  <li><b>Advisor Email:</b> <%= details.result.advisorEmail%></li>
+                  <li><b>President Email:</b><%= details.result.presidentEmail%></li>
+                </ul></p>
+              <p class="job-detail__social social social--outline"><a href= <%= details.result.websiteLink%> target="_blank" data-toggle="tooltip" data-placement="top" title="Website" class="link">
                  
-                <i class="fa fa-link"></i> </a><!--<a href="#" data-toggle="tooltip" data-placement="top" title="Twitter" class="twitter">
+                  <i class="fa fa-link"></i> </a><!--<a href="#" data-toggle="tooltip" data-placement="top" title="Twitter" class="twitter">
                  
-                <i class="fa fa-twitter"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook" class="facebook"><i class="fa fa-facebook"></i>--> </a></p>
-                <div class="job-detail__apply-top"><a href=<%= details.result.link%> target="_blank" class="btn btn-outline-white-primary">Apply for this position</a></div>
+                  <i class="fa fa-twitter"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook" class="facebook"><i class="fa fa-facebook"></i>--> </a></p>
+                  <div class="job-detail__apply-top"><a href=<%= details.result.formLink%> target="_blank" class="btn btn-outline-white-primary">Apply for this position</a></div>
+
+            <%} else{ %>
+              <h4>About <%= details.org%></h4>
+              <p class="job-detail__company-description">Have any questions? Email us at: <%= details.result.email%></p>
+              <!--<p class="job-detail__social social social--outline"><a href= "" target="_blank" data-toggle="tooltip" data-placement="top" title="Website" class="link">
+                 
+                  <i class="fa fa-link"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter" class="twitter">
+                  <i class="fa fa-twitter"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook" class="facebook"><i class="fa fa-facebook"></i></a></p>-->
+
+                  <div class="job-detail__apply-top"><a href=<%= details.result.link%> target="_blank" class="btn btn-outline-white-primary">Apply for this position</a></div>
+                  <% } %>
           </div>
         </div>
       </div>
