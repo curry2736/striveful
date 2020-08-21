@@ -186,6 +186,7 @@
                       document.getElementById("dateInfo2").innerHTML = "End Date"
                       document.getElementById("dateInfo3").innerHTML = "Date Posted"
                       document.getElementById("dateInfo4").innerHTML = "Date Expiring"
+                      document.getElementById("emailVis").style.display = "none";
                     } else if (document.getElementById("category").value == "Workshop") {
                       document.getElementById("memberTitle").innerHTML = "Workshop Name";
                       document.getElementById("description").innerHTML = "Workshop Description";
@@ -193,6 +194,7 @@
                       document.getElementById("dateInfo2").innerHTML = "End Date"
                       document.getElementById("dateInfo3").innerHTML = "Date Posted"
                       document.getElementById("dateInfo4").innerHTML = "Date Expiring"
+                      document.getElementById("emailVis").style.display = "none";
                     } else {
                       document.getElementById("memberTitle").innerHTML = "Member Title";
                       document.getElementById("description").innerHTML = "Club Description";
@@ -200,6 +202,8 @@
                       document.getElementById("dateInfo2").innerHTML = "Last meeting (approx)"
                       document.getElementById("dateInfo3").innerHTML = "Date Posted"
                       document.getElementById("dateInfo4").innerHTML = "Signup Deadline"
+                      document.getElementById("emailInfo1").innerHTML = "Club Email"
+                      document.getElementById("emailVis").style.display = "inline";
                     }
                   }
                 </script>
@@ -284,9 +288,22 @@
                     <input id="company_logo" type="file" class="form-control">
                   </div> -->
                   <div class="col-lg-4 form-group">
-                    <label for="company_twitter">Email</label>
+                    <label id = "emailInfo1" for="company_twitter">Email</label>
                     <input  placeholder="service@mail.com" class="form-control"  type="email" name="email" required>
                   </div>
+
+                  <% if (document.getElementById("category").value == "Workshop"){ %>
+                    <div id="emailVis"class="col-lg-4 form-group">
+                      <label>President Email</label>
+                      <input placeholder="person@mail.com" class="form-control" type="email" required>
+                    </div>
+
+                    <div id="emailVis" class="col-lg-4 form-group">
+                      <label>Advisor Email</label>
+                      <input placeholder="person@mail.com" class="form-control" type="email" required>
+                    </div>
+                  <% } %>
+                  
                 </div>
                 <div class="row">
                   <div class="col-lg-12">
