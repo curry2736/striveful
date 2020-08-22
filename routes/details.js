@@ -31,6 +31,8 @@ router.get('/:id', async (req,res) =>{
                 Volunteering.updateOne({ _id: req.params.id }, {$inc: {visits: 1}}, (err,res) =>{
                     if (err) throw (err);
                 });
+                
+                
             };
         } else {
             type = "Internship"
@@ -52,8 +54,6 @@ router.get('/:id', async (req,res) =>{
         } else if (!result.organization){
             var org = result.companyName;
         };
-        const city = result.city;
-        const state = result.state;
         
         let dates = {
             datePosted: result.datePosted.toLocaleDateString('en-US'),
@@ -61,9 +61,8 @@ router.get('/:id', async (req,res) =>{
             endDate: result.endDate.toLocaleDateString('en-US')
         };
         
-        res.render('details.ejs', {type: type, user: user, details: {result: result, name: name, org: org, dates: dates, city: city, state: state, type: type}});
+        res.render('details.ejs', {type: type, user: user, details: {result: result, name: name, org: org, dates: dates, type: type}});
     } catch (err){
-        //console.log(err);
         res.redirect('/');
     }
 });

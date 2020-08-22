@@ -24,7 +24,7 @@ const Internship = mongoose.model('Internship', new mongoose.Schema({
         maxlength: 50
     },
     //TODO: add location
-    link: {
+    websiteLink: {
         type: String,
         required: true
     },
@@ -82,7 +82,7 @@ function validateInternship(internship) {
         startDate: Joi.date().required(),
         endDate: Joi.date().required(),
         datePosted: Joi.date().required(),
-        link: Joi.string().uri(),
+        websiteLink: Joi.string().uri(),
         visits: Joi.number()
     };
     return Joi.validate(internship, schema);
