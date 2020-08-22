@@ -9,7 +9,6 @@ const { Workshop} = require('../models/workshop');
  
 router.get('/', async (req, res) => {
     res.clearCookie('token')
-    //cookies.set('token', {expires: Date.now()})
     res.redirect('/');
 })
 

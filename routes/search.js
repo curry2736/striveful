@@ -33,9 +33,12 @@ router.get('/', async(req, res) => {
         var locationPlaceholder = ''
         console.log(locationPlaceholder)
 
-        let internships = await Internship.find({"datePosted":{$lte: Date.now()}, "dateExpiring":{$gte: Date.now()}}).sort({"datePosted":-1}).exec()
-        let volunteerings = await Volunteering.find({"datePosted":{$lte: Date.now()}, "dateExpiring":{$gte: Date.now()}}).sort({"datePosted":-1}).exec()
-        let workshops = await Workshop.find({"datePosted":{$lte: Date.now()}, "dateExpiring":{$gte: Date.now()}}).sort({"datePosted":-1}).exec()
+        let adjustedDate = new Date();
+        adjustedDate = adjustedDate.getTime() - 25200000;
+
+        let internships = await Internship.find({"datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).sort({"datePosted":-1}).exec()
+        let volunteerings = await Volunteering.find({"datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).sort({"datePosted":-1}).exec()
+        let workshops = await Workshop.find({"datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).sort({"datePosted":-1}).exec()
 
         res.render('search', {user: user, results : {user, searchNum, internships : internships, volunteerings : volunteerings, workshops : workshops, internshipIsChecked, volunteeringIsChecked, workshopIsChecked,
                                         opportunityPlaceholder, locationPlaceholder}})
@@ -70,10 +73,14 @@ router.get('/query', async (req, res) => {
         console.log('volunteering: ' + volunteeringIsChecked)
         var workshopIsChecked = req.query.workshopCheck
         console.log('workshop: ' + workshopIsChecked)
-
-        let internships = await Internship.find({"jobTitle": {$regex:name,$options:'i'}, "datePosted":{$lte: Date.now()}, "dateExpiring":{$gte: Date.now()}}).exec()
-        let volunteerings =  await Volunteering.find({"eventName": {$regex:name,$options:'i'}, "datePosted":{$lte: Date.now()}, "dateExpiring":{$gte: Date.now()}}).exec()
-        let workshops = await Workshop.find({"eventName": {$regex:name,$options:'i'}, "datePosted":{$lte: Date.now()}, "dateExpiring":{$gte: Date.now()}}).exec()
+        
+        let adjustedDate = new Date();
+        adjustedDate = adjustedDate.getTime() - 25200000;
+        
+        //1 hour = 3600000 in getTime() 
+        let internships = await Internship.find({"jobTitle": {$regex:name,$options:'i'}, "datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).exec()
+        let volunteerings =  await Volunteering.find({"eventName": {$regex:name,$options:'i'}, "datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).exec()
+        let workshops = await Workshop.find({"eventName": {$regex:name,$options:'i'}, "datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).exec()
 
         let internshipsLocation = await Internship.find({"jobTitle": {$regex:name,$options:'i'}}).exec()
         let volunteeringsLocation =  await Volunteering.find({"eventName": {$regex:name,$options:'i'}}).exec()
@@ -114,7 +121,7 @@ router.get('/query', async (req, res) => {
                                         opportunityPlaceholder, locationPlaceholder}})
     }
     catch (err) {
-        console.log(error)
+        console.log(err)
     }
 })
 module.exports = router;

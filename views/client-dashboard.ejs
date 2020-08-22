@@ -112,7 +112,7 @@
                       <!--<td> <a href="client-applicants.html" class="btn btn-success"> <i class="fa fa-users"></i>4 <span class="hidden-xs hidden-sm">Applicants</span></a>-->
                       </td>
                       <td> 
-                        <!--<a href="client-job.html" class="btn btn-outline-white-secondary"> <i class="fa fa-edit"></i>Edit</a><br>-->
+                        <a href="/company/edit/<%=event._id%>" class="btn btn-outline-white-secondary"> <i class="fa fa-edit"></i>Edit</a><br>
                         <form type="hidden"  method="POST" action="/client-dashboard/internships/<%= event._id %>?_method=DELETE">
                           <input name="userId" value=<%= user._id%> type="hidden">
                           <button type="submit"class="btn btn-outline-white-secondary"><i class="fa fa-times-circle-o"></i>Delete</button>
@@ -133,7 +133,7 @@
                       <!--<td> <a href="client-applicants.html" class="btn btn-success"> <i class="fa fa-users"></i>4 <span class="hidden-xs hidden-sm">Applicants</span></a>-->
                       </td>
                       <td> 
-                        <!--<a href="client-job.html" class="btn btn-outline-white-secondary"> <i class="fa fa-edit"></i>Edit</a><br>-->
+                        <a href="/company/edit/<%=event._id%>" class="btn btn-outline-white-secondary"> <i class="fa fa-edit"></i>Edit</a><br>
                         <form type="hidden"  method="POST" action="/client-dashboard/volunteerings/<%= event._id %>?_method=DELETE">
                           <input name="userId" value=<%= user._id%> type="hidden">
                           <button type="submit"class="btn btn-outline-white-secondary"><i class="fa fa-times-circle-o"></i>Delete</button>
@@ -154,7 +154,7 @@
                       <!--<td> <a href="client-applicants.html" class="btn btn-success"> <i class="fa fa-users"></i>4 <span class="hidden-xs hidden-sm">Applicants</span></a>-->
                       </td>
                       <td> 
-                        <!--<a href="client-job.html" class="btn btn-outline-white-secondary"> <i class="fa fa-edit"></i>Edit</a><br>-->
+                        <a href="/company/edit/<%=event._id%>" class="btn btn-outline-white-secondary"> <i class="fa fa-edit"></i>Edit</a><br>
                         <form type="hidden" value=<%= user._id%> method="POST" action="/client-dashboard/workshops/<%= event._id %>?_method=DELETE">
                           <button class="btn btn-outline-white-secondary"><i class="fa fa-times-circle-o"></i>Delete</button>
                         </form>

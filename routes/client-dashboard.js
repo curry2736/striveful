@@ -21,6 +21,9 @@ router.get('/', async (req, res) => {
     let volunteerings = [];
     let workshops = [];
     const verif = JSON.parse(jwtVerification(req,res));
+    if (!verif) {
+        return res.redirect('/')
+    }
     const user = await User.findById(verif._id);
     const eventsCreated = user.eventsCreated;
     for (let i = 0; i < eventsCreated.length; i++) {

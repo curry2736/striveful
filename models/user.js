@@ -49,7 +49,12 @@ const User = mongoose.model('User', new mongoose.Schema({
 }));
 
 function jwtVerification(req, res) {
-    const cookies = req.headers.cookie.split("; ");
+    let cookies = "";
+    if (req.headers.cookie) {
+        cookies = req.headers.cookie.split("; ");
+    } else {
+        return null;
+    }
     let authToken = "";
     let buff = "";
     cookies.forEach( cookie => {
@@ -75,7 +80,7 @@ function isUser(req, res) {
     try {
         cookies = cookies.split("; ");
     } catch (err) {
-        console.log(err);
+        //console.log(err);
         return null;
     }
     let authToken = null;

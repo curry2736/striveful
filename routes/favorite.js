@@ -45,17 +45,20 @@ module.exports = router;
 
 router.get('/', async (req, res) => {
 
+    let adjustedDate = new Date();
+    adjustedDate = adjustedDate.getTime() - 25200000;
+    
     const userVerification = JSON.parse(jwtVerification(req, res));
 
     let user = await User.findOne({ _id: userVerification["_id"]});
 
     const favorites = user["favorites"]
 
-    let internships = await Internship.find({"_id":  { $in: favorites}, "dateExpiring":{ $gte: Date.now()}});
+    let internships = await Internship.find({"_id":  { $in: favorites}, "dateExpiring":{ $gte: adjustedDate}});
 
-    let volunteerings = await Volunteering.find({"_id":  { $in: favorites}, "dateExpiring":{ $gte: Date.now()}});
+    let volunteerings = await Volunteering.find({"_id":  { $in: favorites}, "dateExpiring":{ $gte: adjustedDate}});
 
-    let workshops = await Workshop.find({"_id":  { $in: favorites}, "dateExpiring":{ $gte: Date.now()}});
+    let workshops = await Workshop.find({"_id":  { $in: favorites}, "dateExpiring":{ $gte: adjustedDate}});
 
     console.log([internships, volunteerings, workshops])
 
