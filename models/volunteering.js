@@ -54,9 +54,13 @@ const Volunteering = mongoose.model('Volunteering', new mongoose.Schema({
         minLength: 1,
         maxLength: 50
     },
-    link: {
+    websiteLink: {
         type: String,
         required: false
+    },
+    formLink: {
+        type: String,
+        required: true
     },
     dateExpiring: {
         type: Date,
@@ -64,6 +68,22 @@ const Volunteering = mongoose.model('Volunteering', new mongoose.Schema({
     },
     visits: {
         type: Number
+    },
+    teamsLink: {
+        type: String,
+        required: true
+    },
+    youtubeLink: {
+        type: String,
+        required: true
+    },
+    presidentEmail: {
+        type: String,
+        required: true
+    },
+    advisorEmail: {
+        type: String,
+        required: true
     }
 }));
  
@@ -78,8 +98,13 @@ function validateVolunteering(volunteering) {
         startDate: Joi.date().required(),
         endDate: Joi.date().required(),
         datePosted: Joi.date().required(),
-        link: Joi.string().uri(),
-        visits: Joi.number()
+        websiteLink: Joi.string().uri(),
+        formLink: Joi.string().uri().required(),
+        visits: Joi.number(),
+        teamsLink: Joi.string().uri().required(),
+        youtubeLink: Joi.string().uri().required(),
+        presidentEmail: Joi.string().uri().required(),
+        advisorEmail: Joi.string().uri().required()
     };
     return Joi.validate(volunteering, schema);
 }

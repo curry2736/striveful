@@ -82,17 +82,22 @@ router.post('/', async (req, res) => {
     else if (req.body.category == "Club"){
     const volunteering = new Volunteering({
         eventName: req.body.jobTitle,
-        email: req.body.email,
         organization: req.body.companyName,
-        link: req.body.link,
+        email: req.body.email,
         description: req.body.description,
-        city: req.body.city,
-        state: req.body.state,
         startDate: req.body.startDate,
         endDate: req.body.endDate,
         datePosted: req.body.datePosted,
-        dateExpiring: req.body.dateExpiring
-        
+        city: req.body.city,
+        state: req.body.state,
+        websiteLink: req.body.websiteLink,
+        formLink: req.body.formLink,
+        dateExpiring: req.body.dateExpiring,
+        teamsLink: req.body.teamsLink,
+        youtubeLink: req.body.youtubeLink,
+        presidentEmail: req.body.presidentEmail,
+        advisorEmail: req.body.advisorEmail,
+
     })
     // console.log(req.body);
     // const { error } = validate(req.body);

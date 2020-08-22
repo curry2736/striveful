@@ -71,15 +71,16 @@
             <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
           </div>
           <div class="modal-body">
-            <form action="https://demo.bootstrapious.com/jobs/2-1-0/customer-orders.html" method="post">
+            <form method="POST" action="/api/auth">
+              <input type="hidden" name="isAboutPage" value=true>
               <div class="form-group">
-                <input id="email_modal" type="text" placeholder="email" class="form-control">
+                <input name="email" id="email" type="email" placeholder="Email" class="form-control" required>
               </div>
               <div class="form-group">
-                <input id="password_modal" type="password" placeholder="password" class="form-control">
+                <input name="password" id="password" type="password" placeholder="Password" class="form-control" required>
               </div>
               <p class="text-center">
-                <button type="button" class="btn btn-outline-white-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                <button type="submit" class="btn btn-outline-white-primary"><i class="fa fa-sign-in"></i> Log in</button>
               </p>
             </form>
             <p class="text-center text-muted">Not registered yet?</p>
@@ -197,7 +198,7 @@
             <div class="col-lg-4 col-md-12 mb-5">
               <h4 class="h5">About Us</h4>
               <p>Striveful is a website designed to give students opportunities to explore various fields through workshops, internships, and clubs. 
-                <br><br>We strive to allow every student to have an opportunity to have gain experiences in various fields or in a field that they know they love already.</p>
+                <br><br>We strive to allow every student to have an opportunity to gain experiences in new fields or in a field that they know they love already.</p>
             </div>
             <div class="col-lg-4 col-md-6">
               <h4 class="h5">Contact Us</h4>

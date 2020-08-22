@@ -83,7 +83,7 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-10 mx-auto">
-              <form action="/company" id="job-main-form" method="POST" class="job-add-form">
+              <form action="/company" id="job-main-form" method="POST" class="job-add-form" required>
                 
                 <div class="row">
                   <div class="col-lg-12">
@@ -94,7 +94,7 @@
                 <div class="row">
                   <div class="col-lg-12 form-group">
                     <label for="category">Category</label>
-                    <select onchange="changeDateinfo()" id="category" placeholder="Choose category" class="form-control select2" name="category"> 
+                    <select onchange="changeDateinfo()" id="category" placeholder="Choose category" class="form-control select2" name="category" required> 
                       <option>Internship  </option>
                       <option>Club</option>
                       <option>Workshop</option>
@@ -104,24 +104,24 @@
                 <div class="row">
                   <div class="col-lg-12 form-group">
                     <label id="memberTitle" for="title">Organization Title</label>
-                    <input id="title" type="text "placholder="e.g. Interact Member" class="form-control"  name="jobTitle">
+                    <input id="title" type="text "placholder="e.g. Interact Member" class="form-control"  name="jobTitle" required minlength="1" maxlength="128">
                     <p class="text-muted text-small">e.g. Interact Member</p>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-12 form-group">
                     <label id="description" for="text">Organization Description</label>
-                    <textarea id="text" rows="5"  class="form-control" name="description"></textarea>
+                    <textarea id="text" rows="5"  class="form-control" name="description" required minlength="1" maxlength="2000"></textarea>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-6 form-group">
                     <label for="location">City</label>
-                    <input id="location" type="text" placeholder="e.g. Folsom" class="form-control" name="city">
+                    <input id="location" type="text" placeholder="e.g. Folsom" class="form-control" name="city" required minlength="1" maxlength="50">
                   </div>
                   <div class="col-lg-6 form-group">
                     <label for="type">State</label>
-                    <select id="type" placeholder="state" class="form-control select2" name="state">
+                    <select id="type" placeholder="state" class="form-control select2" name="state" required>
                       <option>AL</option>
                       <option>AK</option>
                       <option>AR</option>	
@@ -186,6 +186,7 @@
                       document.getElementById("dateInfo2").innerHTML = "End Date"
                       document.getElementById("dateInfo3").innerHTML = "Date Posted"
                       document.getElementById("dateInfo4").innerHTML = "Date Expiring"
+                      document.getElementById("emailVis").style.display = "none";
                     } else if (document.getElementById("category").value == "Workshop") {
                       document.getElementById("memberTitle").innerHTML = "Workshop Name";
                       document.getElementById("description").innerHTML = "Workshop Description";
@@ -193,6 +194,7 @@
                       document.getElementById("dateInfo2").innerHTML = "End Date"
                       document.getElementById("dateInfo3").innerHTML = "Date Posted"
                       document.getElementById("dateInfo4").innerHTML = "Date Expiring"
+                      document.getElementById("emailVis").style.display = "none";
                     } else {
                       document.getElementById("memberTitle").innerHTML = "Member Title";
                       document.getElementById("description").innerHTML = "Club Description";
@@ -200,6 +202,8 @@
                       document.getElementById("dateInfo2").innerHTML = "Last meeting (approx)"
                       document.getElementById("dateInfo3").innerHTML = "Date Posted"
                       document.getElementById("dateInfo4").innerHTML = "Signup Deadline"
+                      document.getElementById("emailInfo1").innerHTML = "Club Email"
+                      document.getElementById("emailVis").style.display = "inline";
                     }
                   }
                 </script>
@@ -232,21 +236,21 @@
 
                   <div class="col-xl-4 form-group">
                     <label id="dateInfo1" for="validity">Start Date</label>
-                    <input id="validity" type="date" class="form-control" name="startDate">
+                    <input id="validity" type="date" class="form-control" name="startDate" required>
                   </div>
                   <div class="col-xl-4 form-group">
                     <label id="dateInfo2" for="validity">End Date</label>
-                    <input id="validity" type="date" class="form-control" name="endDate">
+                    <input id="validity" type="date" class="form-control" name="endDate" required>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-xl-4 form-group">
                     <label id="dateInfo3" for="validity">Date Posted</label>
-                    <input id="validity" type="date" class="form-control" name="datePosted">
+                    <input id="validity" type="date" class="form-control" name="datePosted" required>
                   </div>
                   <div class="col-xl-4 form-group">
                     <label id="dateInfo4" for="validity">Date Expiring</label>
-                    <input id="validity" type="date" class="form-control" name="dateExpiring">
+                    <input id="validity" type="date" class="form-control" name="dateExpiring" required>
                   </div>
                 </div>
                 <div class="row">
@@ -263,7 +267,7 @@
                 <div class="row">
                   <div class="col-lg-12 form-group">
                     <label for="company_name">Organization name</label>
-                    <input id="company_name" type="text" class="form-control" name="companyName">
+                    <input id="company_name" type="text" class="form-control" name="companyName" required>
                   </div>
                 </div>
                 <!-- <div class="row">
@@ -276,7 +280,7 @@
                 <div class="row">
                   <div class="col-lg-4 form-group">
                     <label for="company_website">Website Link</label>
-                    <input id="company_website" placeholder="Starts with http:// or https://" type="url" class="form-control" name="link">
+                    <input id="company_website" placeholder="Starts with http:// or https://" type="url" class="form-control" name="link" required>
                     <p class="text-muted text-small">If you don't have a website, put your club signup link (Google Forms)</p>
                   </div>
                   <!-- <div class="col-lg-4 form-group">
@@ -284,16 +288,29 @@
                     <input id="company_logo" type="file" class="form-control">
                   </div> -->
                   <div class="col-lg-4 form-group">
-                    <label for="company_twitter">Email</label>
-                    <input id="company_twitter" placeholder="service@mail.com" class="form-control" class="form-control" name="email">
+                    <label id = "emailInfo1" for="company_twitter">Email</label>
+                    <input  placeholder="service@mail.com" class="form-control"  type="email" name="email" required>
                   </div>
+
+                  <% if (document.getElementById("category").value == "Workshop"){ %>
+                    <div id="emailVis"class="col-lg-4 form-group">
+                      <label>President Email</label>
+                      <input placeholder="person@mail.com" class="form-control" type="email" required>
+                    </div>
+
+                    <div id="emailVis" class="col-lg-4 form-group">
+                      <label>Advisor Email</label>
+                      <input placeholder="person@mail.com" class="form-control" type="email" required>
+                    </div>
+                  <% } %>
+                  
                 </div>
                 <div class="row">
                   <div class="col-lg-12">
                     <hr>
                     <div class="checkbox text-center">
                       <label>
-                        <input type="checkbox"> I agree with the <a href="#">Terms and conditions</a>.
+                        <input type="checkbox" required> I agree with the <a href="#">Terms and conditions</a>.
                       </label>
                     </div>
                   </div>

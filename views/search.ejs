@@ -32,6 +32,7 @@
   <body>
     <!-- navbar-->
     <header class="header">
+      
       <nav class="navbar navbar-expand-lg">
         <div class="container"><a href="/" class="navbar-brand"><img src="logo3.png" width="270px" alt="logo" class="d-none d-lg-block"><img src="logo3.png" width="270px" alt="logo" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>
           <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars"></i></button>
@@ -74,10 +75,10 @@
             <form method="POST" action="/api/auth">
               <input type="hidden" name="isSearchPage" value=true>
               <div class="form-group">
-                <input name="email" id="email" type="text" placeholder="Email" class="form-control">
+                <input name="email" id="email" type="email" placeholder="Email" class="form-control" required>
               </div>
               <div class="form-group">
-                <input name="password" id="password" type="password" placeholder="Password" class="form-control">
+                <input name="password" id="password" type="password" placeholder="Password" class="form-control" required>
               </div>
               <p class="text-center">
                 <button type="submit" class="btn btn-outline-white-primary"><i class="fa fa-sign-in"></i> Log in</button>

@@ -32,6 +32,12 @@
   <body>
     <!-- navbar-->
     <header class="header">
+      <% if(message != ''){ %>
+        <div class="alert alert-danger" role="alert">
+            <strong><%=message%></strong>
+        </div>
+    <% } %>
+      <header class="header">
       <nav class="navbar navbar-expand-lg">
         <div class="container"><a href="/" class="navbar-brand"><img src="logo3.png" width="270px" alt="logo" class="d-none d-lg-block"><img src="logo3.png" width="270px" alt="logo" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>
         <!--<div class="container"><a href="/" class="navbar-brand"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo.svg" alt="logo" class="d-none d-lg-block"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/logo-small.png" alt="logo" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>-->
@@ -90,19 +96,19 @@
                 <input name="isCompany" id="isCompany" type="hidden" value="false">
                 <div class="form-group">
                   <label for="firstName">First Name</label>
-                  <input name="firstName" id="firstName" type="text" class="form-control">
+                  <input name="firstName" id="firstName" type="text" class="form-control" required minlength="1" maxlength="50">
                 </div>
                 <div class="form-group">
                   <label for="lastName">Last Name</label>
-                  <input name="lastName" id="lastName" type="text" class="form-control">
+                  <input name="lastName" id="lastName" type="text" class="form-control" required minlength="1" maxlength="50">
                 </div>
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input name="email" id="email" type="text" class="form-control">
+                  <input name="email" id="email" type="email" class="form-control" required minlength="5" maxlength="255">
                 </div>
                 <div class="form-group">
                   <label for="password">Password</label>
-                  <input name="password" id="password" type="password" class="form-control">
+                  <input name="password" id="password" type="password" class="form-control" required minlength="5" maxlength="512">
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-outline-white-primary"><i class="fa fa-user-md"></i> Register</button>
@@ -119,12 +125,12 @@
               <form action="/api/auth" method="post">
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input name="email" id="email" type="text" class="form-control">
+                    <input name="email" id="email" type="email" class="form-control" required>
                   </div>
                 
                 <div class="form-group">
                   <label for="password">Password</label>
-                  <input name="password" id="password" type="password" class="form-control">
+                  <input name="password" id="password" type="password" class="form-control" required>
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-outline-white-primary"><i class="fa fa-sign-in"></i> Log in</button>

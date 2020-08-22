@@ -19,13 +19,15 @@ router.get('/', async (req, res) => {
 
     let user = null
 
+    // let message = '';
+
     if (userVerification != null ){
         user = await User.findOne({ _id: userVerification });
     }
 
     console.log(user)
 
-    res.render('index', {user: user, recents : {internships: internships, volunteerings: volunteerings, workshops: workshops}})
+    res.render('index', {user: user, recents : {internships: internships, volunteerings: volunteerings, workshops: workshops}, message: req.flash('error') })
 })
 
 module.exports = router; 
