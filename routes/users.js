@@ -8,16 +8,17 @@ const router = express.Router();
  
 router.post('/', async (req, res) => {
     // First Validate The Request
-    const { error } = validateUser(req.body);
-    console.log(req.body);
+    // const { error } = validateUser(req.body);
+    // console.log(req.body);
     
-    if (error) {
-        return res.status(400).send(error.details[0].message);
-    }
+    // if (error) {
+    //     return res.status(400).send(error.details[0].message);
+    // }
     // Check if this user already exisits
     let user = await User.findOne({ email: req.body.email });
     if (user) {
-        return res.status(400).send('That user already exisits!');
+        req.flash('error', 'That user already exists!');
+        res.redirect('../signup');
     } else {
         // Insert the new user if they do not exist yet
         user = new User(_.pick(req.body, ['firstName', 'lastName', 'email', 'password', 'isCompany']));
