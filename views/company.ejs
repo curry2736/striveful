@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="favicon.png">
+    
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -62,142 +63,118 @@
         </div>
       </nav>
     </header>
-    <% if (page == "get") { %>
-      <section class="bg-light-gray">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <nav aria-label="breadcrumb">
-                <ul class="breadcrumb d-flex justify-content-center">
-                  <li class="breadcrumb-item"><a href="/">Home</a></li>
-                  <li class="breadcrumb-item"><a href="/client-dashboard">Dashboard</a></li>
-                  <li aria-current="page" class="breadcrumb-item active">Add a new opportunity</li>
-                </ul>
-              </nav>
-              <h1 class="heading">Add a new opportunity</h1>
-            </div>
+    <section class="bg-light-gray">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <nav aria-label="breadcrumb">
+              <ul class="breadcrumb d-flex justify-content-center">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/client-dashboard">Dashboard</a></li>
+                <li aria-current="page" class="breadcrumb-item active">Add a new position</li>
+              </ul>
+            </nav>
+            <h1 class="heading">Add a new opportunity</h1>
           </div>
         </div>
-      </section>
-    <% } else { %> 
-      <section class="bg-light-gray">
+      </div>
+    </section>
+    <section>
+      
         <div class="container">
           <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <nav aria-label="breadcrumb">
-                <ul class="breadcrumb d-flex justify-content-center">
-                  <li class="breadcrumb-item"><a href="/">Home</a></li>
-                  <li class="breadcrumb-item"><a href="/client-dashboard">Dashboard</a></li>
-                  <li aria-current="page" class="breadcrumb-item active">Edit <%= eventName%></li>
-                </ul>
-              </nav>
-              <h1 class="heading">Edit <%= eventName%></h1>
-            </div>
-          </div>
-        </div>
-      </section>
-    <% } %>
-    
-      <section>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-10 mx-auto">
-                <% if (page == "get") { %> 
-                  <form action="/company" id="job-main-form" method="POST" class="job-add-form" required>
-                <% } else { %>
-                  <form action="/company/edit/<%=_id%>?_method=PUT" id="job-main-form" method="POST" class="job-add-form" required>
-                <% } %>
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <h4>Opportunity details</h4>
-                      <hr>
-                    </div>
+            <div class="col-lg-10 mx-auto">
+              <form action="/company" id="job-main-form" method="POST" class="job-add-form" required>
+                
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h4>Opportunity details</h4>
+                    <hr>
                   </div>
-                  
-                  <div class="row">
-                    <div class="col-lg-12 form-group">
-                      <label for="category">Category</label>
-                      <select onchange="changeDateInfo()" id="category" placeholder="Choose category" class="form-control select2" name="category" required> 
-                        <option>Internship</option>
-                        <option>Club</option>
-                        <option>Workshop</option>
-                      </select>
-                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 form-group">
+                    <label for="category">Category</label>
+                    <select onchange="changeDateinfo()" id="category" placeholder="Choose category" class="form-control select2" name="category" required> 
+                      <option>Internship  </option>
+                      <option>Club</option>
+                      <option>Workshop</option>
+                    </select>
                   </div>
-                  <div class="row">
-                    <div class="col-lg-12 form-group">
-                      <label id="memberTitle" for="title">Organization Title</label>
-                      <input id="title" type="text "placholder="e.g. Interact Member" class="form-control"  name="jobTitle" required minlength="1" maxlength="128">
-                      <p class="text-muted text-small">e.g. Interact Member</p>
-                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 form-group">
+                    <label id="memberTitle" for="title">Organization Title</label>
+                    <input id="title" type="text "placholder="e.g. Interact Member" class="form-control"  name="jobTitle" required minlength="1" maxlength="128">
+                    <p class="text-muted text-small">e.g. Interact Member</p>
                   </div>
-                  <div class="row">
-                    <div class="col-lg-12 form-group">
-                      <label id="description" for="text">Organization Description</label>
-                      <textarea id="text" rows="5"  class="form-control" name="description" required minlength="1" maxlength="2000"></textarea>
-                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 form-group">
+                    <label id="description" for="text">Organization Description</label>
+                    <textarea id="text" rows="5"  class="form-control" name="description" required minlength="1" maxlength="2000"></textarea>
                   </div>
-                  <div class="row">
-                    <div class="col-lg-6 form-group">
-                      <label for="location">City</label>
-                      <input id="location" type="text" placeholder="e.g. Folsom" class="form-control" name="city" required minlength="1" maxlength="50">
-                    </div>
-                    <div class="col-lg-6 form-group">
-                      <label for="type">State</label>
-                      <select id="type" placeholder="state" class="form-control select2" name="state" required>
-                        <option>AL</option>
-                        <option>AK</option>
-                        <option>AR</option>	
-                        <option>AZ</option>
-                        <option>CA</option>
-                        <option>CO</option>
-                        <option>CT</option>
-                        <option>DC</option>
-                        <option>DE</option>
-                        <option>FL</option>
-                        <option>GA</option>
-                        <option>HI</option>
-                        <option>IA</option>	
-                        <option>ID</option>
-                        <option>IL</option>
-                        <option>IN</option>
-                        <option>KS</option>
-                        <option>KY</option>
-                        <option>LA</option>
-                        <option>MA</option>
-                        <option>MD</option>
-                        <option>ME</option>
-                        <option>MI</option>
-                        <option>MN</option>
-                        <option>MO</option>	
-                        <option>MS</option>
-                        <option>MT</option>
-                        <option>NC</option>	
-                        <option>NE</option>
-                        <option>NH</option>
-                        <option>NJ</option>
-                        <option>NM</option>			
-                        <option>NV</option>
-                        <option>NY</option>
-                        <option>ND</option>
-                        <option>OH</option>
-                        <option>OK</option>
-                        <option>OR</option>
-                        <option>PA</option>
-                        <option>RI</option>
-                        <option>SC</option>
-                        <option>SD</option>
-                        <option >TN</option>
-                        <option>TX</option>
-                        <option>UT</option>
-                        <option>VT</option>
-                        <option>VA</option>
-                        <option>WA</option>
-                        <option>WI</option>	
-                        <option>WV</option>
-                        <option>WY</option>
-                      </select>
-                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 form-group">
+                    <label for="location">City</label>
+                    <input id="location" type="text" placeholder="e.g. Folsom" class="form-control" name="city" required minlength="1" maxlength="50">
+                  </div>
+                  <div class="col-lg-6 form-group">
+                    <label for="type">State</label>
+                    <select id="type" placeholder="state" class="form-control select2" name="state" required>
+                      <option>AL</option>
+                      <option>AK</option>
+                      <option>AR</option>	
+                      <option>AZ</option>
+                      <option>CA</option>
+                      <option>CO</option>
+                      <option>CT</option>
+                      <option>DC</option>
+                      <option>DE</option>
+                      <option>FL</option>
+                      <option>GA</option>
+                      <option>HI</option>
+                      <option>IA</option>	
+                      <option>ID</option>
+                      <option>IL</option>
+                      <option>IN</option>
+                      <option>KS</option>
+                      <option>KY</option>
+                      <option>LA</option>
+                      <option>MA</option>
+                      <option>MD</option>
+                      <option>ME</option>
+                      <option>MI</option>
+                      <option>MN</option>
+                      <option>MO</option>	
+                      <option>MS</option>
+                      <option>MT</option>
+                      <option>NC</option>	
+                      <option>NE</option>
+                      <option>NH</option>
+                      <option>NJ</option>
+                      <option>NM</option>			
+                      <option>NV</option>
+                      <option>NY</option>
+                      <option>ND</option>
+                      <option>OH</option>
+                      <option>OK</option>
+                      <option>OR</option>
+                      <option>PA</option>
+                      <option>RI</option>
+                      <option>SC</option>
+                      <option>SD</option>
+                      <option >TN</option>
+                      <option>TX</option>
+                      <option>UT</option>
+                      <option>VT</option>
+                      <option>VA</option>
+                      <option>WA</option>
+                      <option>WI</option>	
+                      <option>WV</option>
+                      <option>WY</option>
+                    </select>
                   </div>
                 </div>
                 <script>
@@ -240,63 +217,75 @@
                       }
                     }
                   }
-                  </script>
-                  
-                  <!-- <div class="row">
-                    <div class="col-lg-12 form-group">
-                      <label for="tag">Tags</label>
-                      <select id="tag" multiple placeholder="Choose tags" class="form-control select2">
-                        <option>HTML</option>
-                        <option>CSS</option>
-                        <option>Ruby on Rails</option>
-                        <option>PHP</option>
-                        <option>Python</option>
-                        <option>React</option>
-                      </select>
-                    </div>
+                </script>
+                
+                <!-- <div class="row">
+                  <div class="col-lg-12 form-group">
+                    <label for="tag">Tags</label>
+                    <select id="tag" multiple placeholder="Choose tags" class="form-control select2">
+                      <option>HTML</option>
+                      <option>CSS</option>
+                      <option>Ruby on Rails</option>
+                      <option>PHP</option>
+                      <option>Python</option>
+                      <option>React</option>
+                    </select>
+                  </div>
+                </div> -->
+                <div class="row">
+                  <!-- <div class="col-xl-4 form-group">
+                    <label for="post_type">Type of the post</label>
+                    <select id="post_type" data-placeholder="Choose type of the post" class="form-control select2">
+                      <option>Featured ($100) </option>
+                      <option>Standard ($30)</option>
+                    </select>
+                  </div>
+                  <div class="col-xl-4 form-group">
+                    <label for="apply_url">Apply URL <span class="note">(users will apply on your website)</span></label>
+                    <input id="apply_url" type="url" class="form-control">
                   </div> -->
-                  <div class="row">
-                    <!-- <div class="col-xl-4 form-group">
-                      <label for="post_type">Type of the post</label>
-                      <select id="post_type" data-placeholder="Choose type of the post" class="form-control select2">
-                        <option>Featured ($100) </option>
-                        <option>Standard ($30)</option>
-                      </select>
-                    </div>
-                    <div class="col-xl-4 form-group">
-                      <label for="apply_url">Apply URL <span class="note">(users will apply on your website)</span></label>
-                      <input id="apply_url" type="url" class="form-control">
-                    </div> -->
 
-                    <div class="col-xl-4 form-group">
-                      <label id="dateInfo1" for="validity">Start Date</label>
-                      <input id="validity1" type="date" class="form-control" name="startDate" required>
-                    </div>
-                    <div class="col-xl-4 form-group">
-                      <label id="dateInfo2" for="validity">End Date</label>
-                      <input id="validity2" type="date" class="form-control" name="endDate" required>
-                    </div>
+                  <div class="col-xl-4 form-group">
+                    <label id="dateInfo1" for="validity">Start Date</label>
+                    <input id="validity" type="date" class="form-control" name="startDate" required>
                   </div>
-                  <div class="row">
-                    <div class="col-xl-4 form-group">
-                      <label id="dateInfo3" for="validity">Date Posted</label>
-                      <input id="validity3" type="date" class="form-control" name="datePosted" required>
-                    </div>
-                    <div class="col-xl-4 form-group">
-                      <label id="dateInfo4" for="validity">Date Expiring</label>
-                      <input id="validity4" type="date" class="form-control" name="dateExpiring" required>
-                    </div>
+                  <div class="col-xl-4 form-group">
+                    <label id="dateInfo2" for="validity">End Date</label>
+                    <input id="validity" type="date" class="form-control" name="endDate" required>
                   </div>
-                  <div class="row">
-                    <div class="col-lg-12">                           
-                      <hr class="margin-bottom--big">
-                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-xl-4 form-group">
+                    <label id="dateInfo3" for="validity">Date Posted</label>
+                    <input id="validity" type="date" class="form-control" name="datePosted" required>
                   </div>
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <h4>Organization details</h4>
-                      <hr>
-                    </div>
+                  <div class="col-xl-4 form-group">
+                    <label id="dateInfo4" for="validity">Date Expiring</label>
+                    <input id="validity" type="date" class="form-control" name="dateExpiring" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">                           
+                    <hr class="margin-bottom--big">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h4>Organization details</h4>
+                    <hr>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 form-group">
+                    <label for="company_name">Organization name</label>
+                    <input id="company_name" type="text" class="form-control" name="companyName" required>
+                  </div>
+                </div>
+                <!-- <div class="row">
+                  <div class="col-lg-12 form-group">
+                    <label for="company_description">Company Description</label>
+                    <textarea id="company_description" rows="3" class="form-control"></textarea>
+                    <p class="help-block text-small">Example block-level help text here. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>
                   </div>
                 </div> -->
                 <div class="row">
@@ -342,17 +331,18 @@
                       </label>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-lg-12 text-center">
-                      <hr>
-                      <button type="submit" class="btn btn-outline-white-primary"> <i class="fa fa-magic"></i> Save and publish</button>
-                      <!--<button type="submit" class="btn btn-outline-white-secondary"> <i class="fa fa-save"></i> Save draft</button>-->
-                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 text-center">
+                    <hr>
+                    <button type="submit" class="btn btn-outline-white-primary"> <i class="fa fa-magic"></i> Save and publish</button>
+                    <!--<button type="submit" class="btn btn-outline-white-secondary"> <i class="fa fa-save"></i> Save draft</button>-->
                   </div>
-                </form>
-              </div>
+                </div>
+              </form>
             </div>
           </div>
+        </div>
     </section>
     <footer class="footer">
       <div class="footer__block">
@@ -390,55 +380,8 @@
     <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/jquery.cookie/jquery.cookie.js"> </script>
     <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/bootstrap-select/js/bootstrap-select.min.js">   </script>
-    <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/js/front.js"></script> 
-    <% if (page == "edit") { %>
-      <script>
-        window.addEventListener("DOMContentLoaded", function() {
-          let page = "<%=page%>"
-          if (page == "edit") {
-            console.log(document.getElementById("category").value)
-            document.getElementById("title").value = "<%=eventName%>"
-            document.getElementById("text").value = "<%=description%>"
-            document.getElementById("location").value = "<%=city%>"
-            document.getElementById("type").value = "<%=state%>"
-            console.log()
-            document.getElementById("validity1").value = new Date("<%=startDate%>").toISOString().split('T')[0];
-            document.getElementById("validity2").value = new Date("<%=endDate%>").toISOString().split('T')[0];
-            document.getElementById("validity3").value = new Date("<%=datePosted%>").toISOString().split('T')[0];
-            document.getElementById("validity4").value = new Date("<%=dateExpiring%>").toISOString().split('T')[0];
-            document.getElementById("company_name").value = "<%=organization%>"
-            document.getElementById("company_website").value = "<%=link%>"
-            document.getElementById("orgMail").value = "<%=email%>"
-            console.log("<%=type%>")
-            
-            if ("<%=type%>" == "Internship") {
-              document.getElementById("category").value = "Internship";
-              document.getElementById("memberTitle").innerHTML = "Job Title";
-              document.getElementById("description").innerHTML = "Internship Description";
-              document.getElementById("dateInfo1").innerHTML = "Start Date";
-              document.getElementById("dateInfo2").innerHTML = "End Date"
-              document.getElementById("dateInfo3").innerHTML = "Date Posted"
-              document.getElementById("dateInfo4").innerHTML = "Date Expiring"
-            } else if ("<%=type%>" == "Workshop") {
-              document.getElementById("category").value = "Workshop";
-              document.getElementById("memberTitle").innerHTML = "Workshop Name";
-              document.getElementById("description").innerHTML = "Workshop Description";
-              document.getElementById("dateInfo1").innerHTML = "Start Date";
-              document.getElementById("dateInfo2").innerHTML = "End Date"
-              document.getElementById("dateInfo3").innerHTML = "Date Posted"
-              document.getElementById("dateInfo4").innerHTML = "Date Expiring"
-            } else {
-              document.getElementById("category").value = "Club";
-              document.getElementById("memberTitle").innerHTML = "Member Title";
-              document.getElementById("description").innerHTML = "Club Description";
-              document.getElementById("dateInfo1").innerHTML = "First meeting (approx)"
-              document.getElementById("dateInfo2").innerHTML = "Last meeting (approx)"
-              document.getElementById("dateInfo3").innerHTML = "Date Posted"
-              document.getElementById("dateInfo4").innerHTML = "Signup Deadline"
-            }
-          }
-        });
-      </script> 
-    <% } %>
+    <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/js/front.js"></script>
   </body>
+
+<!-- Mirrored from demo.bootstrapious.com/jobs/2-1-0/client-job.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 29 Jun 2020 05:28:07 GMT -->
 </html>
