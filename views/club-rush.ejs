@@ -108,7 +108,7 @@
                 <input type="text" id="name" name="name" class="form-control" value="<%=results.opportunityPlaceholder%>"">
               </div>
               <div class="col-sm-1 col-lg-2 form-group">
-                <button type="submit" class="btn btn-outline-white-primary job-main-form__button"><i class="fa fa-search"></i></button>
+                <button type="submit" class="btn btn-outline-white-primary job-main-form__button" id="memery"><i class="fa fa-search"></i></button>
               </div>
             </div>
             <div class="row align-items-center">
@@ -121,7 +121,7 @@
                 <label for="searchByName">Search By Club Name</label>
               </div>
               <div class="col-3 form-group"> 
-                <input type="radio" id="searchByMemberTitle" name="buttons"
+                <input type="radio" id="searchByMemberTitle" name="button"
                 <%if(results.checkedTitle == true){%>
                   <%="checked"%>
                 <%}%>>
@@ -133,6 +133,21 @@
         </form>
       </div>
     </section>
+    <script>
+      const btn = document.querySelector('#memery');
+      // handle click button
+      btn.onclick = function () {
+          const rbs = document.querySelectorAll('input[name="button"]');
+          let selectedValue;
+          for (const rb of rbs) {
+              if (rb.checked) {
+                  selectedValue = rb.value;
+                  break;
+              }
+          }
+          alert(selectedValue);
+      };
+  </script>
     <!-- *** LISTINGS *** -->
     <section class="listings">
       <div class="container">
