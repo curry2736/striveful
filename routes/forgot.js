@@ -8,9 +8,11 @@ require('dotenv').config();
 
 
 router.get('/',  (req, res) => {
-    
+    // const id = isUser(req,res);
+    // const user =  User.findById(id);
+    // console.log(user)
     let currUser = User.findOne({ email: 'rohit.srivats@gmail.com' });
-   
+    //console.log(currUser.email)
     
     res.render('forgot', {
         user: null,
@@ -28,7 +30,12 @@ router.post('/', async(req, res) => {
         //return res.status(400).send('Incorrect email or password.');
         req.flash('error', 'Email not found');
         res.redirect('forgot')
-        
+        // res.render('forgot', {
+        //     user: null,
+        //     message: req.flash('error'),
+        //     messageInfo: 
+        // })
+        //res.locals.message = req.flash();
     } 
     else {
         let currToken = await passwordResetToken.findOne({ email: req.body.forgotemail });
@@ -39,7 +46,13 @@ router.post('/', async(req, res) => {
          }
         
         const id = uuidv1();
-        
+        // console.log(id)
+        // const request = {
+        //     id,
+        //     email: currUser.email,
+        // };
+        // createResetRequest(request);
+        // sendResetLink(thisUser.email, id);
         
         const resettoken = new passwordResetToken({
             email: req.body.forgotemail,
@@ -65,8 +78,8 @@ router.post('/', async(req, res) => {
         var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: process.env.EMAIL,
-          pass: process.env.PASSWORD
+          user: 'strivefulnet@gmail.com',
+          pass: 'Er1(g0@t'
         }
         });
       
@@ -77,8 +90,6 @@ router.post('/', async(req, res) => {
         text: `To reset your password, please click on this link: http://localhost:3000/reset/${id}`
       };
       
-        //the link url varies by device: localhost, heroku, production environment
-        
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           console.log(error);
