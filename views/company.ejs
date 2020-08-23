@@ -104,24 +104,25 @@
                 </div>
                 <div class="row">
                   <div class="col-lg-12 form-group">
-                    <label id="memberTitle" for="title">Organization Title</label>
+                    <label id="memberTitle" for="title">Organization Title<span style = "color:red">*</span></label>
                     <input id="title" type="text "placholder="e.g. Interact Member" class="form-control"  name="jobTitle" required minlength="1" maxlength="128">
                     <p class="text-muted text-small">e.g. Interact Member</p>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-12 form-group">
-                    <label id="description" for="text">Organization Description</label>
+                    <label id="description" for="text">Organization Description<span style = "color:red">*</span></label>
                     <textarea id="text" rows="5"  class="form-control" name="description" required minlength="1" maxlength="2000"></textarea>
+                    <p class="text-muted text-small emailVis">Describe your club here. Mention meetings, relevant dates, time commitment, etc.</p>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-6 form-group">
-                    <label for="location">City</label>
+                    <label for="location">City<span style = "color:red">*</span></label>
                     <input id="location" type="text" placeholder="e.g. Folsom" class="form-control" name="city" required minlength="1" maxlength="50">
                   </div>
                   <div class="col-lg-6 form-group">
-                    <label for="type">State</label>
+                    <label for="type">State<span style = "color:red">*</span></label>
                     <select id="type" placeholder="state" class="form-control select2" name="state" required>
                       <option>AL</option>
                       <option>AK</option>
@@ -186,11 +187,18 @@
                       document.getElementById("dateInfo1").innerHTML = "Start Date";
                       document.getElementById("dateInfo2").innerHTML = "End Date"
                       document.getElementById("dateInfo3").innerHTML = "Date Posted"
-                      document.getElementById("dateInfo4").innerHTML = "Date Expiring"
+                      document.getElementById("dateInfo4").innerHTML = "Date Expiring";
+                      document.getElementById("emailInfo1").innerHTML = "Email";
                       var x = document.getElementsByClassName("emailVis");
                       for (var i = 0; i < x.length; i++) {
                         x[i].style.display = "none";
                       }
+
+                      var n = document.getElementsByClassName("webVis");
+                      for (var i = 0; i < x.length; i++) {
+                        n[i].style.display = "inline";
+                      }
+                      
                     } else if (document.getElementById("category").value == "Workshop") {
                       document.getElementById("memberTitle").innerHTML = "Workshop Name";
                       document.getElementById("description").innerHTML = "Workshop Description";
@@ -198,9 +206,15 @@
                       document.getElementById("dateInfo2").innerHTML = "End Date"
                       document.getElementById("dateInfo3").innerHTML = "Date Posted"
                       document.getElementById("dateInfo4").innerHTML = "Date Expiring"
+                      document.getElementById("emailInfo1").innerHTML = "Email";
                       var x = document.getElementsByClassName("emailVis");
                       for (var i = 0; i < x.length; i++) {
                         x[i].style.display = "none";
+                      }
+
+                      var n = document.getElementsByClassName("webVis");
+                      for (var i = 0; i < x.length; i++) {
+                        n[i].style.display = "inline";
                       }
                       
                     } else {
@@ -214,6 +228,11 @@
                       var x = document.getElementsByClassName("emailVis");
                       for (var i = 0; i < x.length; i++) {
                         x[i].style.display = "inline";
+                      }
+
+                      var n = document.getElementsByClassName("webVis");
+                      for (var i = 0; i < x.length; i++) {
+                        n[i].style.display = "none";
                       }
                     }
                   }
@@ -246,21 +265,21 @@
                   </div> -->
 
                   <div class="col-xl-4 form-group">
-                    <label id="dateInfo1" for="validity">Start Date</label>
+                    <label id="dateInfo1" for="validity">Start Date</label><span style = "color:red">*</span>
                     <input id="validity" type="date" class="form-control" name="startDate" required>
                   </div>
                   <div class="col-xl-4 form-group">
-                    <label id="dateInfo2" for="validity">End Date</label>
+                    <label id="dateInfo2" for="validity">End Date</label><span style = "color:red">*</span>
                     <input id="validity" type="date" class="form-control" name="endDate" required>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-xl-4 form-group">
-                    <label id="dateInfo3" for="validity">Date Posted</label>
+                    <label id="dateInfo3" for="validity">Date Posted</label><span style = "color:red">*</span>
                     <input id="validity" type="date" class="form-control" name="datePosted" required>
                   </div>
                   <div class="col-xl-4 form-group">
-                    <label id="dateInfo4" for="validity">Date Expiring</label>
+                    <label id="dateInfo4" for="validity">Date Expiring</label><span style = "color:red">*</span>
                     <input id="validity" type="date" class="form-control" name="dateExpiring" required>
                   </div>
                 </div>
@@ -277,7 +296,7 @@
                 </div>
                 <div class="row">
                   <div class="col-lg-12 form-group">
-                    <label for="company_name">Organization name</label>
+                    <label for="company_name">Organization name<span style = "color:red">*</span></label>
                     <input id="company_name" type="text" class="form-control" name="companyName" required>
                   </div>
                 </div>
@@ -295,7 +314,7 @@
                     <input id="company_logo" type="file" class="form-control">
                   </div> -->
                     <div class="col-lg-4 form-group">
-                      <label id = "emailInfo1" for="company_twitter">Email*</label>
+                      <label id = "emailInfo1" for="company_twitter">Email</label><span style = "color:red">*</span>
                       <input  placeholder="service@mail.com" class="form-control"  type="email" name="email" required>
                     </div>
 
@@ -310,17 +329,28 @@
                       <input placeholder="person@mail.com" class="form-control" type="email" name = "advisorEmail" required>
                     </div>
 
-                    <div class="col-lg-4 form-group">
-                      <label for="company_website">Website Link</label>
-                      <input id="company_website" placeholder="Starts with http:// or https://" type="url" class="form-control" name="websiteLink">
-                      <p class="text-muted text-small">If you don't have a website, put your club signup link (Google Forms)</p>
+                    <div class="col-lg-4 form-group emailVis">
+                      <label for="company_website">Application Link<span style = "color:red">*</span></label>
+                      <input id="company_website" placeholder="Starts with http:// or https://" type="url" class="form-control" name="formLink" required>
+                      <p class="text-muted text-small">Attach your application/registration link here</p>
                     </div>
 
                     <div class="col-lg-4 form-group emailVis">
-                      <label for="company_website">Youtube Link*</label>
-                      <input id="company_website" value = "" placeholder="Starts with http:// or https://" type="url" class="form-control" name="link" required>
+                      <label for="company_website">Youtube Link<span style = "color:red">*</span> </label>
+                      <input id="company_website" value = "" placeholder="Starts with http:// or https://" type="url" class="form-control" name="youtubeLink" required>
                     </div>
-                  
+
+                    <div class="col-lg-4 form-group emailVis">
+                      <label for="company_website">Teams Link<span style = "color:red">*</span> </label>
+                      <input id="company_website" value = "" placeholder="Starts with http:// or https://" type="url" class="form-control" name="teamsLink" required>
+                    </div>
+
+                    <div class="col-lg-4 form-group">
+                      <label for="company_website">Website Link</label><span class = "webVis" style = "color:red">*</span> 
+                      <input id="company_website" placeholder="Starts with http:// or https://" type="url" class="form-control" name="websiteLink">
+                      <p class="text-muted text-small emailVis">Optional</p>
+                    </div>
+                    
                 </div>
                 <div class="row">
                   <div class="col-lg-12">
