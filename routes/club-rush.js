@@ -73,7 +73,7 @@ router.get('/query', async (req, res) => {
         console.log('title: ' + searchByMemberTitle)
         let adjustedDate = new Date();
         adjustedDate = adjustedDate.getTime() - 25200000;
-
+        console.log(req.query)
         if (searchByName) {
             checkedName = true
             let volunteerings =  await Volunteering.find({"organization": {$regex:name,$options:'i'}, "datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).exec()
@@ -99,7 +99,7 @@ router.get('/query', async (req, res) => {
                                         opportunityPlaceholder : opportunityPlaceholder, locationPlaceholder, checkedName : checkedName, checkedTitle : checkedTitle}})
     }
     catch (err) {
-        console.log(error)
+        console.log(err)
     }
 })
 module.exports = router;
