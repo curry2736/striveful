@@ -82,7 +82,7 @@ function validateInternship(internship) {
         startDate: Joi.date().required(),
         endDate: Joi.date().required(),
         datePosted: Joi.date().required(),
-        websiteLink: Joi.string().uri(),
+        websiteLink: Joi.string().uri().required(),
         visits: Joi.number()
     };
     return Joi.validate(internship, schema);
