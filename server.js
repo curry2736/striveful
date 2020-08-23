@@ -22,9 +22,14 @@ const details = require('./routes/details');
 const about = require('./routes/about');
 const indexRouter = require('./routes/index')
 const company = require('./routes/company');
+const forgot = require('./routes/forgot');
+const reset = require('./routes/reset');
 const express = require('express');
 const bodyParser = require('body-parser')
+const jwt = require('jwt-simple');
+var nodemailer = require('nodemailer');
 const favorite = require('./routes/favorite')
+
 const app = express();
 const methodOverride = require('method-override')
 const port = process.env.PORT || 3000;
@@ -47,6 +52,7 @@ app.use(flash());
 
 app.use(express.json());
 app.use('/details', express.static('public'))
+app.use('/reset', express.static('public'))
 app.use(express.static(__dirname + '/public'));
 
 app.set('view engine', 'ejs');
@@ -84,8 +90,11 @@ app.use('/search', search);
 app.use('/company', company)
 app.use('/details',details);
 app.use('/about', about);
+app.use('/forgot', forgot);
+app.use('/reset', reset);
 app.use('/search', express.static('public'))
 app.use('/club-rush', express.static('public'))
+
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
