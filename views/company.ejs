@@ -34,7 +34,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
     
   </head>
-  <body>
+  <body onpageshow="changeDateinfo()">
     <!-- navbar-->
     <header class="header">
       <nav class="navbar navbar-expand-lg">
@@ -99,7 +99,7 @@
                   <div class="col-lg-12 form-group">
                     <label for="category">Category</label>
                     <select onchange="changeDateinfo()" id="category" placeholder="Choose category" class="form-control select2" name="category" required> 
-                      <option>Internship  </option>
+                      <option>Internship</option> 
                       <option>Club</option>
                       <option>Workshop</option>
                     </select>
@@ -179,10 +179,11 @@
                       <option>WV</option>
                       <option>WY</option>
                     </select>
-                  </div>
+                  </div> 
                 </div>
                 <script>
-                  function changeDateinfo() {
+                //WINDOW EVENT LISTENER
+                /*window.addEventListener("DOMContentLoaded", function(){})
                     console.log(document.getElementById("dateInfo1").value)
                     if (document.getElementById("category").value == "Internship") {
                       document.getElementById("memberTitle").innerHTML = "Job Title";
@@ -192,9 +193,16 @@
                       document.getElementById("dateInfo3").innerHTML = "Date Posted"
                       document.getElementById("dateInfo4").innerHTML = "Date Expiring";
                       document.getElementById("emailInfo1").innerHTML = "Email";
+                    
                       var x = document.getElementsByClassName("emailVis");
                       for (var i = 0; i < x.length; i++) {
                         x[i].style.display = "none";
+                      
+                      }
+
+                      var maybe = document.getElementsByClassName("required");
+                      for (var i = 0; i < x.length; i++) {
+                        maybe[i].removeAttribute("required");
                       }
 
                       var n = document.getElementsByClassName("webVis");
@@ -209,10 +217,15 @@
                       document.getElementById("dateInfo2").innerHTML = "End Date"
                       document.getElementById("dateInfo3").innerHTML = "Date Posted"
                       document.getElementById("dateInfo4").innerHTML = "Date Expiring"
-                      document.getElementById("emailInfo1").innerHTML = "Email";
+                      document.getElementById("emailInfo1").innerHTML = "Email";   
                       var x = document.getElementsByClassName("emailVis");
                       for (var i = 0; i < x.length; i++) {
                         x[i].style.display = "none";
+                      }
+
+                      var maybe = document.getElementsByClassName("required");
+                      for (var i = 0; i < x.length; i++) {
+                        maybe[i].removeAttribute("required");
                       }
 
                       var n = document.getElementsByClassName("webVis");
@@ -233,12 +246,93 @@
                         x[i].style.display = "inline";
                       }
 
+                      var maybe = document.getElementsByClassName("required");
+                      for (var i = 0; i < x.length; i++) {
+                        maybe[i].setAttribute("required");
+                      }
+
+                      var n = document.getElementsByClassName("webVis");
+                      for (var i = 0; i < x.length; i++) {
+                        n[i].style.display = "none";
+                      }
+                    }*/
+                  
+                //CHANGE DATE INFO FUNCTION
+                function changeDateinfo() {
+                    console.log(document.getElementById("dateInfo1").value)
+                    if (document.getElementById("category").value == "Internship") {
+                      document.getElementById("memberTitle").innerHTML = "Job Title";
+                      document.getElementById("description").innerHTML = "Internship Description";
+                      document.getElementById("dateInfo1").innerHTML = "Start Date";
+                      document.getElementById("dateInfo2").innerHTML = "End Date"
+                      document.getElementById("dateInfo3").innerHTML = "Date Posted"
+                      document.getElementById("dateInfo4").innerHTML = "Date Expiring";
+                      document.getElementById("emailInfo1").innerHTML = "Email";
+                    
+                      var x = document.getElementsByClassName("emailVis");
+                      for (var i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";
+                      
+                      }
+
+                     var maybe = document.getElementsByClassName("required");
+                      for (var i = 0; i < maybe.length; i++) {
+                        maybe[i].removeAttribute("required");
+                      }
+
+                      var n = document.getElementsByClassName("webVis");
+                      for (var i = 0; i < x.length; i++) {
+                        n[i].style.display = "inline";
+                      }
+                      
+                    } else if (document.getElementById("category").value == "Workshop") {
+                      document.getElementById("memberTitle").innerHTML = "Workshop Name";
+                      document.getElementById("description").innerHTML = "Workshop Description";
+                      document.getElementById("dateInfo1").innerHTML = "Start Date";
+                      document.getElementById("dateInfo2").innerHTML = "End Date"
+                      document.getElementById("dateInfo3").innerHTML = "Date Posted"
+                      document.getElementById("dateInfo4").innerHTML = "Date Expiring"
+                      document.getElementById("emailInfo1").innerHTML = "Email";   
+                      var x = document.getElementsByClassName("emailVis");
+                      for (var i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";
+                      }
+
+                      var maybe = document.getElementsByClassName("required");
+                      for (var i = 0; i < maybe.length; i++) {
+                        maybe[i].removeAttribute("required");
+                      }
+
+                      var n = document.getElementsByClassName("webVis");
+                      for (var i = 0; i < x.length; i++) {
+                        n[i].style.display = "inline";
+                      }
+                      
+                    } else {
+                      document.getElementById("memberTitle").innerHTML = "Member Title";
+                      document.getElementById("description").innerHTML = "Club Description";
+                      document.getElementById("dateInfo1").innerHTML = "First meeting (approx)"
+                      document.getElementById("dateInfo2").innerHTML = "Last meeting (approx)"
+                      document.getElementById("dateInfo3").innerHTML = "Date Posted"
+                      document.getElementById("dateInfo4").innerHTML = "Signup Deadline"
+                      document.getElementById("emailInfo1").innerHTML = "Club Email";
+                      var x = document.getElementsByClassName("emailVis");
+                      for (var i = 0; i < x.length; i++) {
+                        x[i].style.display = "inline";
+                      }
+
+                      var maybe = document.getElementsByClassName("required");
+                      for (var i = 0; i < maybe.length; i++) {
+                        maybe[i].setAttribute("required");
+                      }
+
                       var n = document.getElementsByClassName("webVis");
                       for (var i = 0; i < x.length; i++) {
                         n[i].style.display = "none";
                       }
                     }
-                  }
+                  
+                    }
                 </script>
                 
                 <!-- <div class="row">
@@ -322,28 +416,28 @@
                     </div>
 
               
-                    <div class="col-lg-4 form-group emailVis">
+                    <div id="presEmail" class="col-lg-4 form-group emailVis required">
                       <label>President Email<span style = "color:red">*</span></label>
                       <input placeholder="person@mail.com" class="form-control" type="email" name = "presidentEmail" required>
                     </div>
 
-                    <div class="col-lg-4 form-group emailVis">
+                    <div class="col-lg-4 form-group emailVis required">
                       <label>Advisor Email<span style = "color:red">*</span></label>
                       <input placeholder="person@mail.com" class="form-control" type="email" name = "advisorEmail" required>
                     </div>
 
-                    <div class="col-lg-4 form-group emailVis">
+                    <div class="col-lg-4 form-group emailVis required">
                       <label for="company_website">Application Link<span style = "color:red">*</span></label>
                       <input id="company_website" placeholder="Starts with http:// or https://" type="url" class="form-control" name="formLink" required>
                       <p class="text-muted text-small">Attach your application/registration link here</p>
                     </div>
 
-                    <div class="col-lg-4 form-group emailVis">
+                    <div class="col-lg-4 form-group emailVis required">
                       <label for="company_website">Youtube Link<span style = "color:red">*</span> </label>
                       <input id="company_website" value = "" placeholder="Starts with http:// or https://" type="url" class="form-control" name="youtubeLink" required>
                     </div>
 
-                    <div class="col-lg-4 form-group emailVis">
+                    <div class="col-lg-4 form-group emailVis required">
                       <label for="company_website">Teams Link<span style = "color:red">*</span> </label>
                       <input id="company_website" value = "" placeholder="Starts with http:// or https://" type="url" class="form-control" name="teamsLink" required>
                     </div>
