@@ -71,18 +71,17 @@ router.get('/query', async (req, res) => {
         console.log('name: ' + searchByName)
         var searchByMemberTitle = req.query.searchByMemberTitle
         console.log('title: ' + searchByMemberTitle)
-
-        if (searchByName) {
-            checkedName = true
-        }
-        if (searchByMemberTitle) {
-            checkedTitle = true
-        }
-        
         let adjustedDate = new Date();
         adjustedDate = adjustedDate.getTime() - 25200000;
 
-        let volunteerings =  await Volunteering.find({"eventName": {$regex:name,$options:'i'}, "datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).exec()
+        if (searchByName) {
+            checkedName = true
+            let volunteerings =  await Volunteering.find({"organization": {$regex:name,$options:'i'}, "datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).exec()
+        }
+        if (searchByMemberTitle) {
+            checkedTitle = true
+            let volunteerings =  await Volunteering.find({"eventName": {$regex:name,$options:'i'}, "datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).exec()
+        }
         
         totalResults = volunteerings.length;
 
