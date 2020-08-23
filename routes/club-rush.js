@@ -24,24 +24,22 @@ router.get('/', async(req, res) => {
 
         var searchNum = 'All available clubs'
         var totalResults = null
-        var internshipIsChecked = true
-        var volunteeringIsChecked = true
-        var workshopIsChecked = true
 
         var opportunityPlaceholder = ''
         console.log(opportunityPlaceholder)
         var locationPlaceholder = ''
         console.log(locationPlaceholder)
+        
+        var checkedName = true
+        var checkedTitle = false
 
         let adjustedDate = new Date();
         adjustedDate = adjustedDate.getTime() - 25200000;
 
-        let internships = await Internship.find({"datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).sort({"datePosted":-1}).exec()
         let volunteerings = await Volunteering.find({"datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).sort({"datePosted":-1}).exec()
-        let workshops = await Workshop.find({"datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).sort({"datePosted":-1}).exec()
 
-        res.render('club-rush', {user: user, results : {user, searchNum, internships : internships, volunteerings : volunteerings, workshops : workshops, internshipIsChecked, volunteeringIsChecked, workshopIsChecked,
-                                        opportunityPlaceholder, locationPlaceholder}})
+        res.render('club-rush', {user: user, results : {user, searchNum, volunteerings : volunteerings,
+                                        opportunityPlaceholder : opportunityPlaceholder, locationPlaceholder, checkedName : checkedName, checkedTitle : checkedTitle}})
     }
     catch (err) {
         console.log(err)
@@ -60,6 +58,8 @@ router.get('/query', async (req, res) => {
 
         var searchNum = null
         var totalResults = 0
+        var checkedName = false
+        var checkedTitle = false
 
         var name = req.query.name.toLowerCase()
         console.log('query: ' + name)
@@ -67,20 +67,22 @@ router.get('/query', async (req, res) => {
         console.log(opportunityPlaceholder)
         var locationPlaceholder = req.query.location
         console.log(locationPlaceholder)
+        var searchByName = req.query.searchByName
+        console.log('name: ' + searchByName)
+        var searchByMemberTitle = req.query.searchByMemberTitle
+        console.log('title: ' + searchByMemberTitle)
 
-        var internshipIsChecked = req.query.internshipCheck
-        console.log('internship: ' + internshipIsChecked)
-        var volunteeringIsChecked = req.query.volunteeringCheck
-        console.log('volunteering: ' + volunteeringIsChecked)
-        var workshopIsChecked = req.query.workshopCheck
-        console.log('workshop: ' + workshopIsChecked)
+        if (searchByName) {
+            checkedName = true
+        }
+        if (searchByMemberTitle) {
+            checkedTitle = true
+        }
         
         let adjustedDate = new Date();
         adjustedDate = adjustedDate.getTime() - 25200000;
 
-        let internships = await Internship.find({"jobTitle": {$regex:name,$options:'i'}, "datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).exec()
         let volunteerings =  await Volunteering.find({"eventName": {$regex:name,$options:'i'}, "datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).exec()
-        let workshops = await Workshop.find({"eventName": {$regex:name,$options:'i'}, "datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).exec()
         
         totalResults = volunteerings.length;
 
@@ -94,8 +96,8 @@ router.get('/query', async (req, res) => {
         }
 
         console.log('--------------------------------------------------------------------')
-        res.render('club-rush', {results : {user, searchNum, internships : internships, volunteerings : volunteerings, workshops : workshops, internshipIsChecked, volunteeringIsChecked, workshopIsChecked,
-                                        opportunityPlaceholder, locationPlaceholder}})
+        res.render('club-rush', {results : {user, searchNum,volunteerings : volunteerings,
+                                        opportunityPlaceholder : opportunityPlaceholder, locationPlaceholder, checkedName : checkedName, checkedTitle : checkedTitle}})
     }
     catch (err) {
         console.log(error)
