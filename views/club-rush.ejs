@@ -89,6 +89,37 @@
         </div>
       </div>
     </div>
+    <script>
+      function radioButton() {
+        console.log('we here')
+        var n
+        var m
+
+        var searchByName = document.getElementById("searchByName").checked
+        if (searchByName) {
+          n = "on"
+        }
+        else {
+          n = "off"
+        }
+        console.log(searchByName)
+
+        var searchByMemberTitle = document.getElementById("searchByMemberTitle").checked
+        if (searchByMemberTitle) {
+          m = "on"
+        }
+        else {
+          m = "off"
+        }
+        console.log(searchByMemberTitle)
+
+        document.getElementById("hSearchName").value = n
+        console.log(document.getElementById("hSearchName").value)
+
+        document.getElementById("hSearchTitle").value = m
+        console.log(document.getElementById("hSearchTitle").value)
+      }
+    </script>
     <!-- *** LOGIN MODAL END ***-->
     <section class="job-form-section job-form-section--compressed">
       <div class="container">
@@ -108,7 +139,7 @@
                 <input type="text" id="name" name="name" class="form-control" value="<%=results.opportunityPlaceholder%>"">
               </div>
               <div class="col-sm-1 col-lg-2 form-group">
-                <button type="submit" class="btn btn-outline-white-primary job-main-form__button" id="memery"><i class="fa fa-search"></i></button>
+                <button onclick="radioButton()" type="submit" class="btn btn-outline-white-primary job-main-form__button"><i class="fa fa-search"></i></button>
               </div>
             </div>
             <div class="row align-items-center">
@@ -130,24 +161,11 @@
               <div class="col-3"></div>
             </div>
           </div>
+          <input type="hidden" id="hSearchName" name="hSearchName">
+          <input type="hidden" id="hSearchTitle" name="hSearchTitle">
         </form>
       </div>
     </section>
-    <script>
-      const btn = document.querySelector('#memery');
-      // handle click button
-      btn.onclick = function () {
-          const rbs = document.querySelectorAll('input[name="button"]');
-          let selectedValue;
-          for (const rb of rbs) {
-              if (rb.checked) {
-                  selectedValue = rb.value;
-                  break;
-              }
-          }
-          alert(selectedValue);
-      };
-  </script>
     <!-- *** LISTINGS *** -->
     <section class="listings">
       <div class="container">

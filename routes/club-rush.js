@@ -60,27 +60,29 @@ router.get('/query', async (req, res) => {
         var totalResults = 0
         var checkedName = false
         var checkedTitle = false
+        var volunteerings = ''
 
         var name = req.query.name.toLowerCase()
         console.log('query: ' + name)
         var opportunityPlaceholder = req.query.name
         console.log(opportunityPlaceholder)
-        var locationPlaceholder = req.query.location
-        console.log(locationPlaceholder)
-        var searchByName = req.query.searchByName
+        //var locationPlaceholder = req.query.location
+        //console.log(locationPlaceholder)
+        var searchByName = req.query.hSearchName
         console.log('name: ' + searchByName)
-        var searchByMemberTitle = req.query.searchByMemberTitle
+        var searchByMemberTitle = req.query.hSearchTitle
         console.log('title: ' + searchByMemberTitle)
+
         let adjustedDate = new Date();
         adjustedDate = adjustedDate.getTime() - 25200000;
-        console.log(req.query)
-        if (searchByName) {
+
+        if (searchByName == "on") {
             checkedName = true
-            let volunteerings =  await Volunteering.find({"organization": {$regex:name,$options:'i'}, "datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).exec()
+            volunteerings =  await Volunteering.find({"organization": {$regex:name,$options:'i'}, "datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).exec()
         }
-        if (searchByMemberTitle) {
+        else if (searchByMemberTitle == "on") {
             checkedTitle = true
-            let volunteerings =  await Volunteering.find({"eventName": {$regex:name,$options:'i'}, "datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).exec()
+            volunteerings =  await Volunteering.find({"eventName": {$regex:name,$options:'i'}, "datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).exec()
         }
         
         totalResults = volunteerings.length;
@@ -95,8 +97,8 @@ router.get('/query', async (req, res) => {
         }
 
         console.log('--------------------------------------------------------------------')
-        res.render('club-rush', {results : {user, searchNum,volunteerings : volunteerings,
-                                        opportunityPlaceholder : opportunityPlaceholder, locationPlaceholder, checkedName : checkedName, checkedTitle : checkedTitle}})
+        res.render('club-rush', {results : {user, searchNum, volunteerings : volunteerings,
+                                        opportunityPlaceholder : opportunityPlaceholder, checkedName : checkedName, checkedTitle : checkedTitle}})
     }
     catch (err) {
         console.log(err)
