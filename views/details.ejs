@@ -122,8 +122,16 @@
             </ol>
             <h5>Description</h5>
             <blockquote class="blockquote">
-              <p><%= details.result.description%></p>
+              <p id="detailDesc"><%= details.result.description%></p>
+              <script>
+                var text=document.getElementById('detailDesc').innerHTML.split('\n');
+                var updatedText = text.join('<br />');
+                document.getElementById('detailDesc').innerHTML = updatedText
+              </script>
             </blockquote>
+            <div style="padding-bottom: 56.25%; position: relative;">
+              <iframe style="position:absolute;" width="100%" height="100%" frameborder="0" allow="encrypted-media; gyroscope;" allowfullscreen src="https://www.youtube.com/embed/<%=details.result.youtubeLink.split('watch?v=')[1]%>"></iframe>
+            </div>
             <!-- <h5>Header Level 5</h5>
             <ul>
               <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
@@ -153,21 +161,11 @@
                   <li><b>Advisor Email:</b> <%= details.result.advisorEmail%></li>
                   <li><b>President Email:</b><%= details.result.presidentEmail%></li>
                 </ul></p>
-              <p class="job-detail__social social social--outline"><a href= <%= details.result.websiteLink%> target="_blank" data-toggle="tooltip" data-placement="top" title="Website" class="link">
-                 
-                  <i class="fa fa-link"></i> </a><!--<a href="#" data-toggle="tooltip" data-placement="top" title="Twitter" class="twitter">
-                 
-                  <i class="fa fa-twitter"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook" class="facebook"><i class="fa fa-facebook"></i>--> </a></p>
-                  <div class="job-detail__apply-top"><a href=<%= details.result.formLink%> target="_blank" class="btn btn-outline-white-primary">Apply for this position</a></div>   
-                  
-                  
-                  <iframe width="420" height="315" src= ""></iframe>
-                  <script>var video_id = details.result.youtubeLink.search.split('v=')[1];
-                    var ampersandPosition = video_id.indexOf('&');
-                    if(ampersandPosition != -1) {
-                      video_id = video_id.substring(0, ampersandPosition);
-                    }
-                    </script>
+              <p class="job-detail__social social social--outline">
+                <a href= "<%= details.result.websiteLink%>" target="_blank" data-toggle="tooltip" data-placement="top" title="Website" class="link" > <i class="fa fa-link"></i> </a>
+                <a href= "<%= details.result.teamsLink%>" target="_blank" data-toggle="tooltip" data-placement="top" title="Website"> <i class="fa fa-windows"></i> </a> 
+              </p>
+              <div class="job-detail__apply-top"><a href=<%= details.result.formLink%> target="_blank" class="btn btn-outline-white-primary">Apply for this position</a></div>   
 
             <%} else{ %>
               <h4>About <%= details.org%></h4>

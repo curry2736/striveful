@@ -65,6 +65,8 @@ router.get('/edit/:id', async(req, res) => {
 
             console.log(type)
             console.log("edit page!!!")
+            let jsonText = JSON.stringify({ content: event.description })
+            event.description = JSON.parse(jsonText)["content"].split('\r\n').join('NEW_LINE')
             if (type == "Internship") {
                 return res.render('company', {
                     page: "edit",
@@ -147,7 +149,7 @@ router.post('/', async (req, res) => {
     // }
     
 
-
+    
     const verif = await JSON.parse(jwtVerification(req,res));
     const user = await User.findById(verif._id);
     //console.log(user);

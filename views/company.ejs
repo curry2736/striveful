@@ -456,7 +456,12 @@
         if (page == "edit") {
           console.log(document.getElementById("category").value)
           document.getElementById("title").value = "<%=eventName%>"
-          document.getElementById("text").value = "<%=description%>"
+          document.getElementById("text").innerHTML = "<%=description%>";
+
+          var text = document.getElementById('text').innerHTML.split('NEW_LINE');
+          var htmlFormatted = text.join('\n')
+          document.getElementById('text').innerHTML = htmlFormatted
+          
           document.getElementById("location").value = "<%=city%>"
           document.getElementById("type").value = "<%=state%>"
           document.getElementById("validity1").value = new Date("<%=startDate%>").toISOString().split('T')[0];
