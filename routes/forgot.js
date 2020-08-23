@@ -8,11 +8,9 @@ require('dotenv').config();
 
 
 router.get('/',  (req, res) => {
-    // const id = isUser(req,res);
-    // const user =  User.findById(id);
-    // console.log(user)
+    
     let currUser = User.findOne({ email: 'rohit.srivats@gmail.com' });
-    //console.log(currUser.email)
+   
     
     res.render('forgot', {
         user: null,
@@ -29,11 +27,8 @@ router.post('/', async(req, res) => {
     if (!currUser) {
         //return res.status(400).send('Incorrect email or password.');
         req.flash('error', 'Email not found');
-        res.render('forgot', {
-            user: null,
-            message: req.flash('error')
-        })
-        //res.locals.message = req.flash();
+        res.redirect('forgot')
+        
     } 
     else {
         let currToken = await passwordResetToken.findOne({ email: req.body.forgotemail });
@@ -44,13 +39,7 @@ router.post('/', async(req, res) => {
          }
         
         const id = uuidv1();
-        // console.log(id)
-        // const request = {
-        //     id,
-        //     email: currUser.email,
-        // };
-        // createResetRequest(request);
-        // sendResetLink(thisUser.email, id);
+        
         
         const resettoken = new passwordResetToken({
             email: req.body.forgotemail,
@@ -63,9 +52,11 @@ router.post('/', async(req, res) => {
         catch (err) {
             console.log(err)
             req.flash('error', 'Server Error, Try Again');
+            
             res.render('forgot', {
                     user: null,
-                    message: req.flash('error')
+                    message: req.flash('error'),
+                    messageInfo: req.flash(null)
                 })
             }
 
@@ -83,10 +74,11 @@ router.post('/', async(req, res) => {
         from: 'strivefulnet@gmail.com',
         to: req.body.forgotemail,
         subject: 'Striveful Password Reset',
-        text: `To reset your password, please click on this link: https://striveful.herokuapp.com/reset/${id}`
+        text: `To reset your password, please click on this link: http://localhost:3000/reset/${id}`
       };
       
-      //remember to change the striveful.herokuapp.com to either localhost or strive.net  
+        //the link url varies by device: localhost, heroku, production environment
+        
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           console.log(error);
@@ -96,7 +88,7 @@ router.post('/', async(req, res) => {
         }
       })
       //console.log(req.body.forgotemail)
-       req.flash('info', 'Please check your email for password reset link.')
+      req.flash('info', 'Please check your email for password reset link.')
       res.redirect('forgot')
            
     
