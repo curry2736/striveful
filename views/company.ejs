@@ -84,8 +84,11 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-10 mx-auto">
-              <form action="/company" id="job-main-form" method="POST" class="job-add-form" required>
-                
+              <% if (page == "get") { %> 
+                <form action="/company" id="job-main-form" method="POST" class="job-add-form" required>
+              <% } else { %>
+                <form action="/company/edit/<%=_id%>?_method=PUT" id="job-main-form" method="POST" class="job-add-form" required>
+              <% } %>
                 <div class="row">
                   <div class="col-lg-12">
                     <h4>Opportunity details</h4>
@@ -247,21 +250,21 @@
 
                   <div class="col-xl-4 form-group">
                     <label id="dateInfo1" for="validity">Start Date</label>
-                    <input id="validity" type="date" class="form-control" name="startDate" required>
+                    <input id="validity1" type="date" class="form-control" name="startDate" required>
                   </div>
                   <div class="col-xl-4 form-group">
                     <label id="dateInfo2" for="validity">End Date</label>
-                    <input id="validity" type="date" class="form-control" name="endDate" required>
+                    <input id="validity2" type="date" class="form-control" name="endDate" required>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-xl-4 form-group">
                     <label id="dateInfo3" for="validity">Date Posted</label>
-                    <input id="validity" type="date" class="form-control" name="datePosted" required>
+                    <input id="validity3" type="date" class="form-control" name="datePosted" required>
                   </div>
                   <div class="col-xl-4 form-group">
                     <label id="dateInfo4" for="validity">Date Expiring</label>
-                    <input id="validity" type="date" class="form-control" name="dateExpiring" required>
+                    <input id="validity4" type="date" class="form-control" name="dateExpiring" required>
                   </div>
                 </div>
                 <div class="row">
@@ -381,6 +384,54 @@
     <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/bootstrap-select/js/bootstrap-select.min.js">   </script>
     <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/js/front.js"></script>
+    <% if (page == "edit") { %>
+      <script>
+      window.addEventListener("DOMContentLoaded", function() {
+        let page = "<%=page%>"
+        if (page == "edit") {
+          console.log(document.getElementById("category").value)
+          document.getElementById("title").value = "<%=eventName%>"
+          document.getElementById("text").value = "<%=description%>"
+          document.getElementById("location").value = "<%=city%>"
+          document.getElementById("type").value = "<%=state%>"
+          console.log()
+          document.getElementById("validity1").value = new Date("<%=startDate%>").toISOString().split('T')[0];
+          document.getElementById("validity2").value = new Date("<%=endDate%>").toISOString().split('T')[0];
+          document.getElementById("validity3").value = new Date("<%=datePosted%>").toISOString().split('T')[0];
+          document.getElementById("validity4").value = new Date("<%=dateExpiring%>").toISOString().split('T')[0];
+          document.getElementById("company_name").value = "<%=organization%>"
+          document.getElementById("company_website").value = "<%=link%>"
+          document.getElementById("orgMail").value = "<%=email%>"
+          console.log("<%=type%>")
+          if ("<%=type%>" == "Internship") {
+            document.getElementById("category").value = "Internship";
+            document.getElementById("memberTitle").innerHTML = "Job Title";
+            document.getElementById("description").innerHTML = "Internship Description";
+            document.getElementById("dateInfo1").innerHTML = "Start Date";
+            document.getElementById("dateInfo2").innerHTML = "End Date"
+            document.getElementById("dateInfo3").innerHTML = "Date Posted"
+            document.getElementById("dateInfo4").innerHTML = "Date Expiring"
+          } else if ("<%=type%>" == "Workshop") {
+            document.getElementById("category").value = "Workshop";
+            document.getElementById("memberTitle").innerHTML = "Workshop Name";
+            document.getElementById("description").innerHTML = "Workshop Description";
+            document.getElementById("dateInfo1").innerHTML = "Start Date";
+            document.getElementById("dateInfo2").innerHTML = "End Date"
+            document.getElementById("dateInfo3").innerHTML = "Date Posted"
+            document.getElementById("dateInfo4").innerHTML = "Date Expiring"
+          } else {
+            document.getElementById("category").value = "Club";
+            document.getElementById("memberTitle").innerHTML = "Member Title";
+            document.getElementById("description").innerHTML = "Club Description";
+            document.getElementById("dateInfo1").innerHTML = "First meeting (approx)"
+            document.getElementById("dateInfo2").innerHTML = "Last meeting (approx)"
+            document.getElementById("dateInfo3").innerHTML = "Date Posted"
+            document.getElementById("dateInfo4").innerHTML = "Signup Deadline"
+          }
+        }
+      });
+      </script> 
+    <% } %>
   </body>
 
 <!-- Mirrored from demo.bootstrapious.com/jobs/2-1-0/client-job.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 29 Jun 2020 05:28:07 GMT -->
