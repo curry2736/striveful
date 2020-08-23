@@ -83,7 +83,7 @@ router.post('/', async(req, res) => {
         from: 'strivefulnet@gmail.com',
         to: req.body.forgotemail,
         subject: 'Striveful Password Reset',
-        text: `To reset your password, please click on this link: http://localhost:3000/reset/${id}`
+        text: `To reset your password, please click on this link: https://striveful.herokuapp.com/reset/${id}`
       };
       
       transporter.sendMail(mailOptions, function(error, info){
