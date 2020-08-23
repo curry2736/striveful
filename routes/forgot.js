@@ -13,7 +13,7 @@ router.get('/',  (req, res) => {
     // console.log(user)
     let currUser = User.findOne({ email: 'rohit.srivats@gmail.com' });
     //console.log(currUser.email)
-    req.flash('info', 'Please check your email for password reset link.')
+    
     res.render('forgot', {
         user: null,
         message: req.flash('error'),
@@ -86,6 +86,7 @@ router.post('/', async(req, res) => {
         text: `To reset your password, please click on this link: https://striveful.herokuapp.com/reset/${id}`
       };
       
+      //remember to change the striveful.herokuapp.com to either localhost or strive.net  
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           console.log(error);
@@ -95,6 +96,7 @@ router.post('/', async(req, res) => {
         }
       })
       //console.log(req.body.forgotemail)
+       req.flash('info', 'Please check your email for password reset link.')
       res.redirect('forgot')
            
     
