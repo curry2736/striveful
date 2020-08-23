@@ -97,9 +97,9 @@
                 </div>
                 <div class="row">
                   <div class="col-lg-12 form-group">
-                    <label for="category">Category</label><span style = "color:red">*</span>
+                    <label for="category">Category</label>
                     <select onchange="changeDateinfo()" id="category" placeholder="Choose category" class="form-control select2" name="category" required> 
-                      <option>Internship</option> 
+                      <option>Internship  </option>
                       <option>Club</option>
                       <option>Workshop</option>
                     </select>
@@ -107,14 +107,14 @@
                 </div>
                 <div class="row">
                   <div class="col-lg-12 form-group">
-                    <label id="memberTitle" for="title">Organization Title</label><span style = "color:red">*</span>
+                    <label id="memberTitle" for="title">Organization Title<span style = "color:red">*</span></label>
                     <input id="title" type="text "placholder="e.g. Interact Member" class="form-control"  name="jobTitle" required minlength="1" maxlength="128">
                     <p class="text-muted text-small">e.g. Interact Member</p>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-12 form-group">
-                    <label id="description" for="text">Organization Description</label><span style = "color:red">*</span>
+                    <label id="description" for="text">Organization Description<span style = "color:red">*</span></label>
                     <textarea id="text" rows="5"  class="form-control" name="description" required minlength="1" maxlength="2000"></textarea>
                     <p class="text-muted text-small emailVis">Describe your club here. Mention meetings, relevant dates, time commitment, etc.</p>
                   </div>
@@ -179,11 +179,10 @@
                       <option>WV</option>
                       <option>WY</option>
                     </select>
-                  </div> 
+                  </div>
                 </div>
                 <script>
-                //CHANGE DATE INFO FUNCTION
-                function changeDateinfo() {
+                  function changeDateinfo() {
                     console.log(document.getElementById("dateInfo1").value)
                     if (document.getElementById("category").value == "Internship") {
                       document.getElementById("memberTitle").innerHTML = "Job Title";
@@ -193,20 +192,13 @@
                       document.getElementById("dateInfo3").innerHTML = "Date Posted"
                       document.getElementById("dateInfo4").innerHTML = "Date Expiring";
                       document.getElementById("emailInfo1").innerHTML = "Email";
-                    
                       var x = document.getElementsByClassName("emailVis");
                       for (var i = 0; i < x.length; i++) {
                         x[i].style.display = "none";
-                      
-                      }
-
-                     var maybe = document.getElementsByClassName("required");
-                      for (var i = 0; i < maybe.length; i++) {
-                        maybe[i].removeAttribute("required");
                       }
 
                       var n = document.getElementsByClassName("webVis");
-                      for (var i = 0; i < n.length; i++) {
+                      for (var i = 0; i < x.length; i++) {
                         n[i].style.display = "inline";
                       }
                       
@@ -217,19 +209,14 @@
                       document.getElementById("dateInfo2").innerHTML = "End Date"
                       document.getElementById("dateInfo3").innerHTML = "Date Posted"
                       document.getElementById("dateInfo4").innerHTML = "Date Expiring"
-                      document.getElementById("emailInfo1").innerHTML = "Email";   
+                      document.getElementById("emailInfo1").innerHTML = "Email";
                       var x = document.getElementsByClassName("emailVis");
                       for (var i = 0; i < x.length; i++) {
                         x[i].style.display = "none";
                       }
 
-                      var maybe = document.getElementsByClassName("required");
-                      for (var i = 0; i < maybe.length; i++) {
-                        maybe[i].removeAttribute("required");
-                      }
-
                       var n = document.getElementsByClassName("webVis");
-                      for (var i = 0; i < n.length; i++) {
+                      for (var i = 0; i < x.length; i++) {
                         n[i].style.display = "inline";
                       }
                       
@@ -246,18 +233,12 @@
                         x[i].style.display = "inline";
                       }
 
-                      var maybe = document.getElementsByClassName("required");
-                      for (var i = 0; i < maybe.length; i++) {
-                        maybe[i].required = true;
-                      }
-
                       var n = document.getElementsByClassName("webVis");
-                      for (var i = 0; i < n.length; i++) {
+                      for (var i = 0; i < x.length; i++) {
                         n[i].style.display = "none";
                       }
                     }
-                  
-                    }
+                  }
                 </script>
                 
                 <!-- <div class="row">
@@ -337,39 +318,38 @@
                   </div> -->
                     <div class="col-lg-4 form-group">
                       <label id = "emailInfo1" for="company_twitter">Email</label><span style = "color:red">*</span>
-                      <input  placeholder="service@mail.com" class="form-control"  type="email" name="email" required>
+                      <input  id="regMail" placeholder="service@mail.com" class="form-control"  type="email" name="email" required>
                     </div>
 
               
-                    <div id="presEmail" class="col-lg-4 form-group emailVis">
+                    <div class="col-lg-4 form-group emailVis">
                       <label>President Email<span style = "color:red">*</span></label>
-                      <input placeholder="person@mail.com" class="form-control required" type="email" name = "presidentEmail" required>
+                      <input id="presMail" placeholder="person@mail.com" class="form-control" type="email" name = "presidentEmail" required>
                     </div>
 
                     <div class="col-lg-4 form-group emailVis">
                       <label>Advisor Email<span style = "color:red">*</span></label>
-                      <input placeholder="person@mail.com" class="form-control required" type="email" name = "advisorEmail" required>
+                      <input id="advMail" placeholder="person@mail.com" class="form-control" type="email" name = "advisorEmail" required>
                     </div>
 
                     <div class="col-lg-4 form-group emailVis">
-                      <label for="company_website">Application Link<span style = "color:red">*</span></label>
-                      <input id="company_website" placeholder="Starts with http:// or https://" type="url" class="form-control required" name="formLink" required>
+                      <label for="formLink">Application Link<span style = "color:red">*</span></label>
+                      <input id="formLink" placeholder="Starts with http:// or https://" type="url" class="form-control" name="formLink" required>
                       <p class="text-muted text-small">Attach your application/registration link here</p>
                     </div>
-
                     <div class="col-lg-4 form-group emailVis">
-                      <label for="company_website">Youtube Link<span style = "color:red">*</span> </label>
-                      <input id="company_website" value = "" placeholder="Starts with http:// or https://" type="url" class="form-control required" name="youtubeLink" required>
+                      <label for="youtubeLink">Youtube Link<span style = "color:red">*</span> </label>
+                      <input id="youtubeLink" value = "" placeholder="Starts with http:// or https://" type="url" class="form-control" name="youtubeLink" required>
                     </div>
 
                     <div class="col-lg-4 form-group emailVis">
-                      <label for="company_website">Teams Link<span style = "color:red">*</span> </label>
-                      <input id="company_website" value = "" placeholder="Starts with http:// or https://" type="url" class="form-control required" name="teamsLink" required>
+                      <label for="teamsLink">Teams Link<span style = "color:red">*</span> </label>
+                      <input id="teamsLink" value = "" placeholder="Starts with http:// or https://" type="url" class="form-control" name="teamsLink" required>
                     </div>
 
                     <div class="col-lg-4 form-group">
-                      <label for="company_website">Website Link</label><span class = "webVis" style = "color:red">*</span> 
-                      <input id="company_website" placeholder="Starts with http:// or https://" type="url" class="form-control" name="websiteLink">
+                      <label for="websiteLink">Website Link</label><span class = "webVis" style = "color:red">*</span> 
+                      <input id="websiteLink" placeholder="Starts with http:// or https://" type="url" class="form-control" name="websiteLink">
                       <p class="text-muted text-small emailVis">Optional</p>
                     </div>
                     
@@ -433,9 +413,23 @@
     <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/vendor/bootstrap-select/js/bootstrap-select.min.js">   </script>
     <script src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/js/front.js"></script>
+    <% console.log (type) %>
+    <% if (type == "Volunteering") { %>
+      <script>
+      window.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("presMail").value = "<%=presidentEmail%>"
+        document.getElementById("advMail").value = "<%=advisorEmail%>"
+        document.getElementById("advMail").value = "<%=advisorEmail%>"
+        document.getElementById("formLink").value = "<%=formLink%>"
+        document.getElementById("youtubeLink").value = "<%=youtubeLink%>"
+        document.getElementById("teamsLink").value = "<%=teamsLink%>"
+      });
+      </script>
+    <% } %>
     <% if (page == "edit") { %>
       <script>
       window.addEventListener("DOMContentLoaded", function() {
+        
         let page = "<%=page%>"
         if (page == "edit") {
           console.log(document.getElementById("category").value)
@@ -448,10 +442,11 @@
           document.getElementById("validity3").value = new Date("<%=datePosted%>").toISOString().split('T')[0];
           document.getElementById("validity4").value = new Date("<%=dateExpiring%>").toISOString().split('T')[0];
           document.getElementById("company_name").value = "<%=organization%>"
-          document.getElementById("company_website").value = "<%=link%>"
-          document.getElementById("orgMail").value = "<%=email%>"
+          document.getElementById("websiteLink").value = "<%=websiteLink%>"
+          document.getElementById("regMail").value = "<%=email%>"
           console.log("<%=type%>")
           if ("<%=type%>" == "Internship") {
+            
             document.getElementById("category").value = "Internship";
             document.getElementById("memberTitle").innerHTML = "Job Title";
             document.getElementById("description").innerHTML = "Internship Description";
@@ -459,6 +454,21 @@
             document.getElementById("dateInfo2").innerHTML = "End Date"
             document.getElementById("dateInfo3").innerHTML = "Date Posted"
             document.getElementById("dateInfo4").innerHTML = "Date Expiring"
+            /*
+            var x = document.getElementsByClassName("emailVis");
+            console.log(x)
+            for (var i = 0; i < x.length; i++) {
+              if (x[i]) {
+                x[i].style.display = "none";
+              }
+            }
+
+            var n = document.getElementsByClassName("webVis");
+            for (var i = 0; i < x.length; i++) {
+              if (n[i]) {
+                n[i].style.display = "inline";
+              }
+            }*/
           } else if ("<%=type%>" == "Workshop") {
             document.getElementById("category").value = "Workshop";
             document.getElementById("memberTitle").innerHTML = "Workshop Name";
@@ -467,6 +477,16 @@
             document.getElementById("dateInfo2").innerHTML = "End Date"
             document.getElementById("dateInfo3").innerHTML = "Date Posted"
             document.getElementById("dateInfo4").innerHTML = "Date Expiring"
+            /*
+            var x = document.getElementsByClassName("emailVis"); 
+            for (var i = 0; i < x.length; i++) {
+              x[i].style.display = "none";
+            }
+
+            var n = document.getElementsByClassName("webVis");
+            for (var i = 0; i < x.length; i++) {
+              n[i].style.display = "inline";
+            }*/
           } else {
             document.getElementById("category").value = "Club";
             document.getElementById("memberTitle").innerHTML = "Member Title";
@@ -475,11 +495,22 @@
             document.getElementById("dateInfo2").innerHTML = "Last meeting (approx)"
             document.getElementById("dateInfo3").innerHTML = "Date Posted"
             document.getElementById("dateInfo4").innerHTML = "Signup Deadline"
+            /*
+            var x = document.getElementsByClassName("emailVis");
+            for (var i = 0; i < x.length; i++) {
+              x[i].style.display = "inline";
+            }
+
+            var n = document.getElementsByClassName("webVis");
+            for (var i = 0; i < x.length; i++) {
+              n[i].style.display = "none";
+            }*/
           }
         }
       });
       </script> 
     <% } %>
+    
   </body>
 
 <!-- Mirrored from demo.bootstrapious.com/jobs/2-1-0/client-job.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 29 Jun 2020 05:28:07 GMT -->

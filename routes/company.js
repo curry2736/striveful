@@ -85,7 +85,8 @@ router.get('/edit/:id', async(req, res) => {
                     datePosted: event.datePosted,
                     dateExpiring: event.dateExpiring
                 })
-            } else if (type == "Club") {
+            } else if (type == "Volunteering") {
+                console.log(event)
                 return res.render('company', {
                     page: "edit",
                     type: type,
