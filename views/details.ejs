@@ -129,9 +129,11 @@
                 document.getElementById('detailDesc').innerHTML = updatedText
               </script>
             </blockquote>
+            <% if (details.type === "Volunteering"){%>
             <div style="padding-bottom: 56.25%; position: relative;">
               <iframe style="position:absolute;" width="100%" height="100%" frameborder="0" allow="encrypted-media; gyroscope;" allowfullscreen src="https://www.youtube.com/embed/<%=details.result.youtubeLink.split('watch?v=')[1]%>"></iframe>
             </div>
+            <% } %>
             <!-- <h5>Header Level 5</h5>
             <ul>
               <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
@@ -175,7 +177,7 @@
                   <i class="fa fa-link"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter" class="twitter">
                   <i class="fa fa-twitter"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook" class="facebook"><i class="fa fa-facebook"></i></a></p>-->
 
-                  <div class="job-detail__apply-top"><a href=<%= details.result.link%> target="_blank" class="btn btn-outline-white-primary">Apply for this position</a></div>
+                  <div class="job-detail__apply-top"><a href=<%= details.result.websiteLink%> target="_blank" class="btn btn-outline-white-primary">Apply for this position</a></div>
                   <% } %>
           </div>
         </div>
@@ -233,7 +235,7 @@
           <div class="row">
             <div class="col-lg-4 col-md-12 mb-5">
               <h4 class="h5">About Us</h4>
-              <p>Striveful is a website designed to give students opportunities to explore various fields through workshops, internships, and volunteering activities. 
+              <p>Striveful is a website designed to give students opportunities to explore various fields through events, internships, and volunteering activities. 
                 <br><br>We strive to allow every student to have an opportunity to have gain experiences in various fields or in a field that they know they love already.</p>
             </div>
             <div class="col-lg-4 col-md-6">

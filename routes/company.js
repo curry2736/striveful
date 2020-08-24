@@ -249,7 +249,7 @@ router.post('/', async (req, res) => {
             })
         }
     }
-    else if (req.body.category == "Workshop"){
+    else if (req.body.category == "Event"){
         const workshop = new Workshop({
             eventName: req.body.jobTitle,
             email: req.body.email,
@@ -321,14 +321,20 @@ router.put('/edit/:id', async (req, res) => {
     
     let sentEvent = {event: await Volunteering.findById(req.params.id)}
     type = "Volunteering"
+    console.log("TYPE 0", type)
 
     if (!sentEvent.event) {
-        event = await Internship.findById(req.params.id)
+        sentEvent.event = await Internship.findById(req.params.id)
+        console.log("TYPE 1", type)
         type = "Internship"             
-    } else if (!sentEvent.event) {
-        event = await Workshop.findById(req.params.id)
+    } 
+    if (!sentEvent.event) {
+        sentEvent.event = await Workshop.findById(req.params.id)
         type = "Workshop"
+        console.log("TYPE 2", type)
     }
+
+    console.log("TYPE LINE 336", type)
 
     if (type == "Workshop") {
         await Workshop.deleteOne({"_id": req.params.id})
@@ -348,7 +354,8 @@ router.put('/edit/:id', async (req, res) => {
             console.log(data)
         },
     );
-    
+    console.log("BODY _-----------_")
+    console.log(req.body)
     if (req.body.category == "Internship") {
         const internship = new Internship({
             jobTitle: req.body.jobTitle,
@@ -416,7 +423,8 @@ router.put('/edit/:id', async (req, res) => {
                 res.redirect('/client-dashboard')
             }
         }
-        else if (req.body.category == "Workshop"){
+        
+        else if (req.body.category == "Event"){
             const workshop = new Workshop({
                 eventName: req.body.jobTitle,
                 email: req.body.email,
@@ -430,6 +438,7 @@ router.put('/edit/:id', async (req, res) => {
                 datePosted: req.body.datePosted,
                 dateExpiring: req.body.dateExpiring
             })
+            console.log(workshop)
             // console.log(req.body);
             // const { error } = validate(req.body);
             // console.log(error);
@@ -439,10 +448,13 @@ router.put('/edit/:id', async (req, res) => {
                     id: newWorkshop._id.toString(),
                     type: "workshop"
                   };
+                console.log("aba")
+                console.log(event)
                   user.eventsCreated.push(event)
                   await user.save()
                   res.redirect('/client-dashboard')
-            } catch {
+            } catch(err) {
+                console.log(err)
                 res.redirect('/client-dashboard')
             }
         }

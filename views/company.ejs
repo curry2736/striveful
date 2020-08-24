@@ -108,7 +108,7 @@
                     <select onchange="changeDateinfo()" id="category" placeholder="Choose category" class="form-control select2" name="category" required> 
                       <option>Internship</option> 
                       <option>Club</option>
-                      <option>Workshop</option>
+                      <option>Event</option>
                     </select>
                   </div>
                 </div>
@@ -215,7 +215,7 @@
                         n[i].style.display = "inline";
                       }
                       
-                    } else if (document.getElementById("category").value == "Workshop") {
+                    } else if (document.getElementById("category").value == "Event") {
                       document.getElementById("memberTitle").innerHTML = "Workshop Name";
                       document.getElementById("description").innerHTML = "Workshop Description";
                       document.getElementById("dateInfo1").innerHTML = "Start Date";
@@ -403,7 +403,7 @@
           <div class="row">
             <div class="col-lg-4 col-md-12 mb-5">
               <h4 class="h5">About Us</h4>
-              <p>Striveful is a website designed to give students opportunities to explore various fields through workshops, internships, and volunteering activities. 
+              <p>Striveful is a website designed to give students opportunities to explore various fields through events, internships, and volunteering activities. 
                 <br><br>We strive to allow every student to have an opportunity to have gain experiences in various fields or in a field that they know they love already.</p>
             </div>
             <div class="col-lg-4 col-md-6">
@@ -482,10 +482,10 @@
             document.getElementById("dateInfo3").innerHTML = "Date Posted"
             document.getElementById("dateInfo4").innerHTML = "Date Expiring"
           } else if ("<%=type%>" == "Workshop") {
-            document.getElementById("category").value = "Workshop";
+            document.getElementById("category").value = "Event";
             changeDateinfo()
-            document.getElementById("memberTitle").innerHTML = "Workshop Name";
-            document.getElementById("description").innerHTML = "Workshop Description";
+            document.getElementById("memberTitle").innerHTML = "Event Name";
+            document.getElementById("description").innerHTML = "Event Description";
             document.getElementById("dateInfo1").innerHTML = "Start Date";
             document.getElementById("dateInfo2").innerHTML = "End Date"
             document.getElementById("dateInfo3").innerHTML = "Date Posted"
