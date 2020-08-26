@@ -80,8 +80,8 @@ router.post('/', async(req, res) => {
         host: 'smtp.googlemail.com', // Gmail Host
         port: 465, // Port
         auth: {
-          user: 'strivefulnet@gmail.com',
-          pass: 'Er1(g0@t'
+          user: process.env.EMAIL,
+          pass: process.env.PASSWORD
         }
         });
       
@@ -89,7 +89,7 @@ router.post('/', async(req, res) => {
         from: 'strivefulnet@gmail.com',
         to: req.body.forgotemail,
         subject: 'Striveful Password Reset',
-        text: `To reset your password, please click on this link: http://striveful.net/reset/${id}`
+        text: `To reset your password, please click on this link: http://localhost:3000/reset/${id}`
       };
       
       transporter.sendMail(mailOptions, function(error, info){
