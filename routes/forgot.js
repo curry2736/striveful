@@ -76,7 +76,9 @@ router.post('/', async(req, res) => {
 
 
         var transporter = nodemailer.createTransport({
-        service: 'gmail',
+        //service: 'gmail',
+        host: 'smtp.googlemail.com', // Gmail Host
+        port: 465, // Port
         auth: {
           user: 'strivefulnet@gmail.com',
           pass: 'Er1(g0@t'
@@ -87,7 +89,7 @@ router.post('/', async(req, res) => {
         from: 'strivefulnet@gmail.com',
         to: req.body.forgotemail,
         subject: 'Striveful Password Reset',
-        text: `To reset your password, please click on this link: http://localhost:3000/reset/${id}`
+        text: `To reset your password, please click on this link: http://striveful.net/reset/${id}`
       };
       
       transporter.sendMail(mailOptions, function(error, info){
