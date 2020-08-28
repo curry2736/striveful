@@ -75,7 +75,7 @@ const Volunteering = mongoose.model('Volunteering', new mongoose.Schema({
     },
     youtubeLink: {
         type: String,
-        required: true
+        required: false
     },
     presidentEmail: {
         type: String,

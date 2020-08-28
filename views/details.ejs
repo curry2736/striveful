@@ -140,7 +140,7 @@
                 document.getElementById('detailDesc').innerHTML = updatedText
               </script>
             </blockquote>
-            <% if (details.type === "Volunteering" %% details.result.youtubeLink){%>
+            <% if (details.type === "Volunteering" && details.result.youtubeLink){%>
             <div style="padding-bottom: 56.25%; position: relative;">
               <iframe style="position:absolute;" width="100%" height="100%" frameborder="0" allow="encrypted-media; gyroscope;" allowfullscreen src="https://www.youtube.com/embed/<%=details.result.youtubeLink.split('watch?v=')[1]%>"></iframe>
             </div>
