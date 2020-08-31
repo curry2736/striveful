@@ -60,7 +60,7 @@ const Volunteering = mongoose.model('Volunteering', new mongoose.Schema({
     },
     formLink: {
         type: String,
-        required: true
+        required: false
     },
     dateExpiring: {
         type: Date,
