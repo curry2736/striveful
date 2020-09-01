@@ -11,6 +11,7 @@ let ObjectID = require('mongodb').ObjectID;
 
 //Show details
 router.get('/:id', async (req,res) =>{
+    console.log(req.connection.remoteAddress);
     try {
         //console.log(req.params.id); 
         const id =  isUser(req, res);
