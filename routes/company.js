@@ -333,6 +333,8 @@ router.put('/edit/:id', async (req, res) => {
         type = "Workshop"
         console.log("TYPE 2", type)
     }
+    
+    console.log(sentEvent.event.visits)
 
     console.log("TYPE LINE 336", type)
 
@@ -368,7 +370,8 @@ router.put('/edit/:id', async (req, res) => {
             startDate: req.body.startDate,
             endDate: req.body.endDate,
             datePosted: req.body.datePosted,
-            dateExpiring: req.body.dateExpiring
+            dateExpiring: req.body.dateExpiring,
+            visits: sentEvent.event.visits
         })
         try {
             
@@ -406,6 +409,7 @@ router.put('/edit/:id', async (req, res) => {
                 youtubeLink: req.body.youtubeLink,
                 presidentEmail: req.body.presidentEmail,
                 advisorEmail: req.body.advisorEmail,
+                visits: sentEvent.event.visits
             })
             console.log(req.body);
             // const { error } = validate(req.body);
@@ -436,7 +440,8 @@ router.put('/edit/:id', async (req, res) => {
                 startDate: req.body.startDate,
                 endDate: req.body.endDate,
                 datePosted: req.body.datePosted,
-                dateExpiring: req.body.dateExpiring
+                dateExpiring: req.body.dateExpiring,
+                visits: sentEvent.event.visits
             })
             console.log(workshop)
             // console.log(req.body);
