@@ -16,6 +16,9 @@ router.get('/:id', async (req,res) =>{
         //console.log(req.params.id); 
         const id =  isUser(req, res);
         console.log(id)
+        if (id == "5f4e8456afa6fd1054e90bba") {
+            return res.redirect('/')
+        }
         const user = await User.findById(id);
         let type = "";
         var result = await Internship.findById(req.params.id);
