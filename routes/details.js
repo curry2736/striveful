@@ -17,7 +17,7 @@ router.get('/:id', async (req,res) =>{
         const id =  isUser(req, res);
         console.log(id)
         if (id == "5f4e8456afa6fd1054e90bba") {
-            return res.render("stop spamming yash")
+            return res.send("stop spamming yash")
         }
         const user = await User.findById(id);
         let type = "";
