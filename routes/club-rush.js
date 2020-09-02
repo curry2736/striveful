@@ -36,7 +36,7 @@ router.get('/', async(req, res) => {
         let adjustedDate = new Date();
         adjustedDate = adjustedDate.getTime() - 25200000;
 
-        let volunteerings = await Volunteering.find({"datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).sort({"visits":-1}).exec()
+        let volunteerings = await Volunteering.find({"datePosted":{$lte: adjustedDate}, "dateExpiring":{$gte: adjustedDate}}).sort({"datePosted":1}).exec()
 
         res.render('club-rush', {user: user, results : {user, searchNum, volunteerings : volunteerings,
                                         opportunityPlaceholder : opportunityPlaceholder, locationPlaceholder, checkedName : checkedName, checkedTitle : checkedTitle}})
