@@ -11,10 +11,14 @@ let ObjectID = require('mongodb').ObjectID;
 
 //Show details
 router.get('/:id', async (req,res) =>{
+    console.log(req.connection.remoteAddress);
     try {
         //console.log(req.params.id); 
         const id =  isUser(req, res);
         console.log(id)
+        if (id == "5f4e8456afa6fd1054e90bba") {
+            return res.send("stop spamming yash")
+        }
         const user = await User.findById(id);
         let type = "";
         var result = await Internship.findById(req.params.id);

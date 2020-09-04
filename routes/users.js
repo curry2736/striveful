@@ -15,13 +15,31 @@ router.post('/', async (req, res) => {
     //     return res.status(400).send(error.details[0].message);
     // }
     // Check if this user already exisits
-    let user = await User.findOne({ email: req.body.email });
+    let lowerEmail = req.body.email
+    console.log(lowerEmail)
+    lowerEmail = lowerEmail.toString()
+    console.log(lowerEmail)
+    lowerEmail = lowerEmail.toLowerCase()
+    console.log(lowerEmail)
+    const d = "ASDASDASDADS"
+    console.log(d.toLowerCase())
+
+    console.log(req.body.firstName)
+    let user = await User.findOne({ email: req.body.email.toString().toLowerCase() });
+    console.log(user)
     if (user) {
         req.flash('error', 'That user already exists!');
         res.redirect('../signup');
     } else {
         // Insert the new user if they do not exist yet
-        user = new User(_.pick(req.body, ['firstName', 'lastName', 'email', 'password', 'isCompany']));
+        //user = new User(_.pick(req.body, ['firstName', 'lastName', 'email', 'password', 'isCompany']));
+        user = new User({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email.toString().toLowerCase(),
+            password: req.body.password,
+            isCompany: false
+        })
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(user.password, salt);
         await user.save();
