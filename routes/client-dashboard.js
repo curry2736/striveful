@@ -20,8 +20,17 @@ router.get('/', async (req, res) => {
     let internships = [];
     let volunteerings = [];
     let workshops = [];
-    const verif = JSON.parse(jwtVerification(req,res));
-    if (!verif) {
+    let verif = jwtVerification(req,res);
+    try {
+
+        
+        if (!verif) {
+            return res.redirect('/')
+        }
+        verif = JSON.parse(verif)
+        console.log(verif)
+    } catch (err) {
+        console.log(err)
         return res.redirect('/')
     }
     const user = await User.findById(verif._id);
