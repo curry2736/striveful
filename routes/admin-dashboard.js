@@ -6,7 +6,8 @@ const router = express.Router();
 const { Internship } = require('../models/internship');
 const { Volunteering } = require('../models/volunteering');
 const { Workshop } = require('../models/workshop');
-const { User, jwtVerification, isUser } = require('../models/user')
+const { User, jwtVerification, isUser } = require('../models/user');
+const { isError } = require('lodash');
  
 
 router.get('/', async (req, res) => {
@@ -15,40 +16,51 @@ router.get('/', async (req, res) => {
     let volunteerings = [];
     let workshops = [];
     let verif = jwtVerification(req,res);
-
+    let user = "";
+    
     try {
         if (!verif) {
             return res.redirect('/')
         }
+        
         verif = JSON.parse(verif)
+        user = await User.findById(verif._id);
         console.log(verif)
     } catch (err) {
         console.log(err)
         return res.redirect('/')
     }
-    
-    const user = await User.findById(verif._id);
-    const eventsCreated = user.eventsCreated;
-    for (let i = 0; i < eventsCreated.length; i++) {
-        event = eventsCreated[i]
-        
-        if (event.type == "internship") {
-            let test = await Internship.findById(event.id);
-            //console.log(test);
-            internships.push(await Internship.findById(event.id));
-        } 
-        else if (event.type == "volunteering") {
-            volunteerings.push(await Volunteering.findById(event.id))
-        }
-        else if (event.type == "workshop") {
-            workshops.push(await Workshop.findById(event.id))
-        }
-    }
-    //console.log(internships[0].eventName)
-    res.render("client-dashboard", {user: user, events: {internships: internships, volunteerings: volunteerings, workshops: workshops}});
+
+    console.log(user.school)
+    let pendingUsers = await User.find({school: user.school, requestingCompany: true}).exec()
+    let allowedUsers = await User.find({school: user.school, isCompany: true})
+    return res.render("admin-dashboard", {user: user, pendingUsers: pendingUsers, allowedUsers: allowedUsers});
+
 })
 
-router.delete('/internships/:id', async (req, res) => {
+router.put('/approve/:id', async (req, res) => {
+    try {
+        let user = await User.findById(req.params.id);
+        user.isCompany = true;
+        user.requestingCompany = false;
+        user.save()
+        return res.redirect('/admin-dashboard')
+    } catch (err) {
+        console.log(err)
+    }
+})
+router.put('/disapprove/:id', async (req, res) => {
+    try {
+        let user = await User.findById(req.params.id);
+        user.isCompany = false;
+        user.requestingCompany = false;
+        user.save()
+        return res.redirect('/admin-dashboard')
+    } catch (err) {
+        console.log(err)
+    }
+})
+/* router.delete('/internships/:id', async (req, res) => {
     await Internship.deleteOne({"_id": req.params.id})
     await User.update(
         {'_id': req.body.userId}, 
@@ -91,6 +103,6 @@ router.delete('/volunteerings/:id', async (req, res) => {
     );
     console.log(req.body)
     res.redirect("/client-dashboard")
-})
+}) */
  
 module.exports = router; 

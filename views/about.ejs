@@ -64,6 +64,9 @@
                       <a href="/company" class="dropdown-item">Post a new opportunity</a>
                       <a href="/client-dashboard" class="dropdown-item">Dashboard</a>
                     <% } %>
+                    <% if (user.isAdmin) { %>
+                      <a href="/admin-dashboard" class="dropdown-item">Administrator Dashboard</a>
+                    <% } %>
                     </div>
                 </li>
               <% } %>

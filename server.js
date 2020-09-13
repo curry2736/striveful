@@ -14,6 +14,7 @@ const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 const mongoose = require('mongoose');
 const users = require('./routes/users');
+const adminDashboard = require('./routes/admin-dashboard')
 const clubRush = require('./routes/club-rush')
 const signup = require('./routes/signup');
 const login = require('./routes/login');
@@ -73,6 +74,7 @@ db.once('open', () => {
     console.log('Connected to Mongoose')
 });
 
+app.use('/admin-dashboard', adminDashboard)
 app.use('/client-dashboard', clientDashboard)
 app.use('/club-rush', clubRush);
 app.use('/', indexRouter)

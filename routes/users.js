@@ -21,24 +21,27 @@ router.post('/', async (req, res) => {
     console.log(lowerEmail)
     lowerEmail = lowerEmail.toLowerCase()
     console.log(lowerEmail)
-    const d = "ASDASDASDADS"
-    console.log(d.toLowerCase())
 
     console.log(req.body.firstName)
     let user = await User.findOne({ email: req.body.email.toString().toLowerCase() });
     console.log(user)
+    /*for mohit: if requestingCompany checkbox is ticked(you have to make this), then show dropdown that says smth like "what school are you part of" and select school
+    also remember to add an option for "im not part of a school club". in this case let them signup normally but then show popup to contact us for event creation permission. ask rohit to do this if need help
+    if ticked make field true, also pass school field to new user
+    if not ticked then create user object without those
+    */
     if (user) {
         req.flash('error', 'That user already exists!');
         res.redirect('../signup');
     } else {
         // Insert the new user if they do not exist yet
-        //user = new User(_.pick(req.body, ['firstName', 'lastName', 'email', 'password', 'isCompany']));
         user = new User({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email.toString().toLowerCase(),
             password: req.body.password,
-            isCompany: false
+            isCompany: false,
+            isAdmin: false
         })
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(user.password, salt);

@@ -52,6 +52,7 @@
   <% } else { %>
   <body>
   <% } %>
+  
     <!-- navbar-->
     <header class="header">
       <nav class="navbar navbar-expand-lg">
@@ -66,15 +67,24 @@
               <li class="nav-item"><a href="/club-rush" class="nav-link">Club Rush</a></li>
 
 
+              <% if (user == null) { %>
+                <li class="nav-item dropdown"><a href="#loginModal" data-toggle="modal" class="btn navbar-btn btn-outline-light mb-5 mb-lg-0"> <i class="fa fa-sign-in"></i>Login</a></li>
+              <% } else {%>
                 <li class="nav-item dropdown active"><a id="clientZone" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><%= user.firstName%></a>
                   <div aria-labelledby="clientZone" class="dropdown-menu">
                     <a href="/api/logout" class="dropdown-item">Logout</a>
                     
                     <a href="/favorite" class="dropdown-item">Favorites</a>
+                    <% if (user.isCompany == true) { %>
                       <a href="/company" class="dropdown-item">Post a new opportunity</a>
                       <a href="/client-dashboard" class="dropdown-item">Dashboard</a>
+                    <% } %>
+                    <% if (user.isAdmin) { %>
+                      <a href="/admin-dashboard" class="dropdown-item">Administrator Dashboard</a>
+                    <% } %>
                     </div>
                 </li>
+              <% } %>
             </ul>
           </div>
         </div>

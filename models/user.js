@@ -9,6 +9,20 @@ const User = mongoose.model('User', new mongoose.Schema({
         type: Boolean,
         required: true,
     },
+    //set to true if box ticked
+    requestingCompany: {
+        type: Boolean,
+        required: true
+    },
+    //if requestingCompany box ticked, show school
+    school: {
+        type: String,
+        required: false
+    },
+    isAdmin: {
+        type: Boolean,
+        required: true,
+    },
     link: {
         type: String,
         required: false
