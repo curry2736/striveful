@@ -159,152 +159,163 @@ router.post('/', async (req, res) => {
     
     const verif = await JSON.parse(jwtVerification(req,res));
     const user = await User.findById(verif._id);
+
+    let hasEvent = false
+    for (var event of user.eventsCreated) {
+        if (event.id == req.params.id) {
+            hasEvent = true
+            break;
+        }
+    }
     //console.log(user);
     // const eventsCreated = user.eventsCreated;
-    if (req.body.category == "Internship") {
-        const internship = new Internship({
-            jobTitle: req.body.jobTitle,
-            email: req.body.email,
-            companyName: req.body.companyName,
-            websiteLink: req.body.websiteLink,
-            description: req.body.description,
-            city: req.body.city,
-            state: req.body.state,
-            startDate: req.body.startDate,
-            endDate: req.body.endDate,
-            datePosted: req.body.datePosted,
-            dateExpiring: req.body.dateExpiring
-        })
-        console.log(req.body.startDate)
-        console.log(req.body.endDate)
-        console.log(req.body.datePosted)
-        console.log(req.body.dateExpiring)
-        try {
-            const newInternship = await internship.save()
-            console.log(newInternship._id)
-            var event = {
-                id: newInternship._id.toString(),
-                type: "internship"
-            };
-            user.eventsCreated.push(event)
-            await user.save()
-            console.log("i ran")
-            return res.redirect('/client-dashboard')
-        } catch (err) {
-            console.log("i ran2")
-            return res.redirect('/client-dashboard')
-        }
-    }
-    else if (req.body.category == "Club"){
-    const volunteering = new Volunteering({
-        eventName: req.body.jobTitle,
-        organization: req.body.companyName,
-        email: req.body.email,
-        description: req.body.description,
-        startDate: req.body.startDate,
-        endDate: req.body.endDate,
-        datePosted: req.body.datePosted,
-        city: req.body.city,
-        state: req.body.state,
-        websiteLink: req.body.websiteLink,
-        formLink: req.body.formLink,
-        dateExpiring: req.body.dateExpiring,
-        teamsLink: req.body.teamsLink,
-        youtubeLink: req.body.youtubeLink,
-        presidentEmail: req.body.presidentEmail,
-        advisorEmail: req.body.advisorEmail,
-
-    })
-    // console.log(req.body);
-    // const { error } = validate(req.body);
-    // console.log(error);
-    try {
-        const newVolunteering = await volunteering.save();
-        var event = {
-            id: newVolunteering._id.toString(),
-            type: "volunteering"
-          };
-          user.eventsCreated.push(event)
-          await user.save()
-          return res.redirect('/client-dashboard')
-    } catch (err) {
-        console.log(err)
-        return res.render('company', {
-                volunteering: volunteering,
-                type: "",
-                errorMessage: "error.details[0].message",
-                page: "get",
-                user: user,
-                _id: "",
-                eventName: "",
-                email: "",
-                organization: "",
-                websiteLink: "",
-                formLink: "",
-                dateExpiring: "",
-                teamsLink: "",
-                youtubeLink: "",
-                presidentEmail: "",
-                advisorEmail: "",
-                description: "",
-                city: "",
-                state: "",
-                startDate: "",
-                endDate: "",
-                datePosted: "",
-                dateExpiring: ""
+    if (hasEvent) {
+        if (req.body.category == "Internship") {
+            const internship = new Internship({
+                jobTitle: req.body.jobTitle,
+                email: req.body.email,
+                companyName: req.body.companyName,
+                websiteLink: req.body.websiteLink,
+                description: req.body.description,
+                city: req.body.city,
+                state: req.body.state,
+                startDate: req.body.startDate,
+                endDate: req.body.endDate,
+                datePosted: req.body.datePosted,
+                dateExpiring: req.body.dateExpiring
             })
-        }
-    }
-    else if (req.body.category == "Event"){
-        const workshop = new Workshop({
-            eventName: req.body.jobTitle,
-            email: req.body.email,
-            organization: req.body.companyName,
-            websiteLink: req.body.websiteLink,
-            description: req.body.description,
-            city: req.body.city,
-            state: req.body.state,
-            startDate: req.body.startDate,
-            endDate: req.body.endDate,
-            datePosted: req.body.datePosted,
-            dateExpiring: req.body.dateExpiring
-        })
-        // console.log(req.body);
-        // const { error } = validate(req.body);
-        // console.log(error);
-        try {
-            const newWorkshop = await workshop.save()
-            var event = {
-                id: newWorkshop._id.toString(),
-                type: "workshop"
-              };
-              user.eventsCreated.push(event)
-              await user.save()
-              return res.redirect('/client-dashboard')
-        } catch {
-            return res.render('company', {
-                    user: user,
-                    type: type,
-                    workshop: workshop,
-                    errorMessage: "error.details[0].message",
-                    page: "get",
-                    _id: "",
-                    eventName: "",
-                    email: "",
-                    organization: "",
-                    websiteLink: "",
-                    description: "",
-                    city: "",
-                    state: "",
-                    startDate: "",
-                    endDate: "",
-                    datePosted: "",
-                    dateExpiring: ""
-                })
+            console.log(req.body.startDate)
+            console.log(req.body.endDate)
+            console.log(req.body.datePosted)
+            console.log(req.body.dateExpiring)
+            try {
+                const newInternship = await internship.save()
+                console.log(newInternship._id)
+                var event = {
+                    id: newInternship._id.toString(),
+                    type: "internship"
+                };
+                user.eventsCreated.push(event)
+                await user.save()
+                console.log("i ran")
+                return res.redirect('/client-dashboard')
+            } catch (err) {
+                console.log("i ran2")
+                return res.redirect('/client-dashboard')
             }
         }
-    
+        else if (req.body.category == "Club"){
+            const volunteering = new Volunteering({
+                eventName: req.body.jobTitle,
+                organization: req.body.companyName,
+                email: req.body.email,
+                description: req.body.description,
+                startDate: req.body.startDate,
+                endDate: req.body.endDate,
+                datePosted: req.body.datePosted,
+                city: req.body.city,
+                state: req.body.state,
+                websiteLink: req.body.websiteLink,
+                formLink: req.body.formLink,
+                dateExpiring: req.body.dateExpiring,
+                teamsLink: req.body.teamsLink,
+                youtubeLink: req.body.youtubeLink,
+                presidentEmail: req.body.presidentEmail,
+                advisorEmail: req.body.advisorEmail,
+
+            })
+            // console.log(req.body);
+            // const { error } = validate(req.body);
+            // console.log(error);
+            try {
+                const newVolunteering = await volunteering.save();
+                var event = {
+                    id: newVolunteering._id.toString(),
+                    type: "volunteering"
+                };
+                user.eventsCreated.push(event)
+                await user.save()
+                return res.redirect('/client-dashboard')
+            } catch (err) {
+                console.log(err)
+                return res.render('company', {
+                        volunteering: volunteering,
+                        type: "",
+                        errorMessage: "error.details[0].message",
+                        page: "get",
+                        user: user,
+                        _id: "",
+                        eventName: "",
+                        email: "",
+                        organization: "",
+                        websiteLink: "",
+                        formLink: "",
+                        dateExpiring: "",
+                        teamsLink: "",
+                        youtubeLink: "",
+                        presidentEmail: "",
+                        advisorEmail: "",
+                        description: "",
+                        city: "",
+                        state: "",
+                        startDate: "",
+                        endDate: "",
+                        datePosted: "",
+                        dateExpiring: ""
+                    })
+                }
+        }
+        else if (req.body.category == "Event"){
+            const workshop = new Workshop({
+                eventName: req.body.jobTitle,
+                email: req.body.email,
+                organization: req.body.companyName,
+                websiteLink: req.body.websiteLink,
+                description: req.body.description,
+                city: req.body.city,
+                state: req.body.state,
+                startDate: req.body.startDate,
+                endDate: req.body.endDate,
+                datePosted: req.body.datePosted,
+                dateExpiring: req.body.dateExpiring
+            })
+            // console.log(req.body);
+            // const { error } = validate(req.body);
+            // console.log(error);
+            try {
+                const newWorkshop = await workshop.save()
+                var event = {
+                    id: newWorkshop._id.toString(),
+                    type: "workshop"
+                };
+                user.eventsCreated.push(event)
+                await user.save()
+                return res.redirect('/client-dashboard')
+            } catch {
+                return res.render('company', {
+                        user: user,
+                        type: type,
+                        workshop: workshop,
+                        errorMessage: "error.details[0].message",
+                        page: "get",
+                        _id: "",
+                        eventName: "",
+                        email: "",
+                        organization: "",
+                        websiteLink: "",
+                        description: "",
+                        city: "",
+                        state: "",
+                        startDate: "",
+                        endDate: "",
+                        datePosted: "",
+                        dateExpiring: ""
+                    })
+                }
+            }
+    } else {
+        return res.redirect('/')
+    }
     
     
    
