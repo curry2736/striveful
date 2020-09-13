@@ -4,7 +4,7 @@ const { Internship, validate } = require('../models/internship');
 const { Volunteering } = require('../models/volunteering.js');
 const { Workshop } = require('../models/workshop');
 const { User, jwtVerification, isUser } = require('../models/user');
-
+const mongoose = require('mongoose');
 
 router.get('/', async(req, res) => {
     // const didIGetIn = jwtVerification(req, res);
@@ -49,88 +49,95 @@ router.get('/edit/:id', async(req, res) => {
     } else {
         return res.redirect('/')
     }
+    
+    let hasEvent = false
+    for (var event of user.eventsCreated) {
+        if (event.id == req.params.id) {
+            hasEvent = true
+            break;
+        }
+    }
+    console.log(hasEvent)
+
+
     let type = "";
-    if (user.isCompany) {
-        try {
-            let event = await Volunteering.findById(req.params.id)
-            type = "Volunteering"
+
+    if ((user.isCompany && mongoose.Types.ObjectId.isValid(req.params.id)) && hasEvent) {
+
+        let event = await Volunteering.findById(req.params.id)
+        type = "Volunteering"
+        if (!event) {
+            event = await Internship.findById(req.params.id)
+            type = "Internship"    
             if (!event) {
-                event = await Internship.findById(req.params.id)
-                type = "Internship"    
-                if (!event) {
-                    event = await Workshop.findById(req.params.id)
-                    type = "Workshop"
-                }         
-            } 
+                event = await Workshop.findById(req.params.id)
+                type = "Workshop"
+            }         
+        } 
 
-            console.log(type)
-            console.log("edit page!!!")
-            let jsonText = JSON.stringify({ content: event.description })
-            event.description = JSON.parse(jsonText)["content"].split('\r\n').join('NEW_LINE')
-            if (type == "Internship") {
-                return res.render('company', {
-                    page: "edit",
-                    type: type,
-                    user: user,
-                    _id: req.params.id,
-                    eventName: event.jobTitle,
-                    email: event.email,
-                    organization: event.organization,
-                    websiteLink: event.websiteLink,
-                    description: event.description,
-                    city: event.city,
-                    state: event.state,
-                    startDate: event.startDate,
-                    endDate: event.endDate,
-                    datePosted: event.datePosted,
-                    dateExpiring: event.dateExpiring
-                })
-            } else if (type == "Volunteering") {
-                console.log(event)
-                return res.render('company', {
-                    page: "edit",
-                    type: type,
-                    user: user,
-                    _id: req.params.id,
-                    eventName: event.eventName,
-                    email: event.email,
-                    organization: event.organization,
-                    description: event.description,
-                    city: event.city,
-                    state: event.state,
-                    websiteLink: event.websiteLink,
-                    formLink: event.formLink,
-                    teamsLink: event.teamsLink,
-                    youtubeLink: event.youtubeLink,
-                    presidentEmail: event.presidentEmail,
-                    advisorEmail: event.advisorEmail,
-                    startDate: event.startDate,
-                    endDate: event.endDate,
-                    datePosted: event.datePosted,
-                    dateExpiring: event.dateExpiring
-                })
-            } else {
-                return res.render('company', {
-                    page: "edit",
-                    type: type,
-                    user: user,
-                    _id: req.params.id,
-                    eventName: event.eventName,
-                    email: event.email,
-                    organization: event.organization,
-                    websiteLink: event.websiteLink,
-                    description: event.description,
-                    city: event.city,
-                    state: event.state,
-                    startDate: event.startDate,
-                    endDate: event.endDate,
-                    datePosted: event.datePosted,
-                    dateExpiring: event.dateExpiring
-                })
-            }
 
-        } catch (err) {
-            console.log(err)
+        let jsonText = JSON.stringify({ content: event.description })
+        event.description = JSON.parse(jsonText)["content"].split('\r\n').join('NEW_LINE')
+        if (type == "Internship") {
+            return res.render('company', {
+                page: "edit",
+                type: type,
+                user: user,
+                _id: req.params.id,
+                eventName: event.jobTitle,
+                email: event.email,
+                organization: event.organization,
+                websiteLink: event.websiteLink,
+                description: event.description,
+                city: event.city,
+                state: event.state,
+                startDate: event.startDate,
+                endDate: event.endDate,
+                datePosted: event.datePosted,
+                dateExpiring: event.dateExpiring
+            })
+        } else if (type == "Volunteering") {
+
+            return res.render('company', {
+                page: "edit",
+                type: type,
+                user: user,
+                _id: req.params.id,
+                eventName: event.eventName,
+                email: event.email,
+                organization: event.organization,
+                description: event.description,
+                city: event.city,
+                state: event.state,
+                websiteLink: event.websiteLink,
+                formLink: event.formLink,
+                teamsLink: event.teamsLink,
+                youtubeLink: event.youtubeLink,
+                presidentEmail: event.presidentEmail,
+                advisorEmail: event.advisorEmail,
+                startDate: event.startDate,
+                endDate: event.endDate,
+                datePosted: event.datePosted,
+                dateExpiring: event.dateExpiring
+            })
+        } else {
+            return res.render('company', {
+                page: "edit",
+                type: type,
+                user: user,
+                _id: req.params.id,
+                eventName: event.eventName,
+                email: event.email,
+                organization: event.organization,
+                websiteLink: event.websiteLink,
+                description: event.description,
+                city: event.city,
+                state: event.state,
+                startDate: event.startDate,
+                endDate: event.endDate,
+                datePosted: event.datePosted,
+                dateExpiring: event.dateExpiring
+            })
         }
         
     } else {

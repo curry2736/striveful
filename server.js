@@ -18,7 +18,6 @@ const clubRush = require('./routes/club-rush')
 const signup = require('./routes/signup');
 const login = require('./routes/login');
 const auth = require('./routes/auth');
-const test = require('./routes/test');
 const clientDashboard = require('./routes/client-dashboard')
 const details = require('./routes/details');
 const about = require('./routes/about');
@@ -31,15 +30,12 @@ const bodyParser = require('body-parser')
 const jwt = require('jwt-simple');
 var nodemailer = require('nodemailer');
 const favorite = require('./routes/favorite')
+const search = require('./routes/search')
 
 const app = express();
 const methodOverride = require('method-override')
 const port = process.env.PORT || 3000;
 const expressLayouts = require('express-ejs-layouts');
-
-const search = require('./routes/search')
-
-
 
 
 if (!config.get('PrivateKey')) {
@@ -61,7 +57,6 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views')
 app.set('layout', 'layouts/layout')
 app.use(expressLayouts)
-app.enable('trust proxy');
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -86,9 +81,7 @@ app.use('/api/auth', auth);
 app.use('/api/logout', logout);
 app.use('/favorite', favorite)
 app.use('/api/tokenTest', tokenTest);
-app.use('/login123', login);
 app.use('/signup', signup);
-app.use('/test', test);
 app.use('/search', search);
 app.use('/company', company)
 app.use('/details',details);
