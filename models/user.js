@@ -130,7 +130,8 @@ function validateUser(user) {
         lastName: Joi.string().min(1).max(50).required(),
         email: Joi.string().min(5).max(255).required().email(),
         password: Joi.string().min(5).max(512).required(),
-        favorites: Joi.array()
+        favorites: Joi.array(),
+        school: Joi.string().min(5).max(255)
     };
     return Joi.validate(user, schema);
 }

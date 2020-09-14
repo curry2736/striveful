@@ -33,8 +33,30 @@ router.post('/', async (req, res) => {
     if (user) {
         req.flash('error', 'That user already exists!');
         res.redirect('../signup');
+    } else if(req.body.requestingCompany == "true"){
+        console.log('hello')
+        user = new User({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email.toString().toLowerCase(),
+            password: req.body.password,
+            isCompany: false,
+            isAdmin: false,
+            requestingCompany: true,
+            school: req.body.school
+        })
+
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(user.password, salt);
+        await user.save();
+        const token = jwt.sign({ _id: user._id, email: user.email }, config.get('PrivateKey'));
+        res.cookie('token', token);
+        //res.header('x-auth-token', token).send(_.pick(user, ['_id', 'firstName', 'lastname', 'email']));
+        res.redirect('/')
+    console.log('hellotest');
     } else {
         // Insert the new user if they do not exist yet
+        console.log('testhello');
         user = new User({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -52,6 +74,7 @@ router.post('/', async (req, res) => {
         //res.header('x-auth-token', token).send(_.pick(user, ['_id', 'firstName', 'lastname', 'email']));
         res.redirect('/')
     }
+    console.log('hellomeme');
 });
 
 router.post('/test', async (req, res) => {
