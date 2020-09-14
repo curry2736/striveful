@@ -159,6 +159,7 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>School</th>
+    
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -173,7 +174,7 @@
                       <td><%=allowedUser.lastName%></td>
                       </td>
                       <td><%=allowedUser.school%></td>
-                      </td>
+                      
                       <td>
                         <form type="hidden"  method="POST" action="/admin-dashboard/disapprove/<%=allowedUser._id%>?_method=PUT">
                           <input name="userId" value=<%= allowedUser._id%> type="hidden">
