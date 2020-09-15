@@ -48,6 +48,8 @@ router.post('/', async (req, res) => {
     //return res.header('x-auth-token', token).send(_.pick(user, ['_id', 'firstName', 'lastname', 'email']));
 });
 
+//mass update -->
+/*
 router.get('/asdasdasdasdasdads', async (req, res) => {
     let userList = []
     await User.find({}, (err, users) => {
@@ -75,11 +77,8 @@ router.get('/asdasdasdasdasdads', async (req, res) => {
             }
         );
     })
-
-    /*let meme = await User.find({})
-    console.log(meme.sites)*/
 });
-
+/*
 /*router.get('/verify', async (req, res) => {
     const cookies = req.headers.cookie.split("; ");
     let authToken = "";
