@@ -48,6 +48,38 @@ router.post('/', async (req, res) => {
     //return res.header('x-auth-token', token).send(_.pick(user, ['_id', 'firstName', 'lastname', 'email']));
 });
 
+router.get('/asdasdasdasdasdads', async (req, res) => {
+    let userList = []
+    await User.find({}, (err, users) => {
+        userList = users
+        console.log(userList[1])
+        //console.log(users)
+        if (err) {
+          console.log(err)
+        } else {
+          return res.json({users: users});
+        }
+    });
+    console.log(userList.length)
+    userList.forEach(async user => {
+        await User.update(  
+            {email: user.email},
+            {school: "Folsom High School", isAdmin: false, requestingCompany: false},
+            {multi: true}, 
+            function(err, numberAffected){ 
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log(numberAffected) 
+                }
+            }
+        );
+    })
+
+    /*let meme = await User.find({})
+    console.log(meme.sites)*/
+});
+
 /*router.get('/verify', async (req, res) => {
     const cookies = req.headers.cookie.split("; ");
     let authToken = "";

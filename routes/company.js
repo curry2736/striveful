@@ -169,7 +169,7 @@ router.post('/', async (req, res) => {
     }
     //console.log(user);
     // const eventsCreated = user.eventsCreated;
-    if (hasEvent) {
+    
         if (req.body.category == "Internship") {
             const internship = new Internship({
                 jobTitle: req.body.jobTitle,
@@ -313,9 +313,7 @@ router.post('/', async (req, res) => {
                     })
                 }
             }
-    } else {
-        return res.redirect('/')
-    }
+
     
     
    
