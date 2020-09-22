@@ -65,8 +65,9 @@ router.get('/asdasdasdasdasdads', async (req, res) => {
     //console.log(userList)
     
     userList.forEach(async user => {
-        await User.update(  
-            {email: user.eventName},
+        console.log(user.eventName)
+        await Volunteering.update(  
+            {eventName: user.eventName},
             {school: "Folsom High School"},
             {multi: true}, 
             function(err, numberAffected){ 
