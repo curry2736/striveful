@@ -50,8 +50,7 @@ router.post('/', async (req, res) => {
 });
 
 //mass update -->
-
-router.get('/asdasdasdasdasdads', async (req, res) => {
+/*router.get('/asdasdasdasdasdads', async (req, res) => {
     let userList = []
     await Volunteering.find({}, (err, users) => {
         userList = users
@@ -79,7 +78,7 @@ router.get('/asdasdasdasdasdads', async (req, res) => {
             }
         );
     })
-});
+});*/
 
 /*router.get('/verify', async (req, res) => {
     const cookies = req.headers.cookie.split("; ");
