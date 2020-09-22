@@ -167,13 +167,8 @@ router.post('/', async (req, res) => {
             break;
         }
     }*/
-    //console.log(user);
+    //console.log(user)
     // const eventsCreated = user.eventsCreated;
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> 8a191aa9af59f0d95ffd7ee28dcb410cc5661a20
         if (req.body.category == "Internship") {
             const internship = new Internship({
                 jobTitle: req.body.jobTitle,
@@ -318,13 +313,6 @@ router.post('/', async (req, res) => {
                     })
                 }
             }
-<<<<<<< HEAD
-
-=======
-     
-        //return res.redirect('/')
-    
->>>>>>> 8a191aa9af59f0d95ffd7ee28dcb410cc5661a20
     
     
    

@@ -4,6 +4,7 @@ const Joi = require('joi');
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const { User } = require('../models/user');
+const { Volunteering } = require('../models/volunteering');
 const express = require('express');
 const router = express.Router();
 
@@ -49,24 +50,24 @@ router.post('/', async (req, res) => {
 });
 
 //mass update -->
-/*
+
 router.get('/asdasdasdasdasdads', async (req, res) => {
     let userList = []
-    await User.find({}, (err, users) => {
+    await Volunteering.find({}, (err, users) => {
         userList = users
-        console.log(userList[1])
-        //console.log(users)
+        console.log(users)
         if (err) {
-          console.log(err)
+          //console.log(err)
         } else {
           return res.json({users: users});
         }
     });
-    console.log(userList.length)
-    userList.forEach(async user => {
+    //console.log(userList)
+    
+    /*userList.forEach(async user => {
         await User.update(  
-            {email: user.email},
-            {school: "Folsom High School", isAdmin: false, requestingCompany: false},
+            {email: user.eventName},
+            {school: "Folsom High School"},
             {multi: true}, 
             function(err, numberAffected){ 
                 if (err) {
@@ -76,9 +77,9 @@ router.get('/asdasdasdasdasdads', async (req, res) => {
                 }
             }
         );
-    })
+    })*/
 });
-/*
+
 /*router.get('/verify', async (req, res) => {
     const cookies = req.headers.cookie.split("; ");
     let authToken = "";
