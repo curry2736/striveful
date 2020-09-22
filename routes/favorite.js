@@ -58,9 +58,23 @@ router.get('/', async (req, res) => {
 
     let volunteerings = await Volunteering.find({"_id":  { $in: favorites}, "dateExpiring":{ $gte: adjustedDate}});
 
-    let workshops = await Workshop.find({"_id":  { $in: favorites}, "dateExpiring":{ $gte: adjustedDate}});
+    let orgs = []
 
-    console.log([internships, volunteerings, workshops])
+    volunteerings.forEach( value => {
+        orgs.push(value.organization);
+    })
+
+    let orgsUnique = [...new Set(orgs)]
+
+    let workshops = await Workshop.find(
+        {
+            "dateExpiring":{ $gte: adjustedDate}, 
+            $or: [
+                {"_id":  { $in: favorites}}, 
+                {"organization": {$in: orgsUnique}}
+            ]
+        }
+    );
 
     res.render('favorite', {user: user, favorites: {internships: internships, volunteerings: volunteerings, workshops: workshops}});
 

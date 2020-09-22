@@ -64,7 +64,7 @@ router.get('/asdasdasdasdasdads', async (req, res) => {
     });
     //console.log(userList)
     
-    /*userList.forEach(async user => {
+    userList.forEach(async user => {
         await User.update(  
             {email: user.eventName},
             {school: "Folsom High School"},
@@ -77,7 +77,7 @@ router.get('/asdasdasdasdasdads', async (req, res) => {
                 }
             }
         );
-    })*/
+    })
 });
 
 /*router.get('/verify', async (req, res) => {

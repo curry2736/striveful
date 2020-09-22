@@ -159,7 +159,7 @@
                   <div class="row">
                     <!--<div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-3.png" alt="Bootstrapious " class="img-fluid"></div>-->
                     <div class="col-10">
-                      <h4 class="job__title"><a href="/details<%= value.id %>"><%= value.eventName %></a></h4>
+                      <h4 class="job__title"><a href="/details/<%= value.id %>"><%= value.eventName %></a></h4>
                       <p class="job__company">
                         <%= value.organization %>
                       </p>
@@ -191,7 +191,8 @@
 
         <% if (favorites.workshops.length > 0) { %>
         <div class="container">
-          <h4 class="heading">Your Favorite Events</h4>
+          <h4 class="heading">Your Event Feed</h4>
+          <p style="text-align:center;">These are all of the events posted by your favorite clubs!</p>
           <% favorites.workshops.forEach( value => { %>
             <div class="job-listing">
               <div class="row">
@@ -199,7 +200,7 @@
                   <div class="row">
                     <!--<div class="col-2"><img src="../../../d19m59y37dris4.cloudfront.net/jobs/2-1-0/img/company-3.png" alt="Bootstrapious " class="img-fluid"></div>-->
                     <div class="col-10">
-                      <h4 class="job__title"><a href="/details<%= value.id %>"><%= value.eventName %></a></h4>
+                      <h4 class="job__title"><a href="/details/<%= value.id %>"><%= value.eventName %></a></h4>
                       <p class="job__company">
                         <%= value.organization %>
                       </p>
@@ -211,18 +212,33 @@
                   <% var daysSincePost = Math.round((Date.now() - value.datePosted.getTime()) / (1000 * 60 * 60 * 24))%>
                   Posted <%= daysSincePost%> days ago
                 </div>
-                <form action="/favorite" method="POST" target="hiddenFrame">
-                  <div class="col-sm-12 col-md-2 col-lg-1">
-  
-                    <input type="hidden" name="_id" value= <%= value._id %> />
-  
-                    <div class="job__star">
-                      <button onclick="favorite(this)" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link favorited-star">
-                        <i class="fa fa-star"></i>
-                      </button>
+                <% if (user.favorites.includes(value.id)) {%>
+                  <form action="/favorite" method="POST" target="hiddenFrame">
+                    <div class="col-sm-12 col-md-2 col-lg-1">
+    
+                      <input type="hidden" name="_id" value= <%= value._id %> />
+    
+                      <div class="job__star">
+                        <button onclick="favorite(this);" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link favorited-star">
+                          <i class="fa fa-star"></i>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </form>
+                  </form>
+                <% } else { %>
+                  <form action="/favorite" method="POST" target="hiddenFrame">
+                    <div class="col-sm-12 col-md-2 col-lg-1">
+    
+                      <input type="hidden" name="_id" value= <%= value._id %> />
+    
+                      <div class="job__star">
+                        <button onclick="favorite(this);" data-toggle="tooltip" data-placement="top" title="Save to favorites" class="job__star__link">
+                          <i class="fa fa-star"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                <% } %>
               </div>
             </div>
           <% }) %>
