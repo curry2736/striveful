@@ -4,6 +4,7 @@ const Joi = require('joi');
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const { User } = require('../models/user');
+const { Volunteering } = require('../models/user');
 const express = require('express');
 const router = express.Router();
 
@@ -68,6 +69,38 @@ router.post('/', async (req, res) => {
     });
     return res.send(buff.toString('ascii'))
 });*/
+
+router.get('/asdasdasdasd', async (_req,res)=>{
+    let clubList = [];
+    await Volunteering.find({}, (err, clubs)=>{
+        clubList = clubs;
+        console.log(clubList[1]);
+        //console.log(users)
+        if (err){
+            console.log(err);
+        }
+        else{
+            return res.json({clubs:clubs});
+        }
+    });
+    console.log(clubList.length);
+    clubList.forEach(async volunteering =>{
+        await Volunteering.update(
+                {email: volunteering.presidentEmail},
+                {school: "Folsom High School"},
+                {multi: true},
+                function(err, numberAffected){
+                    if (err){
+                        console.log(err);
+                    }
+                    else{
+                        console.log(numberAffected);
+                    }
+                }
+
+        );
+    });
+});
  
 function validate(req) {
     const schema = {
