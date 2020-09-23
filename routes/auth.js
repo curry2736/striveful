@@ -90,7 +90,7 @@ router.post('/', async (req, res) => {
             authToken = cookie.split("=")[1];
         }
     });
-    jwt.verify(authToken, config.get('PrivateKey') , (err) => {
+    jwt.verify(authToken, process.env.PRIVATE_KEY , (err) => {
         console.log(authToken);
         if (err) {
             console.log(err);

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 var ObjectId = require('mongodb').ObjectID;
+require('dotenv').config()
 
 const User = mongoose.model('User', new mongoose.Schema({
     isCompany: {
@@ -79,7 +80,7 @@ function jwtVerification(req, res) {
     if (!authToken) {
         return res.redirect("/signup")
     }
-    jwt.verify(authToken, config.get('PrivateKey') , (err) => {
+    jwt.verify(authToken, process.env.PRIVATE_KEY , (err) => {
         if (err) {
             console.log(err);
             return res.redirect("/signup")
@@ -107,7 +108,7 @@ function isUser(req, res) {
     if (!authToken) {
         return null
     }
-    jwt.verify(authToken, config.get('PrivateKey') , (err) => {
+    jwt.verify(authToken, process.env.PRIVATE_KEY , (err) => {
         if (err) {
             console.log(err);
             return null
