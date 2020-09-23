@@ -4,6 +4,7 @@ const Joi = require('joi');
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const { User } = require('../models/user');
+const { Volunteering } = require('../models/volunteering');
 const express = require('express');
 const router = express.Router();
 require('dotenv').config()
@@ -48,6 +49,37 @@ router.post('/', async (req, res) => {
     
     //return res.header('x-auth-token', token).send(_.pick(user, ['_id', 'firstName', 'lastname', 'email']));
 });
+
+//mass update -->
+/*router.get('/asdasdasdasdasdads', async (req, res) => {
+    let userList = []
+    await Volunteering.find({}, (err, users) => {
+        userList = users
+        console.log(users)
+        if (err) {
+          //console.log(err)
+        } else {
+          return res.json({users: users});
+        }
+    });
+    //console.log(userList)
+    
+    userList.forEach(async user => {
+        console.log(user.eventName)
+        await Volunteering.update(  
+            {eventName: user.eventName},
+            {school: "Folsom High School"},
+            {multi: true}, 
+            function(err, numberAffected){ 
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log(numberAffected) 
+                }
+            }
+        );
+    })
+});*/
 
 /*router.get('/verify', async (req, res) => {
     const cookies = req.headers.cookie.split("; ");

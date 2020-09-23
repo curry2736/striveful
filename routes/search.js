@@ -117,7 +117,7 @@ router.get('/query', async (req, res) => {
 
         console.log('--------------------------------------------------------------------')
         
-        res.render('search', {results : {user, searchNum, internships : internships, volunteerings : volunteerings, workshops : workshops, internshipIsChecked, volunteeringIsChecked, workshopIsChecked,
+        res.render('search', {user : user, results : {searchNum : searchNum, internships : internships, volunteerings : volunteerings, workshops : workshops, internshipIsChecked, volunteeringIsChecked, workshopIsChecked,
                                         opportunityPlaceholder, locationPlaceholder}})
     }
     catch (err) {

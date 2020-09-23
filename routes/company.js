@@ -160,16 +160,15 @@ router.post('/', async (req, res) => {
     const verif = await JSON.parse(jwtVerification(req,res));
     const user = await User.findById(verif._id);
 
-    let hasEvent = false
+    /*let hasEvent = false
     for (var event of user.eventsCreated) {
         if (event.id == req.params.id) {
             hasEvent = true
             break;
         }
-    }
-    //console.log(user);
+    }*/
+    //console.log(user)
     // const eventsCreated = user.eventsCreated;
-    if (hasEvent) {
         if (req.body.category == "Internship") {
             const internship = new Internship({
                 jobTitle: req.body.jobTitle,
@@ -291,7 +290,8 @@ router.post('/', async (req, res) => {
                 user.eventsCreated.push(event)
                 await user.save()
                 return res.redirect('/client-dashboard')
-            } catch {
+            } catch (err) {
+                console.log(err)
                 return res.render('company', {
                         user: user,
                         type: type,
@@ -313,9 +313,6 @@ router.post('/', async (req, res) => {
                     })
                 }
             }
-    } else {
-        return res.redirect('/')
-    }
     
     
    
@@ -336,35 +333,94 @@ router.put('/edit/:id', async (req, res) => {
     } else {
         return res.redirect('/')
     }
-    
-    let sentEvent = {event: await Volunteering.findById(req.params.id)}
-    type = "Volunteering"
-    console.log("TYPE 0", type)
 
-    if (!sentEvent.event) {
-        sentEvent.event = await Internship.findById(req.params.id)
-        console.log("TYPE 1", type)
-        type = "Internship"             
+    var sentEvent = {event: null}
+
+    try { 
+        sentEvent = {event: await Volunteering.findById(req.params.id)}
+        if (sentEvent.event != null) {
+            type = "Volunteering"
+            console.log("TYPE 0", type)
+                sentEvent.event.eventName = req.body.jobTitle,
+                sentEvent.event.organization = req.body.companyName,
+                sentEvent.event.email = req.body.email,
+                sentEvent.event.description = req.body.description,
+                sentEvent.event.startDate = req.body.startDate,
+                sentEvent.event.endDate = req.body.endDate,
+                sentEvent.event.datePosted = req.body.datePosted,
+                sentEvent.event.city = req.body.city,
+                sentEvent.event.state = req.body.state,
+                sentEvent.event.websiteLink = req.body.websiteLink,
+                sentEvent.event.formLink = req.body.formLink,
+                sentEvent.event.dateExpiring = req.body.dateExpiring,
+                sentEvent.event.teamsLink = req.body.teamsLink,
+                sentEvent.event.youtubeLink = req.body.youtubeLink,
+                sentEvent.event.presidentEmail = req.body.presidentEmail,
+                sentEvent.event.advisorEmail = req.body.advisorEmail,
+                sentEvent.event.visits = sentEvent.event.visits   
+
+        }
+
+        if (sentEvent.event == null) {
+            sentEvent.event = await Internship.findById(req.params.id)
+            console.log("TYPE 1", type)
+            type = "Internship"
+            if (sentEvent.event != null) {
+                sentEvent.event.jobTitle = req.body.jobTitle,
+                sentEvent.event.email = req.body.email,
+                sentEvent.event.companyName = req.body.companyName,
+                sentEvent.event.websiteLink = req.body.websiteLink,
+                sentEvent.event.description = req.body.description,
+                sentEvent.event.city = req.body.city,
+                sentEvent.event.state = req.body.state,
+                sentEvent.event.startDate = req.body.startDate,
+                sentEvent.event.endDate = req.body.endDate,
+                sentEvent.event.datePosted = req.body.datePosted,
+                sentEvent.event.dateExpiring = req.body.dateExpiring,
+                sentEvent.event.visits = sentEvent.event.visits
+            }             
+        }
+    } catch(err) {
+        console.log(err)
     } 
-    if (!sentEvent.event) {
+
+    if (sentEvent.event == null) {
         sentEvent.event = await Workshop.findById(req.params.id)
         type = "Workshop"
         console.log("TYPE 2", type)
+        if (sentEvent.event != null) {   
+            sentEvent.event.eventName = req.body.jobTitle,
+            sentEvent.event.email = req.body.email,
+            sentEvent.event.organization = req.body.companyName,
+            sentEvent.event.websiteLink = req.body.websiteLink,
+            sentEvent.event.description = req.body.description,
+            sentEvent.event.city = req.body.city,
+            sentEvent.event.state = req.body.state,
+            sentEvent.event.startDate = req.body.startDate,
+            sentEvent.event.endDate = req.body.endDate,
+            sentEvent.event.datePosted = req.body.datePosted,
+            sentEvent.event.dateExpiring = req.body.dateExpiring,
+            sentEvent.event.visits = sentEvent.event.visits
+        }
+
     }
+       
     
+    await sentEvent.event.save()
+
     console.log(sentEvent.event.visits)
 
     console.log("TYPE LINE 336", type)
 
-    if (type == "Workshop") {
+    /*if (type == "Workshop") {
         await Workshop.deleteOne({"_id": req.params.id})
     } else if (type == "Internship") {
         await Internship.deleteOne({"_id": req.params.id})
     } else {
         await Volunteering.deleteOne({"_id": req.params.id})
-    }
+    }*/
 
-    await User.update(
+    /*await User.update(
         {'_id': userVerification}, 
         { $pull: { "eventsCreated" : { id: req.params.id } } }, (err, data) => {
             if (err) {
@@ -373,10 +429,11 @@ router.put('/edit/:id', async (req, res) => {
             }
             console.log(data)
         },
-    );
+    );*/
+    
     console.log("BODY _-----------_")
     console.log(req.body)
-    if (req.body.category == "Internship") {
+    /*if (req.body.category == "Internship") {
         const internship = new Internship({
             jobTitle: req.body.jobTitle,
             email: req.body.email,
@@ -480,7 +537,9 @@ router.put('/edit/:id', async (req, res) => {
                 console.log(err)
                 res.redirect('/client-dashboard')
             }
-        }
+        }*/
+
+    res.redirect('/client-dashboard')
     console.log("hi")
 })
 

@@ -17,6 +17,10 @@ const Volunteering = mongoose.model('Volunteering', new mongoose.Schema({
         maxlength: 128,
         //unique: true
     },
+    school: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true,
@@ -92,6 +96,7 @@ function validateVolunteering(volunteering) {
         eventName: Joi.string().min(1).max(128).required(),
         email: Joi.string().min(5).max(255).required().email(),
         organization: Joi.string().min(1).max(128).required(),
+        school: Joi.string().min(5).max(255).required(),
         description: Joi.string().min(1).max(2000).required(),
         city: Joi.string().min(1).max(50).required(),
         state: Joi.string().min(1).max(50).required(),

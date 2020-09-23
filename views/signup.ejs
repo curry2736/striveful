@@ -28,6 +28,8 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+      
   </head>
   <body>
     <!-- navbar-->
@@ -113,6 +115,38 @@
                   <label for="password">Password</label>
                   <input name="password" id="password" type="password" class="form-control" required minlength="5" maxlength="512">
                 </div>
+                <div class="form-group">
+                  <input name="requestingCompany" id="requestingCompany" type="checkbox" value= "false" onclick="requestingCompanyCheckbox()">
+                  <label for="requestingCompany">Requesting Post Permissions</label>
+                </div>
+                <div class="form-group" id="school" style="display:none">
+                  <label for="school">School Name</label>
+                  <select name="school">
+                    <option value="Folsom High School">Folsom High School</option>
+                    <option value="Vista Del Lago High School">Vista Del Lago High School</option>
+                    <option value="">Not part of a school club</option>
+                  </select>
+                </div>
+              
+
+                <script>
+                  function requestingCompanyCheckbox(){
+                    if(document.getElementById("requestingCompany").checked){
+                      document.getElementById("requestingCompany").value = "true";
+                      document.getElementById("school").style.display = "inline";
+                    }
+                    else{
+                      document.getElementById("school").style.display = "none";
+                      document.getElementById("requestingCompany").value = "false";
+                    }
+                  }
+
+                  function contactUs(){
+                    document.getElementById("noSchool").style.display = "inline";
+                  }
+                    
+                </script>
+
                 <div class="text-center">
                   <button type="submit" class="btn btn-outline-white-primary"><i class="fa fa-user-md"></i> Register</button>
                 </div>
