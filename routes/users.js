@@ -5,7 +5,8 @@ const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const express = require('express');
 const router = express.Router();
- 
+require('dotenv').config()
+
 router.post('/', async (req, res) => {
     // First Validate The Request
     // const { error } = validateUser(req.body);
@@ -47,7 +48,7 @@ router.post('/', async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(user.password, salt);
         await user.save();
-        const token = jwt.sign({ _id: user._id, email: user.email }, config.get('PrivateKey'));
+        const token = jwt.sign({ _id: user._id, email: user.email }, process.env.PRIVATE_KEY);
         res.cookie('token', token);
         //res.header('x-auth-token', token).send(_.pick(user, ['_id', 'firstName', 'lastname', 'email']));
         res.redirect('/')

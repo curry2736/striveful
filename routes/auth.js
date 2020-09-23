@@ -6,6 +6,7 @@ const _ = require('lodash');
 const { User } = require('../models/user');
 const express = require('express');
 const router = express.Router();
+require('dotenv').config()
 
 router.post('/', async (req, res) => {
     // First Validate The HTTP Request
@@ -32,7 +33,7 @@ router.post('/', async (req, res) => {
         req.flash('error', 'Incorrect email or password');
         res.redirect('/');
     }
-    const token = jwt.sign({ _id: user._id, email: user.email }, config.get('PrivateKey'));
+    const token = jwt.sign({ _id: user._id, email: user.email }, process.env.PRIVATE_KEY);
     
     res.cookie('token', token);
     
