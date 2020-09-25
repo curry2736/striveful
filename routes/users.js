@@ -42,7 +42,8 @@ router.post('/', async (req, res) => {
             isCompany: false,
             isAdmin: false,
             requestingCompany: true,
-            school: req.body.school
+            school: req.body.school,
+            requestDescription: req.body.requestDescription
         })
 
         const salt = await bcrypt.genSalt(10);

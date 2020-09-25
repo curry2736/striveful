@@ -121,12 +121,20 @@
                 </div>
                 <div class="form-group" id="school" style="display:none">
                   <label for="school">School Name</label>
+                  <br>
                   <select name="school">
                     <option value="Folsom High School">Folsom High School</option>
                     <option value="Vista Del Lago High School">Vista Del Lago High School</option>
                     <option value="">Not part of a school club</option>
                   </select>
                 </div>
+                <br>
+                <br>
+                <div class="form-group" id="reqDesc" style="display:none">
+                  <label for="requestDescription">Please provide a short description of what you plan to post</label>
+                  <textarea name="requestDescription" id="descBox" rows="4" cols="60"></textarea> 
+                </div>
+                <br>
               
 
                 <script>
@@ -134,9 +142,12 @@
                     if(document.getElementById("requestingCompany").checked){
                       document.getElementById("requestingCompany").value = "true";
                       document.getElementById("school").style.display = "inline";
+                      document.getElementById("reqDesc").style.display = "inline";
+                      document.getElementById('descBox').style.height="200px";
                     }
                     else{
                       document.getElementById("school").style.display = "none";
+                      document.getElementById("reqDesc").style.display = "none";
                       document.getElementById("requestingCompany").value = "false";
                     }
                   }
@@ -146,7 +157,7 @@
                   }
                     
                 </script>
-
+                <br>
                 <div class="text-center">
                   <button type="submit" class="btn btn-outline-white-primary"><i class="fa fa-user-md"></i> Register</button>
                 </div>
