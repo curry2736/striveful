@@ -4,6 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
 
+
 const tokenTest = require('./routes/tokenTest');
 const logout = require('./routes/logout');
 const cookieParser = require('cookie-parser');
@@ -37,12 +38,6 @@ const app = express();
 const methodOverride = require('method-override')
 const port = process.env.PORT || 3000;
 const expressLayouts = require('express-ejs-layouts');
-
-
-if (!config.get('PrivateKey')) {
-  console.error('FATAL ERROR: PrivateKey is not defined.');
-  process.exit(1);
-}
 
 app.use(methodOverride('_method'))
 app.use(cookieParser('secret'));

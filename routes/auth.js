@@ -7,6 +7,7 @@ const { User } = require('../models/user');
 const { Volunteering } = require('../models/volunteering');
 const express = require('express');
 const router = express.Router();
+require('dotenv').config()
 
 router.post('/', async (req, res) => {
     // First Validate The HTTP Request
@@ -33,7 +34,7 @@ router.post('/', async (req, res) => {
         req.flash('error', 'Incorrect email or password');
         res.redirect('/');
     }
-    const token = jwt.sign({ _id: user._id, email: user.email }, config.get('PrivateKey'));
+    const token = jwt.sign({ _id: user._id, email: user.email }, process.env.PRIVATE_KEY);
     
     res.cookie('token', token);
     
@@ -89,7 +90,7 @@ router.post('/', async (req, res) => {
             authToken = cookie.split("=")[1];
         }
     });
-    jwt.verify(authToken, config.get('PrivateKey') , (err) => {
+    jwt.verify(authToken, process.env.PRIVATE_KEY , (err) => {
         console.log(authToken);
         if (err) {
             console.log(err);
