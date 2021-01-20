@@ -48,13 +48,13 @@ const Volunteering = mongoose.model('Volunteering', new mongoose.Schema({
     },
     city: {
         type: String,
-        required: true,
+        required: false,
         minLength: 1,
         maxLength: 50
     },
     state: {
         type: String,
-        required: true,
+        required: false,
         minLength: 1,
         maxLength: 50
     },

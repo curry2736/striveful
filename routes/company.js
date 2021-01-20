@@ -221,7 +221,7 @@ router.post('/', async (req, res) => {
                 youtubeLink: req.body.youtubeLink,
                 presidentEmail: req.body.presidentEmail,
                 advisorEmail: req.body.advisorEmail,
-
+                school: req.body.school
             })
             // console.log(req.body);
             // const { error } = validate(req.body);
