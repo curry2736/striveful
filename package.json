@@ -35,8 +35,5 @@
     "req-flash": "0.0.3",
     "uuid": "^8.3.0",
     "uuidv1": "^1.6.14"
-  },
-  "devDependencies": {
-    "dotenv": "^8.6.0"
   }
 }
