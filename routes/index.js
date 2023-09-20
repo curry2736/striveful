@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
         user = await User.findOne({ _id: userVerification });
     }
 
-    console.log(user)
+    console.log(user + " at ip address " + req.connection.remoteAddress);
 
     res.render('index', {user: user, recents : {internships: internships, volunteerings: volunteerings, workshops: workshops}, message: req.flash('error') })
 })
